@@ -23,6 +23,7 @@ source /Users/gogamid/.docker/init-zsh.sh || true # Added by Docker Desktop
 alias zshconfig="mate ~/.zshrc"
 alias ohmyzsh="mate ~/.oh-my-zsh"
 alias lzd='lazydocker'
+alias lg='lazygit'
 
 export PATH="$PATH:$HOME/FlutterDev/flutter/bin"
 export PATH="$PATH:/opt/homebrew/opt/node@18/bin"
