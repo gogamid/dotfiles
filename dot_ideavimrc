@@ -1,0 +1,185 @@
+" upper or lower case: gU gu + motion
+"fold: zo zc zO zC zR zM
+
+"multi line: ctrl+v I, d
+
+let mapleader=" "
+
+""ideavim open and reload
+map \e :e ~/.ideavimrc<CR>
+map <leader><leader> <Action>(IdeaVim.ReloadVimRc.reload)
+
+"disable ideavim
+"set ideavimsupport=
+
+""sync clipboard
+set clipboard+=unnamed
+set clipboard+=ideaput
+
+set encoding = 'utf-8'
+set fileencoding = 'utf-8'
+set fileformat = 'unix'
+set incsearch
+set ignorecase
+set smartcase
+set breakindent
+set autoindent
+set smartindent
+set expandtab
+set smarttab
+set nu
+set relativenumber
+set colorcolumn=80
+set scrolloff=8
+set wrap=false
+set showmode
+set visualbell
+set noerrorbells
+set tabstop=2
+set ideajoin
+set idearefactormode=keep
+
+Plug 'machakann/vim-highlightedyank'
+Plug 'tpope/vim-commentary'
+Plug 'preservim/nerdtree'
+
+"set sneak
+"set keep-english-in-normal-and-restore-in-insert
+
+"set which-key
+set timeoutlen=1000
+nmap <leader>e :NERDTree<CR>
+let g:WhichKey_FontSize = 16
+let g:NERDTreeMapPrevious = 'O'
+
+"LSP
+nmap gd <Action>(GotoDeclaration)
+nmap gr <Action>(GotoReference)
+nmap gi <Action>(GotoImplementation)
+nmap gy <Action>(GotoTypeHierarchy)
+nmap K <Action>(QuickJavaDoc)
+nmap <leader>cf <Action>(ReformatCode)
+vmap <leader>cf <Action>(ReformatCode)
+nmap <leader>cr <Action>(RenameElement)
+nmap <leader>ca <Action>(ShowIntentionActions)
+nmap <leader>gi <Action>(QuickImplementations)
+nmap <leader>cd <Action>(ShowErrorDescription)
+nmap <leader>cj <Action>(QuickJavaDoc)
+vmap <leader>ct <Action>(Scala.TypeInfo)
+nmap ]e <Action>(GotoNextError)
+nmap [e <Action>(GotoPreviousError)
+nmap ]m <Action>(MethodDown)
+nmap [m <Action>(MethodUp)
+nmap [h <Action>(VcsShowPrevChangeMarker)
+nmap ]h <Action>(VcsShowNextChangeMarker)
+ 
+" ----------- Code Editing -----------
+
+" gcc line comment and gc multiple lines
+map gb <Action>(CommentByBlockComment)
+
+"not losing copied thing
+xnoremap <leader>p "\"_dP
+
+map Q <Action>(ReformatCode)
+
+vnoremap < <gv
+vnoremap > >gv
+
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+
+nmap n nzzzv
+nmap N Nzzzv
+
+map <M-k> <Action>(MoveLineUp)
+map <M-j> <Action>(MoveLineDown)
+
+" ----------- Running -----------
+map <leader>R <Action>(ChooseRunConfiguration)
+map <leader>r <Action>(Run)
+"map <leader>rc <Action>(NotebookRunCellSelectBelowAction)
+map <leader>s <Action>(Stop)
+nmap <leader>pr <Action>(ExternalSystem.ProjectRefreshAction)
+
+
+" going[g]
+nmap <leader>ff <Action>(GotoFile)
+nmap ga <Action>(GotoAction)
+nmap <leader>fr <Action>(RecentFiles)
+nmap <leader>/ <Action>(FindInPath)
+nmap <leader>ft <Action>(Terminal.OpenInTerminal)
+
+" ----------- Tools[,]-----------
+" copilot
+nmap <leader>ad <Action>(copilot.disableCopilot)
+nmap <leader>ae <Action>(copilot.enableCopilot)
+imap <TAB> <Action>(copilot.applyInlays)
+
+" MNEMONICS
+" ------------ WINDOW <leader>w ---------
+nmap <leader>wg <Action>(ToolWindowsGroup)
+nmap <leader>wl <Action>(JumpToLastWindow)
+nmap <leader>wd <Action>(ActivateDebugToolWindow)
+nmap <leader>wb <Action>(ActivateBookmarksToolWindow)
+nmap <leader>wk <Action>(ActivateCommitToolWindow)
+nmap <leader>wn <Action>(ActivateNotificationsToolWindow)
+nmap <leader>wp <Action>(ActivateProjectToolWindow)
+nmap <leader>wr <Action>(ActivateRunToolWindow)
+nmap <leader>wv <Action>(ActivateVersionControlToolWindow)
+nmap <C-/> <Action>(ActivateTerminalToolWindow)
+nmap <leader>wc <Action>(ActivateGitHubCopilotChatToolWindow)
+
+sethandler <C-j> a:vim
+sethandler <C-k> a:vim
+
+map <C-\> <Action>(SplitVertically)
+map <C--> <Action>(SplitHorizontally)
+map <C-=> <Action>(Unsplit)
+
+nnoremap <C-h> <c-w>h
+nnoremap <s-TAB> <c-w>j
+nnoremap <TAB> <c-w>k
+nnoremap <C-l> <c-w>l
+
+map H <Action>(PreviousTab)
+map L <Action>(NextTab)
+
+map <leader>P <Action>(PinActiveEditorTab)
+
+map <C-e> <Action>(NewElement)
+
+" View mode
+map <leader>vf <Action>(ToggleFullScreen)
+map <leader>vd <Action>(ToggleDistractionFreeMode)
+map <leader>vp <Action>(TogglePresentationMode)
+map <leader>vz <Action>(ToggleZenMode)
+
+" ------------ Utilities <leader>u--------
+nmap <leader>un <Action>(RestartIde)
+nmap <leader>us <Action>(ShowSettings)
+
+" ----------- Debugging -----------
+nmap <F1> <Action>(StepInto)
+nmap <F2> <Action>(StepOver)
+nmap <F3> <Action>(StepOut)
+nmap <F4> <Action>(Resume)
+nmap <leader>db <Action>(ToggleLineBreakpoint)
+map <leader>dB <Action>(ViewBreakpoints)
+nmap <leader>dd <Action>(Debug)
+nmap <leader>de <Action>(EvaluateExpression)
+
+"Project management
+map <leader>pl <Action>(RecentProjectListGroup)
+map <leader>px <Action>(CloseProject)
+
+"closing
+map <leader>xn <Action>(CloseAllNotifications)
+map <leader>xw <Action>(HideAllWindows)
+map <leader>xx <Action>(CloseContent)
+map <leader>xa <Action>(CloseAllEditors)
+map <leader>xo <Action>(CloseAllEditorsButActive)
+map <leader>xp <Action>(CloseAllUnpinnedEditors)
+
+nmap <leader>+ <Action>(EditorIncreaseFontSizeGlobal)
+nmap <leader>- <Action>(EditorDecreaseFontSizeGlobal)
