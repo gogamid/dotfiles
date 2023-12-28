@@ -9,12 +9,14 @@ export FLUTTER_ROOT=/Users/gogamid/FlutterDev/flutter
 
 ZSH_THEME="robbyrussell"
 DISABLE_AUTO_UPDATE="true"
+VI_MODE_SET_CURSOR=true
 
 plugins=(
   git 
   zsh-syntax-highlighting
   zsh-autosuggestions
   vi-mode
+  aliases
 )
 
 source $ZSH/oh-my-zsh.sh
