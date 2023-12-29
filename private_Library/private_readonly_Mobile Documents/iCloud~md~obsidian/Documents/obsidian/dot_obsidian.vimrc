@@ -1,36 +1,26 @@
+" Yank to system clipboard
+set clipboard=unnamed
+set tabstop=4
+
 unmap <Space>
 " commenting out the visual line navigation out as it fails navigating notes with embeds
 "" Have j and k navigate visual lines rather than logical ones, normal mode
 noremap j gj
 noremap k gk
-"
-"" use logical line navigation in visual mode
 vnoremap j gj
 vnoremap k gk
-""vnoremap gj j
-""vnoremap gk k
 
 noremap n nzz
 noremap N Nzz
-
 noremap <C-d> <C-d>zz 
 noremap <C-u> <C-u>zz 
 
-set tabstop=4
-set nu
-set colorcolumn=80
-set scrolloff=8
-set incsearch
-set relativenumber
 
-" clear highlights
-nmap <F5> :nohl
 
-" Emulate Original gt and gT https://vimhelp.org/tabpage.txt.html#gt
-exmap nextTab obcommand workspace:next-tab
-exmap prevTab obcommand workspace:previous-tab
-map <S-L> :nextTab
-map <S-H> :prevTab
+exmap moveLineUp obcommand editor:swap-line-up
+exmap moveLineDown obcommand editor:swap-line-down
+map <M-K> :moveLineUp
+map <M-J> :moveLineDown
 
 " Emulate Original Folding command https://vimhelp.org/fold.txt.html#fold-commands
 exmap unfoldall obcommand editor:unfold-all
@@ -53,26 +43,18 @@ vmap z= :contextMenu
 
 
 exmap focusRight obcommand editor:focus-right
-nmap <C-l> :focusRight
-
 exmap focusLeft obcommand editor:focus-left
-nmap <C-h> :focusLeft
-
 exmap focusTop obcommand editor:focus-top
-nmap <TAB> :focusTop
-
 exmap focusBottom obcommand editor:focus-bottom
+exmap vsplit obcommand workspace:split-vertical
+exmap split obcommand workspace:split-horizontal
+nmap <C-\> :vsplit
+nmap <C--> :split
+nmap <C-l> :focusRight
+nmap <C-h> :focusLeft
+nmap <TAB> :focusTop
 nmap <s-TAB> :focusBottom
 
-exmap vsplit obcommand workspace:split-vertical
-nmap <C-\> :vsplit
-
-exmap split obcommand workspace:split-horizontal
-nmap <C--> :split
-
-" Yank to system clipboard
-set clipboard=unnamed
-set tabstop=4
 
 exmap q obcommand workspace:close
 nmap <C-q> :q 
@@ -96,21 +78,19 @@ nmap <Space>fb :goToBacklink
 
 
 exmap back obcommand app:go-back
-nmap <C-o> :back
 exmap forward obcommand app:go-forward
+nmap <C-o> :back
 nmap <C-i> :forward
 
 exmap newFile obcommand file-explorer:new-file
+exmap delFile obcommand app:delete-file
 nmap <C-e> :newFile
+nmap md :delFile
 
 exmap toggleLeftSidebar obcommand app:toggle-left-sidebar
 exmap toggleRightSidebar obcommand app:toggle-right-sidebar
-
 nmap mh :toggleLeftSidebar
 nmap ml :toggleRightSidebar
-
-exmap delFile obcommand app:delete-file
-nmap md :delFile
 
 
 exmap surround_wiki surround [[ ]]
@@ -125,8 +105,10 @@ exmap surround_bold surround ** **
 exmap surround_italics surround _ _
 exmap surround_strikethrough surround ~~ ~~
 exmap insertCode obcommand editor:insert-codeblock
-
-" NOTE: must use 'map' and not 'nmap'
+exmap header1 obcommand editor:set-heading-1
+exmap header2 obcommand editor:set-heading-2
+exmap header3 obcommand editor:set-heading-3
+exmap header4 obcommand editor:set-heading-4
 map [[ :surround_wiki
 nunmap s
 vunmap s
@@ -142,15 +124,14 @@ map s{ :surround_curly_brackets
 map s} :surround_curly_brackets
 map sb :surround_bold
 map si :surround_italics
-map sh :surround_highlight
+" map sh :surround_highlight
+map sh1 :header1
+map sh2 :header2
+map sh3 :header3
+map sh4 :header4
 
 
 exmap bulletList obcommand editor:toggle-bullet-list
 nmap <Space>b :bulletList
 
-exmap moveLineUp obcommand editor:swap-line-up
-exmap moveLineDown obcommand editor:swap-line-down
-
-map <M-K> :moveLineUp
-map <M-J> :moveLineDown
 
