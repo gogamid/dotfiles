@@ -1,16 +1,8 @@
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='nvim'
-fi
-
+# zsh
 export ZSH="$HOME/.oh-my-zsh"
-export FLUTTER_ROOT=$HOME/FlutterDev/flutter
-
-ZSH_THEME="robbyrussell"
 DISABLE_AUTO_UPDATE="true"
+ZSH_THEME="robbyrussell"
 VI_MODE_SET_CURSOR=true
-
 plugins=(
   git 
   zsh-syntax-highlighting
@@ -18,15 +10,29 @@ plugins=(
   vi-mode
   aliases
 )
-
 source $ZSH/oh-my-zsh.sh
-source $HOME/.docker/init-zsh.sh || true
 
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
+fi
 
+#aliases
 alias lzd='lazydocker'
 alias lg='lazygit'
+alias cz='chezmoi'
 
-export PATH="$PATH:$HOME/FlutterDev/flutter/bin"
-export PATH="$PATH:/opt/homebrew/opt/node@18/bin"
-export PATH="$PATH:/opt/homebrew/opt/python@3.11.6/libexec/bin"
-export PATH="$PATH:/opt/homebrew/opt/scala@2.13/bin"
+
+{{ if eq .chezmoi.os "darwin" }}
+# darwin/mac m chip
+{{ else if eq .chezmoi.os "linux" }}
+# linux
+{{ else }}
+# other operating system
+{{ end }}
+
+# machine-specific configuration
+{{- if eq .chezmoi.hostname "work-laptop" }}
+# work-laptop
+{{- end }}
