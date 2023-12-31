@@ -1,3 +1,4 @@
+{{- if ne .chezmoi.os "windows" }}
 [".oh-my-zsh"]
     type = "archive"
     url = "https://github.com/ohmyzsh/ohmyzsh/archive/master.tar.gz"
@@ -16,6 +17,8 @@
     exact = true
     stripComponents = 1
     refreshPeriod = "168h"
+{{- end }}
+
 [".config/nvim"]
     type = "git-repo"
     url = "https://github.com/gogamid/nvim.git"
