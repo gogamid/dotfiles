@@ -19,7 +19,11 @@
     refreshPeriod = "168h"
 {{- end }}
 
+{{- if eq .chezmoi.os "windows" }}
+["AppData/Local/nvim"]
+{{- else }}
 [".config/nvim"]
+{{- end }}
     type = "git-repo"
     url = "https://github.com/gogamid/nvim.git"
     refreshPeriod = "168h"
