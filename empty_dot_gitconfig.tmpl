@@ -1,3 +1,13 @@
 [user]
   name = {{ .name | quote }}
   email = {{ .email | quote }}
+
+{{- if eq .chezmoi.hostname "AUDIINL43987507" }}
+[http]
+  proxy = {{ .proxy | quote }}
+  sslVerify = false
+[https]
+  proxy = {{ .proxy | quote }}
+  sslVerify = false
+{{- end }}
+
