@@ -44,9 +44,17 @@ config.set_environment_variables = {
 	https_proxy = {{ .proxy | quote }},
 	no_proxy = "localhost,*.vwgroup.com",
 }
+{{- end }}
+
 config.default_prog =
+
+{{ if eq .chezmoi.os "darwin" }}
+  {"/opt/homebrew/bin/tmux", "new-session", "-A","-D","-s", "default"}
+{{ else if eq .chezmoi.os "linux" }}
+  {}
+{{ else }}
 	{ "cmd.exe", "-c", "doskey ~=cd %homepath%" }
 	-- { "bash.exe", "-l", "-c", "zsh" }
-{{- end }}
+{{ end }}
 
 return config
