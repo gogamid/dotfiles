@@ -12,7 +12,7 @@ if wezterm.config_builder then
 end
 
 local schemes = { "Catppuccin Mocha", "Batman", "Dracula" }
-local fonts = { "JetBrainsMono Nerd Font Mono", "FiraCode Nerd Font", "Hack Nerd Font Mono" }
+local fonts = { "JetBrains Mono", "FiraCode Nerd Font", "Hack Nerd Font Mono" }
 config.color_scheme = schemes[1]
 config.font = wezterm.font(fonts[1], { weight = "Book" })
 config.font_size = 15
@@ -34,5 +34,19 @@ config.window_decorations = "RESIZE"
 config.default_cursor_style = "BlinkingUnderline"
 
 config.automatically_reload_config = true
+
+{{- if eq .chezmoi.hostname "AUDIINL43987507" }}
+config.set_environment_variables = {
+	PATH = wezterm.home_dir .. "/scoop/apps/coursier/current/bin;" 
+  .. os.getenv("PATH"):gsub("javapath", ""),
+	EDITOR = "nvim",
+	http_proxy = {{ .proxy | quote }},
+	https_proxy = {{ .proxy | quote }},
+	no_proxy = "localhost,*.vwgroup.com",
+}
+config.default_prog =
+	{ "cmd.exe", "-c", "doskey ~=cd %homepath%" }
+	-- { "bash.exe", "-l", "-c", "zsh" }
+{{- end }}
 
 return config
