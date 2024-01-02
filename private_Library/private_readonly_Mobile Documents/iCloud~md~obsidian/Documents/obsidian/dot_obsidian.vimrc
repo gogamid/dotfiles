@@ -89,8 +89,8 @@ nmap md :delFile
 
 exmap toggleLeftSidebar obcommand app:toggle-left-sidebar
 exmap toggleRightSidebar obcommand app:toggle-right-sidebar
-nmap mh :toggleLeftSidebar
-nmap ml :toggleRightSidebar
+nmap ml :toggleLeftSidebar
+nmap mr :toggleRightSidebar
 
 
 exmap surround_wiki surround [[ ]]
