@@ -100,7 +100,7 @@ map <leader>R <Action>(ChooseRunConfiguration)
 map <leader>r <Action>(Run)
 "map <leader>rc <Action>(NotebookRunCellSelectBelowAction)
 map <leader>s <Action>(Stop)
-nmap <leader>pr <Action>(ExternalSystem.ProjectRefreshAction)
+nmap <leader>pr <Action>(ExternalSystem.RefreshAllProjects)
 
 
 " going[g]
