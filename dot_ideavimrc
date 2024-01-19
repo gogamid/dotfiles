@@ -106,6 +106,7 @@ nmap <leader>pr <Action>(ExternalSystem.RefreshAllProjects)
 " going[g]
 nmap <leader>ff <Action>(GotoFile)
 nmap ga <Action>(GotoAction)
+vmap ga <Action>(GotoAction)
 nmap <leader>fr <Action>(RecentFiles)
 nmap <leader>/ <Action>(FindInPath)
 nmap <leader>ft <Action>(Terminal.OpenInTerminal)

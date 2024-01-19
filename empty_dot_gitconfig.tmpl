@@ -2,6 +2,12 @@
   name = {{ .name | quote }}
   email = {{ .email | quote }}
 
+[filter "lfs"]
+        required = true
+        clean = git-lfs clean -- %f
+        smudge = git-lfs smudge -- %f
+        process = git-lfs filter-process
+
 {{- if eq .chezmoi.hostname "AUDIINL43987507" }}
 [http]
   proxy = {{ .proxy | quote }}

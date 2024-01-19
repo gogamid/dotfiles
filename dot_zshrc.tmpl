@@ -24,15 +24,7 @@ alias lg='lazygit'
 alias cz='chezmoi'
 
 
-{{ if eq .chezmoi.os "darwin" }}
-# darwin/mac m chip
-{{ else if eq .chezmoi.os "linux" }}
-# linux
-{{ else }}
-# other operating system
-{{ end }}
-
-# machine-specific configuration
-{{- if eq .chezmoi.hostname "work-laptop" }}
-# work-laptop
-{{- end }}
+# python version manager
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
