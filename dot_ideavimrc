@@ -53,6 +53,7 @@ let g:WhichKey_FontSize = 16
 let g:NERDTreeMapPrevious = 'O'
 
 "LSP
+nmap gt <Action>(GotoTest)
 nmap gd <Action>(GotoDeclaration)
 nmap gr <Action>(GotoReference)
 nmap gi <Action>(GotoImplementation)
@@ -98,9 +99,11 @@ map <M-j> <Action>(MoveLineDown)
 " ----------- Running -----------
 map <leader>R <Action>(ChooseRunConfiguration)
 map <leader>r <Action>(Run)
-"map <leader>rc <Action>(NotebookRunCellSelectBelowAction)
 map <leader>s <Action>(Stop)
-nmap <leader>pr <Action>(ExternalSystem.RefreshAllProjects)
+" nmap <leader>pr <Action>(ExternalSystem.RefreshAllProjects)
+nmap <leader>pr <Action>(ExternalSystem.ProjectRefreshAction)
+
+
 
 
 " going[g]
@@ -112,10 +115,19 @@ nmap <leader>/ <Action>(FindInPath)
 nmap <leader>ft <Action>(Terminal.OpenInTerminal)
 
 " ----------- Tools[,]-----------
-" copilot
+" ^Cmd + -> line, Cmd + . -> word
+" opt + [ ] next or prev suggestion, \ trigger  
 nmap <leader>ad <Action>(copilot.disableCopilot)
 nmap <leader>ae <Action>(copilot.enableCopilot)
 imap <TAB> <Action>(copilot.applyInlays)
+" copilot.cycleNextInlays
+" imap <leader>an <Action>(copilot.cycleNextInlays)
+" imap <leader>ap <Action>(copilot.cyclePreviousInlays)
+" nmap <leader>ab <Action>(copilot.showSuggestions)
+" imap <leader>al <Action>(copilot.applyInlaysNextLine)
+" imap <leader>aw <Action>(copilot.applyInlaysNextWord)
+
+
 
 " MNEMONICS
 " ------------ WINDOW <leader>w ---------

@@ -132,6 +132,7 @@ map sh4 :header4
 
 
 exmap bulletList obcommand editor:toggle-bullet-list
+vmap <Space>b :bulletList
 nmap <Space>b :bulletList
 
 
