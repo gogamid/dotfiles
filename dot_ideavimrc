@@ -151,8 +151,8 @@ map <C--> <Action>(SplitHorizontally)
 map <C-=> <Action>(Unsplit)
 
 nnoremap <C-h> <c-w>h
-nnoremap <s-TAB> <c-w>j
-nnoremap <TAB> <c-w>k
+nnoremap <C-j> <c-w>j
+nnoremap <C-k> <c-w>k
 nnoremap <C-l> <c-w>l
 
 map H <Action>(PreviousTab)

@@ -33,6 +33,9 @@ config.window_close_confirmation = "NeverPrompt"
 config.window_decorations = "RESIZE"
 config.default_cursor_style = "BlinkingUnderline"
 
+-- Use ALT instead of SHIFT to bypass application mouse reporting
+config.bypass_mouse_reporting_modifiers = 'ALT'
+
 config.automatically_reload_config = true
 
 {{- if eq .chezmoi.hostname "AUDIINL43987507" }}
