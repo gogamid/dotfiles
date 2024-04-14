@@ -36,3 +36,10 @@ eval "$(pyenv init -)"
 fpath=(/opt/vagrant/embedded/gems/gems/vagrant-2.4.1/contrib/zsh $fpath)
 compinit
 # <<<<  Vagrant command completion (end)
+
+#openmp on mac os m1
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+
+export PATH="/Applications/TAU/tau/apple/bin:$PATH"

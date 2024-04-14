@@ -73,6 +73,7 @@ nmap ]m <Action>(MethodDown)
 nmap [m <Action>(MethodUp)
 nmap [h <Action>(VcsShowPrevChangeMarker)
 nmap ]h <Action>(VcsShowNextChangeMarker)
+vmap gm <Action>(ExtractMethod)
  
 " ----------- Code Editing -----------
 
@@ -103,8 +104,8 @@ map <leader>s <Action>(Stop)
 " nmap <leader>pr <Action>(ExternalSystem.RefreshAllProjects)
 nmap <leader>pr <Action>(ExternalSystem.ProjectRefreshAction)
 
-
-
+" imap <C-y> <Action>(EditorChooseLookupItem)
+" imap <C-y> <Action>(copilot.applyInlaysNextLine)
 
 " going[g]
 nmap <leader>ff <Action>(GotoFile)
@@ -117,15 +118,29 @@ nmap <leader>ft <Action>(Terminal.OpenInTerminal)
 " ----------- Tools[,]-----------
 " ^Cmd + -> line, Cmd + . -> word
 " opt + [ ] next or prev suggestion, \ trigger  
-nmap <leader>ad <Action>(copilot.disableCopilot)
-nmap <leader>ae <Action>(copilot.enableCopilot)
-imap <TAB> <Action>(copilot.applyInlays)
+nmap <leader>ad <Action>(copilot.disableCopilot)<Action>(codeium.aD)
+nmap <leader>ae <Action>(copilot.enableCopilot)<Action>(codeium.aE)
+imap <C-y> <Action>(copilot.applyInlays)<Action>(codeium.ak)
 " copilot.cycleNextInlays
-" imap <leader>an <Action>(copilot.cycleNextInlays)
-" imap <leader>ap <Action>(copilot.cyclePreviousInlays)
+imap <C-n> <Action>(copilot.cycleNextInlays)<Action>(codeium.aA)
+imap <C-p> <Action>(copilot.cyclePreviousInlays)<Action>(codeium.az)
+"explain selected code visual
+vmap <C-e> <Action>(codeium.aR)
+"refactor selected code
+vmap <C-r> <Action>(codeium.aS) 
+
+imap <C-g> <Action>(copilot.showSuggestions)<Action>(codeium.aH)
 " nmap <leader>ab <Action>(copilot.showSuggestions)
 " imap <leader>al <Action>(copilot.applyInlaysNextLine)
 " imap <leader>aw <Action>(copilot.applyInlaysNextWord)
+" codeium.aA   //next suggestion    insert                                  <A-[>
+" codeium.az   //previous suggestion      insert                <A-]>
+" codeium.aF //login normal
+" codeium.aG //log out normal
+" codeium.aH
+" codeium.ar 
+" codeium.aR  //refactor selected code
+" codeium.aS //refactor selected code
 
 
 
@@ -142,6 +157,8 @@ nmap <leader>wr <Action>(ActivateRunToolWindow)
 nmap <leader>wv <Action>(ActivateVersionControlToolWindow)
 nmap <C-/> <Action>(ActivateTerminalToolWindow)
 nmap <leader>wc <Action>(ActivateGitHubCopilotChatToolWindow)
+"open file in new window
+nmap <leader>wo <Action>(EditSourceInNewWindow)
 
 sethandler <C-j> a:vim
 sethandler <C-k> a:vim
@@ -160,7 +177,7 @@ map L <Action>(NextTab)
 
 map <leader>P <Action>(PinActiveEditorTab)
 
-map <C-e> <Action>(NewElement)
+nmap <leader>nf <Action>(NewElement)
 
 " View mode
 map <leader>vf <Action>(ToggleFullScreen)

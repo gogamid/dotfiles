@@ -109,6 +109,10 @@ exmap header1 obcommand editor:set-heading-1
 exmap header2 obcommand editor:set-heading-2
 exmap header3 obcommand editor:set-heading-3
 exmap header4 obcommand editor:set-heading-4
+exmap header5 obcommand editor:set-heading-5
+exmap header6 obcommand editor:set-heading-6
+exmap header7 obcommand editor:set-heading-7
+
 map [[ :surround_wiki
 nunmap s
 vunmap s
@@ -129,6 +133,9 @@ map sh1 :header1
 map sh2 :header2
 map sh3 :header3
 map sh4 :header4
+map sh5 :header5
+map sh6 :header6
+map sh7 :header7
 
 
 exmap bulletList obcommand editor:toggle-bullet-list
