@@ -468,4 +468,3 @@ nmap <Space>lc :listChecklist
 " workspace:toggle-stacked-tabs
 " workspace:undo-close-pane
 """ """ """ """ """ """ """ """ """ """ """ """ """ """ """ """ """ """ """ """ """ """ """ """
-
