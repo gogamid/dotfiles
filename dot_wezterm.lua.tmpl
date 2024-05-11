@@ -1,66 +1,198 @@
 local wezterm = require("wezterm")
+local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
 local mux = wezterm.mux
-local config = {}
+local act = wezterm.action
+local config = wezterm.config_builder()
 
 wezterm.on("gui-startup", function(cmd)
-	local tab, pane, window = mux.spawn_window(cmd or {})
+	local args = {}
+	if cmd then
+		args = cmd.args
+	end
+
+	local thesis_dir = wezterm.home_dir .. "/uni/thesis/master-thesis-2024"
+	local tab, pane, window = mux.spawn_window({
+		workspace = "thesis",
+		cwd = thesis_dir,
+		-- args = args,
+	})
 	window:gui_window():maximize()
+	tab:set_title("paper")
+	pane:send_text("nvim paper.tex\n")
+
+	local _, _, _ = mux.spawn_window({
+		workspace = "default",
+		args = args,
+	})
+
+	mux.set_active_workspace("thesis")
 end)
 
-if wezterm.config_builder then
-	config = wezterm.config_builder()
-end
-
-local schemes = { "Catppuccin Mocha", "Batman", "Dracula" }
-local fonts = {"SF Mono", "JetBrains Mono", "FiraCode Nerd Font", "Hack Nerd Font Mono" }
+-- COLORSCHEME
+local schemes = { "Catppuccin Frappe", "Batman", "Dracula" }
 config.color_scheme = schemes[1]
-config.font = wezterm.font(fonts[1], { weight = "Book" })
-config.font_size = 14
+
+--FONT
+local fonts = { "SF Mono", "JetBrains Mono", "FiraCode Nerd Font", "Hack Nerd Font Mono" }
+config.font = wezterm.font(fonts[1])
+config.font_size = 15
+-- disable ligatures
+config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
+
+--TAB
 config.use_fancy_tab_bar = false
-config.enable_tab_bar = false
+-- config.hide_tab_bar_if_only_one_tab = true
+config.inactive_pane_hsb = {
+	saturation = 0.8,
+	brightness = 0.8,
+}
+
+--WINDOW
 config.window_padding = {
 	left = 2,
 	right = 2,
 	top = 0,
 	bottom = 0,
 }
-config.inactive_pane_hsb = {
-	saturation = 0.8,
-	brightness = 0.8,
-}
 config.window_background_opacity = 0.9
 config.window_close_confirmation = "NeverPrompt"
 config.window_decorations = "RESIZE"
+
 config.default_cursor_style = "BlinkingUnderline"
 
 -- Use ALT instead of SHIFT to bypass application mouse reporting
-config.bypass_mouse_reporting_modifiers = 'ALT'
+config.bypass_mouse_reporting_modifiers = "ALT"
 
 config.automatically_reload_config = true
 
-{{- if eq .chezmoi.hostname "AUDIINL43987507" }}
-config.set_environment_variables = {
-	PATH = wezterm.home_dir .. "/scoop/apps/coursier/current/bin;" 
-  .. os.getenv("PATH"):gsub("javapath", ""),
-	EDITOR = "nvim",
-	http_proxy = {{ .proxy | quote }},
-	https_proxy = {{ .proxy | quote }},
-	no_proxy = "localhost,*.vwgroup.com",
+-- config.default_prog = {"/opt/homebrew/bin/tmux", "new-session", "-A","-D","-s", "default"}
+
+--- KEYBINDINGS
+config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
+config.keys = {
+	-- PANE
+	{
+		mods = "LEADER",
+		key = "-",
+		action = act.SplitVertical({ domain = "CurrentPaneDomain" }),
+	},
+	{
+		mods = "LEADER",
+		key = "|",
+		action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+	},
+	{
+		mods = "LEADER",
+		key = "x",
+		action = act.CloseCurrentPane({ confirm = true }),
+	},
+
+	-- TAB
+	-- Cmd + t new tab, Cmd + w close tab
+	{ key = "c", mods = "LEADER", action = act.SpawnTab("CurrentPaneDomain") },
+	{ key = "h", mods = "LEADER", action = act.ActivateTabRelative(-1) },
+	{ key = "l", mods = "LEADER", action = act.ActivateTabRelative(1) },
+	{
+		key = ",",
+		mods = "LEADER",
+		action = act.PromptInputLine({
+			description = "Enter new name for tab",
+			action = wezterm.action_callback(function(window, pane, line)
+				if line then
+					window:active_tab():set_title(line)
+				end
+			end),
+		}),
+	},
+
+	{ key = "v", mods = "LEADER", action = wezterm.action.ActivateCopyMode },
+
+	{ key = "p", mods = "LEADER", action = act.ActivateCommandPalette },
+
+	--SESSION
+	{ key = "s", mods = "LEADER", action = act.ShowLauncherArgs({ flags = "WORKSPACES" }) },
+	{
+		key = "S",
+		mods = "LEADER",
+		action = act.PromptInputLine({
+			description = wezterm.format({
+				{ Attribute = { Intensity = "Bold" } },
+				{ Foreground = { AnsiColor = "Fuchsia" } },
+				{ Text = "Enter name for new workspace" },
+			}),
+			action = wezterm.action_callback(function(window, pane, line)
+				if line then
+					window:perform_action(
+						act.SwitchToWorkspace({
+							name = line,
+						}),
+						pane
+					)
+				end
+			end),
+		}),
+	},
 }
-{{- end }}
 
-config.default_prog =
+-- TAB
+for i = 1, 9 do
+	table.insert(config.keys, {
+		key = tostring(i),
+		mods = "LEADER",
+		action = act.ActivateTab(i - 1),
+	})
+end
 
-{{ if eq .chezmoi.os "darwin" }}
-  {"/opt/homebrew/bin/tmux", "new-session", "-A","-D","-s", "default"}
-{{ else if eq .chezmoi.os "linux" }}
-  {}
-{{ else }}
-	{ "cmd.exe", "-c", "doskey ~=cd %homepath%" }
-	-- { "bash.exe", "-l", "-c", "zsh" }
-{{ end }}
+smart_splits.apply_to_config(config)
 
--- disable ligatures
-config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
+wezterm.on("update-status", function(window, pane)
+	-- Workspace name
+	local stat = window:active_workspace()
+	local stat_color = "#f7768e"
+	-- It's a little silly to have workspace name all the time
+	-- Utilize this to display LDR or current key table name
+	if window:leader_is_active() then
+		stat = "LDR"
+		stat_color = "#bb9af7"
+	end
 
+	local basename = function(s)
+		-- Nothing a little regex can't fix
+		return string.gsub(s, "(.*[/\\])(.*)", "%2")
+	end
+
+	-- Current working directory
+	local cwd = pane:get_current_working_dir()
+	if cwd then
+		if type(cwd) == "userdata" then
+			-- Wezterm introduced the URL object in 20240127-113634-bbcac864
+			cwd = basename(cwd.file_path)
+		else
+			-- 20230712-072601-f4abf8fd or earlier version
+			cwd = basename(cwd)
+		end
+	else
+		cwd = ""
+	end
+
+	-- Current command
+	local cmd = pane:get_foreground_process_name()
+	-- CWD and CMD could be nil (e.g. viewing log using Ctrl-Alt-l)
+	cmd = cmd and basename(cmd) or ""
+
+	-- Right status
+	window:set_right_status(wezterm.format({
+		{ Foreground = { Color = stat_color } },
+		{ Text = wezterm.nerdfonts.oct_table .. "  " .. stat },
+		"ResetAttributes",
+		{ Text = " | " },
+		{ Foreground = { Color = "#7dcfff" } },
+		{ Text = wezterm.nerdfonts.md_folder .. "  " .. cwd },
+		"ResetAttributes",
+		{ Text = " | " },
+		{ Foreground = { Color = "#e0af68" } },
+		{ Text = wezterm.nerdfonts.fa_code .. "  " .. cmd },
+		"ResetAttributes",
+	}))
+end)
 return config
