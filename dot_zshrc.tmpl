@@ -31,4 +31,5 @@ export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
-export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
+export PATH="/Library/Java/JavaVirtualMachines/zulu-22.jdk/Contents/Home/bin:$PATH"
+export PATH="$PATH:`pwd`/personal/FlutterDev/flutter/bin"

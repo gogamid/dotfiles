@@ -163,9 +163,9 @@ nmap <leader>wo <Action>(EditSourceInNewWindow)
 sethandler <C-j> a:vim
 sethandler <C-k> a:vim
 
-map <C-\> <Action>(SplitVertically)
-map <C--> <Action>(SplitHorizontally)
-map <C-=> <Action>(Unsplit)
+map <leader>| <Action>(SplitVertically)
+map <leader>- <Action>(SplitHorizontally)
+map <leader>= <Action>(Unsplit)
 
 nnoremap <C-h> <c-w>h
 nnoremap <C-j> <c-w>j
@@ -211,5 +211,5 @@ map <leader>xa <Action>(CloseAllEditors)
 map <leader>xo <Action>(CloseAllEditorsButActive)
 map <leader>xp <Action>(CloseAllUnpinnedEditors)
 
-nmap <leader>+ <Action>(EditorIncreaseFontSizeGlobal)
-nmap <leader>- <Action>(EditorDecreaseFontSizeGlobal)
+" nmap <leader>+ <Action>(EditorIncreaseFontSizeGlobal)
+" nmap <leader>- <Action>(EditorDecreaseFontSizeGlobal)
