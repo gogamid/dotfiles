@@ -12,10 +12,21 @@ after-login-command = []
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = []
+after-startup-command = [
+  'exec-and-forget /opt/homebrew/opt/borders/bin/borders active_color=0xffcba6f7 inactive_color=0xff1d1e2c width=5.0',
+  'exec-and-forget /opt/homebrew/opt/sketchybar/bin/sketchybar',
+]
+
+# Notify Sketchybar about workspace change
+exec-on-workspace-change = [
+  '/bin/bash',
+  '-c',
+  '/opt/homebrew/opt/sketchybar/bin/sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
+]
+
 
 # Start AeroSpace at login
-start-at-login = false
+start-at-login = true
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers = true
@@ -48,16 +59,21 @@ key-mapping.preset = 'qwerty'
 [gaps]
 inner.horizontal = 0
 inner.vertical = 0
-outer.left = 0
-outer.bottom = 0
-outer.top = 0
-outer.right = 0
+outer.left = 2
+outer.bottom = 2
+outer.top = [{ monitor."built" = 2 }, { monitor."lg" = 40 }, 24]
+outer.right = 2
 
 # See https://nikitabobko.github.io/AeroSpace/guide#exec-env-vars
 [exec]
 inherit-env-vars = true
 [exec.env-vars]
 PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
+
+[[on-window-detected]]
+if.app-id = 'cc.ffitch.shottr'
+run = 'layout floating'
+
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -83,10 +99,6 @@ PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
 # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
 # alt-enter = 'exec-and-forget open -n /System/Applications/Utilities/Terminal.app'
 
-# See: https://nikitabobko.github.io/AeroSpace/commands#layout
-alt-slash = 'layout tiles horizontal vertical'
-alt-comma = 'layout accordion horizontal vertical'
-
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
 alt-h = 'focus left'
 alt-j = 'focus down'
@@ -98,10 +110,6 @@ alt-shift-h = 'move left'
 alt-shift-j = 'move down'
 alt-shift-k = 'move up'
 alt-shift-l = 'move right'
-
-# See: https://nikitabobko.github.io/AeroSpace/commands#resize
-alt-shift-minus = 'resize smart -50'
-alt-shift-equal = 'resize smart +50'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 alt-1 = 'workspace 1'
@@ -169,27 +177,76 @@ alt-shift-x = 'move-node-to-workspace X'
 alt-shift-y = 'move-node-to-workspace Y'
 alt-shift-z = 'move-node-to-workspace Z'
 
-# See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
+# See: https://nikitabobko.github.io/AeroSpace/commands#layout
+alt-slash = 'layout tiles horizontal vertical'
+alt-comma = 'layout accordion horizontal vertical'
+
+#thumb keys Del-Forward, Backspace, Enter, Tab, Space, Esc
+# alt-delete = '' not available
+alt-backspace = 'layout floating tiling'
+alt-enter = 'fullscreen'
+
 alt-tab = 'workspace-back-and-forth'
+alt-space = 'mode service'
+alt-esc = 'flatten-workspace-tree'
+
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
 alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
-# See: https://nikitabobko.github.io/AeroSpace/commands#mode
-alt-shift-semicolon = 'mode service'
-
-# 'service' binding mode declaration.
-# See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
-esc = ['reload-config', 'mode main']
-r = ['flatten-workspace-tree', 'mode main'] # reset layout
-#s = ['layout sticky tiling', 'mode main'] # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
-f = [
-  'layout floating tiling',
-  'mode main',
-] # Toggle between floating and tiling layout
-backspace = ['close-all-windows-but-current', 'mode main']
+j = 'resize smart -50'
+k = 'resize smart +50'
 
-alt-shift-h = ['join-with left', 'mode main']
-alt-shift-j = ['join-with down', 'mode main']
-alt-shift-k = ['join-with up', 'mode main']
-alt-shift-l = ['join-with right', 'mode main']
+alt-h = ['join-with left', 'mode main']
+alt-j = ['join-with down', 'mode main']
+alt-k = ['join-with up', 'mode main']
+alt-l = ['join-with right', 'mode main']
+
+backspace = ['close-all-windows-but-current', 'mode main']
+# enter = ['reload-config', 'mode main']
+
+# tab = ['reload-config', 'mode main']
+# space = ['reload-config', 'mode main']
+esc = ['reload-config', 'mode main']
+
+
+#[T]erminals
+[[on-window-detected]]
+if.app-id = 'com.github.wez.wezterm'
+run = 'move-node-to-workspace T'
+
+#[B]rowsers
+[[on-window-detected]]
+if.app-id = 'org.mozilla.firefox'
+run = 'move-node-to-workspace B'
+
+#[S]ettings
+[[on-window-detected]]
+if.app-id = 'com.apple.systempreferences'
+run = 'move-node-to-workspace S'
+
+[[on-window-detected]]
+if.app-id = 'com.runningwithcrayons.Alfred-Preferences'
+run = 'move-node-to-workspace S'
+
+#[N]otes
+[[on-window-detected]]
+if.app-id = 'md.obsidian'
+run = 'move-node-to-workspace N'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Notes'
+run = 'move-node-to-workspace N'
+
+#[D]aily
+[[on-window-detected]]
+if.app-id = 'com.todoist.mac.Todoist'
+run = 'move-node-to-workspace D'
+
+[[on-window-detected]]
+if.app-id = 'com.readdle.SparkDesktop.appstore'
+run = 'move-node-to-workspace D'
+
+[[on-window-detected]]
+if.app-id = 'ai.chatall'
+run = 'move-node-to-workspace A'
