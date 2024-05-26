@@ -70,6 +70,10 @@ inherit-env-vars = true
 [exec.env-vars]
 PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
 
+#map workspace on the specific monitor
+[workspace-to-monitor-force-assignment]
+9 = 'built-in'
+
 [[on-window-detected]]
 if.app-id = 'cc.ffitch.shottr'
 run = 'layout floating'
