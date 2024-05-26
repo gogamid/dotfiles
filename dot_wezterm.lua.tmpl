@@ -28,13 +28,26 @@ wezterm.on("gui-startup", function(cmd)
 	mux.set_active_workspace("thesis")
 end)
 
--- COLORSCHEME
-local schemes = { "Catppuccin Frappe", "Catppuccin Mocha", "Batman", "Dracula", "Rosé Pine (base16)" }
-config.color_scheme = schemes[2]
+function get_appearance()
+	if wezterm.gui then
+		return wezterm.gui.get_appearance()
+	end
+	return "Dark"
+end
+
+function scheme_for_appearance(appearance)
+	if appearance:find("Dark") then
+		return "Catppuccin Frappe"
+	else
+		return "Catppuccin Latte"
+	end
+end
+
+config.color_scheme = scheme_for_appearance(get_appearance())
 
 --FONT
-local fonts = { "SF Mono", "JetBrains Mono", "FiraCode Nerd Font", "Hack Nerd Font Mono" }
-config.font = wezterm.font(fonts[1])
+local fonts = { "Inconsolata", "SF Mono", "JetBrains Mono", "FiraCode Nerd Font", "Hack Nerd Font Mono" }
+config.font = wezterm.font(fonts[2])
 config.font_size = 15
 -- disable ligatures
 config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
