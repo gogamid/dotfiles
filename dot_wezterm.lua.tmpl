@@ -4,28 +4,20 @@ local mux = wezterm.mux
 local act = wezterm.action
 local config = wezterm.config_builder()
 
+config.enable_kitty_keyboard = true
+config.enable_csi_u_key_encoding = false
+
 wezterm.on("gui-startup", function(cmd)
 	local args = {}
 	if cmd then
 		args = cmd.args
 	end
 
-	local thesis_dir = wezterm.home_dir .. "/uni/thesis/master-thesis-2024"
-	local tab, pane, window = mux.spawn_window({
-		workspace = "thesis",
-		cwd = thesis_dir,
-		-- args = args,
-	})
-	window:gui_window():maximize()
-	tab:set_title("paper")
-	pane:send_text("nvim paper.tex\n")
-
-	local _, _, _ = mux.spawn_window({
+	local _, _, win = mux.spawn_window({
 		workspace = "default",
 		args = args,
 	})
-
-	mux.set_active_workspace("thesis")
+	wins = win:gui_window():maximize()
 end)
 
 function get_appearance()
@@ -37,7 +29,7 @@ end
 
 function scheme_for_appearance(appearance)
 	if appearance:find("Dark") then
-		return "Catppuccin Frappe"
+		return "Catppuccin Mocha"
 	else
 		return "Catppuccin Latte"
 	end

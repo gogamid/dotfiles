@@ -72,8 +72,8 @@ vmap <Space>cm :contextMenu
 """ """ """ """ """ File Management""" """ """ """ """ """ """ """ """ """ """ """ """ """ """ """
 
 exmap fileQuit obcommand workspace:close
-exmap goToFile obcommand obsidian-another-quick-switcher:search-command_file-name-fuzzy-search
-exmap fileBacklinks obcommand obsidian-another-quick-switcher:backlink
+exmap goToFile obcommand switcher:open
+exmap fileBacklinks obcommand backlink:open-backlinks
 exmap fileNew obcommand file-explorer:new-file
 exmap fileDelete obcommand app:delete-file
 exmap openLinkInLeaf obcommand editor:open-link-in-new-leaf
