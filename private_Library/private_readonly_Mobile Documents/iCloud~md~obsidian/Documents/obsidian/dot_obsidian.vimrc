@@ -1,6 +1,6 @@
 """ """ """ """ """ """ Native Vim Emulation "" """ """ """ """ """ """ """ """ """ """ """ """ """
 set clipboard=unnamed
-set tabstop=4
+set tabstop=2
 
 unmap <Space>
 
@@ -15,19 +15,12 @@ noremap N Nzz
 noremap <C-d> <C-d>zz 
 noremap <C-u> <C-u>zz 
 
-exmap back obcommand app:go-back
-exmap forward obcommand app:go-forward
 nmap <C-o> :back
 nmap <C-i> :forward
 
 map <M-k> :moveLineUp
 map <M-j> :moveLineDown
 
-exmap unfoldall obcommand editor:unfold-all
-exmap togglefold obcommand editor:toggle-fold
-exmap foldall obcommand editor:fold-all
-exmap foldless obcommand editor:fold-less
-exmap foldmore obcommand editor:fold-more
 nmap zo :togglefold
 nmap zc :togglefold
 nmap za :togglefold
@@ -36,14 +29,7 @@ nmap zM :foldall
 nmap zr :foldless
 nmap zR :unfoldall
 
-
-exmap focusRight obcommand editor:focus-right
-exmap focusLeft obcommand editor:focus-left
-exmap focusTop obcommand editor:focus-top
-exmap focusBottom obcommand editor:focus-bottom
-exmap vsplit obcommand workspace:split-vertical
-exmap split obcommand workspace:split-horizontal
-nmap <Space>| :vsplit
+nmap <Space>/ :vsplit
 nmap <Space>- :split
 nmap <C-l> :focusRight
 nmap <C-h> :focusLeft
@@ -52,33 +38,18 @@ nmap <C-j> :focusBottom
 
 """ """ """ """ """ Workspace""" """ """ """ """ """ """ """ """ """ """ """ """ """ """ """
 
-exmap toggleBacklinks obcommand backlink:toggle-backlinks-in-document
-exmap toggleLeftSidebar obcommand app:toggle-left-sidebar
-exmap toggleRightSidebar obcommand app:toggle-right-sidebar
-
 nmap <Space>tb :toggleBacklinks
 nmap <Space>tl :toggleLeftSidebar
 nmap <Space>tr :toggleRightSidebar
 
 """ """ """ """ """ Command Palette""" """ """ """ """ """ """ """ """ """ """ """ """ """ """ """
 
-exmap commandsOpen obcommand command-palette:open
-exmap contextMenu obcommand editor:context-menu
 nmap <Space>co :commandsOpen 
 vmap <Space>co :commandsOpen 
 nmap <Space>cm :contextMenu
 vmap <Space>cm :contextMenu
 
 """ """ """ """ """ File Management""" """ """ """ """ """ """ """ """ """ """ """ """ """ """ """
-
-exmap fileQuit obcommand workspace:close
-exmap goToFile obcommand switcher:open
-exmap fileBacklinks obcommand backlink:open-backlinks
-exmap fileNew obcommand file-explorer:new-file
-exmap fileDelete obcommand app:delete-file
-exmap openLinkInLeaf obcommand editor:open-link-in-new-leaf
-exmap openLinkInSplit obcommand editor:open-link-in-new-split
-exmap openLinkInWindow obcommand editor:open-link-in-new-window
 
 nmap <Space>fn :fileNew
 nmap <Space>fd :fileDelete
@@ -91,16 +62,6 @@ nmap <Space>fw :openLinkInWindow
 
 """ """ """ """ """ Editing""" """ """ """ """ """ """ """ """ """ """ """ """ """ """ """
 
-exmap moveLineUp obcommand editor:swap-line-up
-exmap moveLineDown obcommand editor:swap-line-down
-exmap surroundLink surround [[ ]]
-exmap quoteDouble surround " "
-exmap quoteSingle surround ' '
-exmap surroundCode surround ` `
-exmap brackets surround ( )
-exmap bracketsSquare surround [ ]
-exmap bracketsCurly surround { }
-exmap surroundCodeBlock obcommand editor:insert-codeblock
 nunmap s
 vunmap s
 map sl  :surroundLink
@@ -112,22 +73,11 @@ map sbb :brackets
 map sbs :bracketsSquare
 map sbc :bracketsCurly
 
-exmap surround_highlight surround == ==
-exmap surround_bold surround ** **
-exmap surround_italics surround _ _
-exmap surround_strikethrough surround ~~ ~~
 map ssb :surround_bold
 map ssi :surround_italics
 map sss :surround_strikethrough
 map ssh :surround_highlight
 
-exmap header1 obcommand editor:set-heading-1
-exmap header2 obcommand editor:set-heading-2
-exmap header3 obcommand editor:set-heading-3
-exmap header4 obcommand editor:set-heading-4
-exmap header5 obcommand editor:set-heading-5
-exmap header6 obcommand editor:set-heading-6
-exmap header7 obcommand editor:set-heading-7
 map <Space>ha :header1
 map <Space>hb :header2
 map <Space>hc :header3
@@ -136,9 +86,6 @@ map <Space>he :header5
 map <Space>hf :header6
 map <Space>hg :header7
 
-exmap listBullet obcommand editor:toggle-bullet-list
-exmap listNumber obcommand editor:toggle-numbered-list
-exmap listChecklist obcommand editor:toggle-checklist-status
 vmap <Space>lb :listBullet
 nmap <Space>lb :listBullet
 vmap <Space>ln :listNumber
@@ -468,3 +415,54 @@ nmap <Space>lc :listChecklist
 " workspace:toggle-stacked-tabs
 " workspace:undo-close-pane
 """ """ """ """ """ """ """ """ """ """ """ """ """ """ """ """ """ """ """ """ """ """ """ """
+exmap back obcommand app:go-back
+exmap forward obcommand app:go-forward
+exmap unfoldall obcommand editor:unfold-all
+exmap togglefold obcommand editor:toggle-fold
+exmap foldall obcommand editor:fold-all
+exmap foldless obcommand editor:fold-less
+exmap foldmore obcommand editor:fold-more
+exmap focusRight obcommand editor:focus-right
+exmap focusLeft obcommand editor:focus-left
+exmap focusTop obcommand editor:focus-top
+exmap focusBottom obcommand editor:focus-bottom
+exmap vsplit obcommand workspace:split-vertical
+exmap split obcommand workspace:split-horizontal
+
+exmap toggleBacklinks obcommand backlink:toggle-backlinks-in-document
+exmap toggleLeftSidebar obcommand app:toggle-left-sidebar
+exmap toggleRightSidebar obcommand app:toggle-right-sidebar
+exmap commandsOpen obcommand command-palette:open
+exmap contextMenu obcommand editor:context-menu
+exmap fileQuit obcommand workspace:close
+exmap goToFile obcommand switcher:open
+exmap fileBacklinks obcommand backlink:open-backlinks
+exmap fileNew obcommand file-explorer:new-file
+exmap fileDelete obcommand app:delete-file
+exmap openLinkInLeaf obcommand editor:open-link-in-new-leaf
+exmap openLinkInSplit obcommand editor:open-link-in-new-split
+exmap openLinkInWindow obcommand editor:open-link-in-new-window
+exmap moveLineUp obcommand editor:swap-line-up
+exmap moveLineDown obcommand editor:swap-line-down
+exmap surroundLink surround [[ ]]
+exmap quoteDouble surround " "
+exmap quoteSingle surround ' '
+exmap surroundCode surround ` `
+exmap brackets surround ( )
+exmap bracketsSquare surround [ ]
+exmap bracketsCurly surround { }
+exmap surroundCodeBlock obcommand editor:insert-codeblock
+exmap surround_highlight surround == ==
+exmap surround_bold surround ** **
+exmap surround_italics surround _ _
+exmap surround_strikethrough surround ~~ ~~
+exmap header1 obcommand editor:set-heading-1
+exmap header2 obcommand editor:set-heading-2
+exmap header3 obcommand editor:set-heading-3
+exmap header4 obcommand editor:set-heading-4
+exmap header5 obcommand editor:set-heading-5
+exmap header6 obcommand editor:set-heading-6
+exmap header7 obcommand editor:set-heading-7
+exmap listBullet obcommand editor:toggle-bullet-list
+exmap listNumber obcommand editor:toggle-numbered-list
+exmap listChecklist obcommand editor:toggle-checklist-status

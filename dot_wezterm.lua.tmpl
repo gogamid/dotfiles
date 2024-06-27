@@ -9,9 +9,23 @@ config.enable_csi_u_key_encoding = false
 
 wezterm.on("gui-startup", function(cmd)
 	local args = {}
+	local home = wezterm.home_dir
+
 	if cmd then
 		args = cmd.args
 	end
+
+	local _, _, win = mux.spawn_window({
+		workspace = "personal",
+		args = args,
+		cwd = home .. "/personal/",
+	})
+
+	local _, _, win = mux.spawn_window({
+		workspace = "work",
+		args = args,
+		cwd = home .. "/work",
+	})
 
 	local _, _, win = mux.spawn_window({
 		workspace = "default",
