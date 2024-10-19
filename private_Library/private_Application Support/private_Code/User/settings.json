@@ -13,6 +13,14 @@
       "commands": ["workbench.action.showCommands"],
       "silent": true
     }
+
+
+    // TELESCOPE.NVIM
+    {
+      // Grep (root dir)
+      "before": ["<leader>", "/"],
+      "commands": ["workbench.action.findInFiles"]
+    },
   ],
   "vim.leader": "<space>",
   "vim.handleKeys": {
