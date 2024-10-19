@@ -276,3 +276,4 @@ run = ['move-node-to-workspace 7']
 [[on-window-detected]]
 if.app-name-regex-substring = "Spotify"
 run = 'move-node-to-workspace 8'
+##
