@@ -229,7 +229,7 @@ esc = ['reload-config', 'mode main']
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'Finder|shottr|Proxifier|Ivanti'
-run = ['move-node-to-workspace 0']
+run = ['move-node-to-workspace 7']
 
 [[on-window-detected]]
 if.app-name-regex-substring = "chatall|lmstudio"
