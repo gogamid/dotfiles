@@ -20,8 +20,11 @@
 
 (deflayer U_BASE
 brdn brup lp   mctl bldn blup prev pp   next mute vold volu
+
 ;; first row
-q	w	e	r	t	y	u	i	o	p
+(tap-hold-next-release 200 q (layer-toggle U_NUM))
+(tap-hold-next-release 200 w (layer-toggle U_SYM))
+e r t y u i o p
 
 ;; second row
 (tap-hold-next-release 200 a met)
