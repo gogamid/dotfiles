@@ -11,20 +11,17 @@
 
 (defsrc
   f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
-  q w e r t y u i o p
-  a s d f g h j k l ;
-  z x c v b n m , . /
+  q    w    e    r    t    y    u    i    o    p
+  a    s    d    f    g    h    j    k    l    ;
+  z    x    c    v    b    n    m    ,    .    /
   tab caps spc rsft ent bspc
-  lsft
 )
 
 (deflayer U_BASE
-brdn brup lp   mctl bldn blup prev pp   next mute vold volu
+brdn brup lp  mctl bldn blup prev pp  next mute vold volu
 
 ;; first row
-(tap-hold-next-release 200 q (layer-toggle U_NUM))
-(tap-hold-next-release 200 w (layer-toggle U_SYM))
-e r t y u i o p
+q w e r t y u i o p
 
 ;; second row
 (tap-hold-next-release 200 a met)
@@ -38,109 +35,58 @@ g h
 (tap-hold-next-release 200 ; met)
 
 ;; third row
-(tap-hold-next-release 200 z (layer-toggle U_BUTTON))
+z
 (tap-hold-next-release 200 x ralt)
 c	v	b	n	m	,	
 (tap-hold-next-release 200 . ralt)
-(tap-hold-next-release 200 / (layer-toggle U_BUTTON))
+/
 
 ;; mods
-(tap-hold-next-release 200 tab (layer-toggle U_NUM)) ;; moved num to right
-(tap-hold-next-release 200 esc (layer-toggle U_SYM)) ;; moved sym to right
-(tap-hold-next-release 200 spc (layer-toggle U_NAV)) ;; ok right side
-rsft ;; mouse if needed on the left side
-(tap-hold-next-release 200 ent (layer-toggle U_MEDIA)) ;; moved to left side
+(tap-hold-next-release 200 tab (layer-toggle U_NUM)) 
+(tap-hold-next-release 200 esc (layer-toggle U_SYM))
+(tap-hold-next-release 200 spc (layer-toggle U_NAV)) 
+(tap-hold-next-release 200 rsft (layer-toggle U_FUN))
+(tap-hold-next-release 200 ent (layer-toggle U_MEDIA)) 
 (tap-hold-next-release 200 bspc (layer-toggle U_FUN))
-(tap-hold-next-release 200 lsft (layer-toggle U_AZ)) 
-)
-
-
-(deflayer U_MEDIA
-XX	XX	XX	XX	XX	XX	XX	XX	XX	XX	XX	XX	
-XX	XX	XX	XX	XX	XX	(multi-tap 200 XX (layer-switch U_BASE))	(multi-tap 200 XX (layer-switch U_EXTRA))	(multi-tap 200 XX (layer-switch U_TAP))	XX
-previoussong	vold	volu	nextsong	playpause	XX	sft	ctl	alt	met
-XX	XX	XX	XX	XX	XX	(multi-tap 200 XX (layer-switch U_MEDIA))	(multi-tap 200 XX (layer-switch U_FUN))	ralt	XX
-		XX	mute	XX	XX	XX	XX
-lsft
 )
 
 (deflayer U_NUM
-XX	XX	XX	XX	XX	XX	XX	XX	XX	XX	XX	XX	
-XX	(multi-tap 200 XX (layer-switch U_TAP))	(multi-tap 200 XX (layer-switch U_EXTRA))	(multi-tap 200 XX (layer-switch U_BASE))	XX	[	7	8	9	]
-met	alt	ctl	sft	XX	=	4	5	6	;
-XX	ralt	(multi-tap 200 XX (layer-switch U_NAV))	(multi-tap 200 XX (layer-switch U_NUM))	XX	\\	1	2	3	`
-		XX	XX	XX	-	0	.
-lsft
+  XX	XX	  XX	XX	XX	XX	XX	XX	XX	XX	XX	XX	
+  XX	XX	  XX	XX 	XX	XX	7	  8	  9	  +
+  met	alt	  ctl	sft	XX	0	  4	  5	  6	  -
+  XX	ralt	XX 	XX 	XX	XX	1	  2	  3	  =
+      XX	XX	XX	XX	XX	XX
 )
 
 (deflayer U_SYM
-XX	XX	XX	XX	XX	XX	XX	XX	XX	XX	XX	XX	
-XX	(multi-tap 200 XX (layer-switch U_TAP))	(multi-tap 200 XX (layer-switch U_EXTRA))	(multi-tap 200 XX (layer-switch U_BASE))	XX	{	&	*	\(	}
-met	alt	ctl	sft	XX	+	$	%	^	:
-XX	ralt	(multi-tap 200 XX (layer-switch U_MOUSE))	(multi-tap 200 XX (layer-switch U_SYM))	XX	|	!	@	#	~
-		XX	XX	XX	\_	\(	\)
-lsft
+  XX	XX	  XX	XX	XX	XX	XX	XX	XX	XX	XX	XX	
+  XX	XX	  XX	XX 	XX	XX   &	  *	  \(  \)	
+  met	alt	  ctl	sft	XX  \_  $	  %	  ^	  ~ 
+  XX	ralt	XX	XX 	XX	|	  !	  @	  #	  ` 
+      XX	XX	XX	XX	XX  XX	
+)
+
+(deflayer U_MEDIA
+  XX	          XX	  XX	  XX	      XX	        XX	XX	XX	XX  	XX	XX	XX	
+  XX	          XX	  XX	  XX	      XX	        XX	XX  XX	XX  	XX
+  previoussong	vold	volu	nextsong	playpause	  XX	sft	ctl	alt 	met
+  XX	          XX	  XX	  XX	      XX	        XX	XX 	XX	ralt	XX
+      XX	mute	XX	XX	XX	XX
 )
 
 (deflayer U_FUN
-XX	XX	XX	XX	XX	XX	XX	XX	XX	XX	XX	XX	
-f12	f7	f8	f9	sysrq	XX	(multi-tap 200 XX (layer-switch U_BASE))	(multi-tap 200 XX (layer-switch U_EXTRA))	(multi-tap 200 XX (layer-switch U_TAP))	XX
-f11	f4	f5	f6	slck	XX	sft	ctl	alt	met
-f10	f1	f2	f3	pause	XX	(multi-tap 200 XX (layer-switch U_FUN))	(multi-tap 200 XX (layer-switch U_MEDIA))	ralt	XX
-		comp	spc	tab	XX	XX	XX
-lsft
-)
-
-(deflayer U_EXTRA
-XX	XX	XX	XX	XX	XX	XX	XX	XX	XX	XX	XX	
-q	w	e	r	t	y	u	i	o	p
-(tap-hold-next-release 200 a met)	(tap-hold-next-release 200 s alt)	(tap-hold-next-release 200 d ctl)	(tap-hold-next-release 200 f sft)	g	h	(tap-hold-next-release 200 j sft)	(tap-hold-next-release 200 k ctl)	(tap-hold-next-release 200 l alt)	(tap-hold-next-release 200 ' met)
-(tap-hold-next-release 200 z (layer-toggle U_BUTTON))	(tap-hold-next-release 200 x ralt)	c	v	b	n	m	,	(tap-hold-next-release 200 . ralt)	(tap-hold-next-release 200 / (layer-toggle U_BUTTON))
-		(tap-hold-next-release 200 esc (layer-toggle U_MEDIA))	(tap-hold-next-release 200 spc (layer-toggle U_NAV))	(tap-hold-next-release 200 tab (layer-toggle U_MOUSE))	(tap-hold-next-release 200 ent (layer-toggle U_SYM))	(tap-hold-next-release 200 bspc (layer-toggle U_NUM))	(tap-hold-next-release 200 del (layer-toggle U_FUN))
-lsft
-)
-
-(deflayer U_TAP
-XX	XX	XX	XX	XX	XX	XX	XX	XX	XX	XX	XX	
-q	w	f	p	b	j	l	u	y	'
-a	r	s	t	g	m	n	e	i	o
-z	x	c	d	v	k	h	,	.	/
-		esc	spc	tab	ent	bspc	del
-lsft
-)
-
-(deflayer U_BUTTON
-XX	XX	XX	XX	XX	XX	XX	XX	XX	XX	XX	XX	
-M-z	M-x	M-c	M-v	S-M-z	S-M-z	M-v	M-c	M-x	M-z
-met	alt	ctl	sft	XX	XX	sft	ctl	alt	met
-M-z	M-x	M-c	M-v	S-M-z	S-M-z	M-v	M-c	M-x	M-z
-		#(kp* kp5)	#(kp/ kp5)	#(kp- kp5)	#(kp- kp5)	#(kp/ kp5)	#(kp* kp5)
-lsft
+  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  f12	f7	f8	f9	sysrq	XX	XX	XX	XX	  XX
+  f11	f4	f5	f6	slck	XX	sft	ctl	alt	  met
+  f10	f1	f2	f3	pause	XX	XX	XX	ralt	XX
+      comp	spc	tab	XX	XX	XX
 )
 
 (deflayer U_NAV
-XX	XX	XX	XX	XX	XX	XX	XX	XX	XX	XX	XX	
-XX	(multi-tap 200 XX (layer-switch U_TAP))	(multi-tap 200 XX (layer-switch U_EXTRA))	(multi-tap 200 XX (layer-switch U_BASE))	XX	S-M-z	M-v	M-c	M-x	M-z
-met	alt	ctl	sft	XX	left	down	up	right	caps
-XX	ralt	(multi-tap 200 XX (layer-switch U_NUM))	(multi-tap 200 XX (layer-switch U_NAV))	XX	home	pgdn	pgup	end	ins
+XX	XX	  XX	XX	XX	XX	  XX	  XX	  XX	  XX	XX	XX	
+XX	XX	  XX	XX	XX	S-M-z	M-v	  M-c	  M-x	  M-z
+met	alt	  ctl	sft	XX	left	down	up	  right	caps
+XX	ralt	XX	XX	XX	home	pgdn	pgup	end	  ins
 		XX	XX	XX	rsft ent bspc
-lsft
 )
 
-(deflayer U_MOUSE
-XX	XX	XX	XX	XX	XX	XX	XX	XX	XX	XX	XX	
-XX	(multi-tap 200 XX (layer-switch U_TAP))	(multi-tap 200 XX (layer-switch U_EXTRA))	(multi-tap 200 XX (layer-switch U_BASE))	XX	S-M-z	M-v	M-c	M-x	M-z
-met	alt	ctl	sft	XX	kp4	kp2	kp8	kp6	XX
-XX	ralt	(multi-tap 200 XX (layer-switch U_SYM))	(multi-tap 200 XX (layer-switch U_MOUSE))	XX	XX	XX	XX	XX	XX
-		XX	XX	XX	#(kp- kp5)	#(kp/ kp5)	#(kp* kp5)
-lsft
-)
-
-(deflayer U_AZ
-  XX	XX	XX	XX	XX	XX	XX	XX	XX	XX	XX	XX	
-  q w e r t y ü ı ö p
-  ə ş d f ğ h j k l ;
-  z x ç v b n m , . /
-  tab caps spc rsft ent bspc
-  lsft
-)
