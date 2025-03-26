@@ -1,6 +1,5 @@
 #zsh
 export ZSH=$HOME/.oh-my-zsh
-VI_MODE_SET_CURSOR=true
 plugins=(
   git 
   zsh-syntax-highlighting
@@ -15,9 +14,9 @@ theme steeef
 
 #editor
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='usr/bin/vim'
+  export EDITOR='/usr/bin/vim'
 else
-  export EDITOR='opt/homebrew/bin/nvim'
+  export EDITOR='/opt/homebrew/bin/nvim'
 fi
 
 #paths
@@ -43,3 +42,11 @@ source ~/.workZSH.sh
 
 #my aliases
 source ~/.aliases.sh
+
+fzfh() { eval $(history | fzf --tac | sed 's/^[ ]*[0-9]*[ ]*//') }
+
+zvm_vi_yank() {
+	zvm_yank
+	echo ${CUTBUFFER} | pbcopy
+	zvm_exit_visual_mode
+}

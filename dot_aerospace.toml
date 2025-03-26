@@ -5,7 +5,7 @@ after-login-command = []
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = [
-  'exec-and-forget /opt/homebrew/opt/borders/bin/borders active_color=0xff5e0dc inactive_color=0xff1d1e2c width=5.0',
+  # 'exec-and-forget /opt/homebrew/opt/borders/bin/borders active_color=0xff5e0dc inactive_color=0xff1d1e2c width=5.0',
   # 'exec-and-forget /opt/homebrew/opt/sketchybar/bin/sketchybar',
 ]
 
@@ -51,10 +51,10 @@ on-focused-monitor-changed = [
 [gaps]
 inner.horizontal = 0
 inner.vertical = 0
-outer.right = [{ monitor."built" = 0 }, { monitor."lg" = 60 }, 24]
-outer.left = [{ monitor."built" = 0 }, { monitor."lg" = 60 }, 24]
-outer.top = [{ monitor."built" = 0 }, { monitor."lg" = 40 }, 24]
-outer.bottom = [{ monitor."built" = 0 }, { monitor."lg" = 40 }, 24]
+outer.right = [{ monitor."built" = 0 }, { monitor."lg" = 20 }, 5]
+outer.left = [{ monitor."built" = 0 }, { monitor."lg" = 20 }, 5]
+outer.top = [{ monitor."built" = 0 }, { monitor."lg" = 0 }, 5]
+outer.bottom = [{ monitor."built" = 0 }, { monitor."lg" = 20 }, 15]
 
 # See https://nikitabobko.github.io/AeroSpace/guide#exec-env-vars
 [exec]
@@ -64,7 +64,15 @@ PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
 
 #map workspace on the specific monitor
 [workspace-to-monitor-force-assignment]
-0 = 'built-in' # Case insensitive regex substring
+0 = ['built-in', '^HP E24 G4$'] # Case insensitive regex substring
+
+# 1 = 1                            # Monitor sequence number from left to right. 1-based indexing
+# 2 = 'main'                       # Main monitor
+# 3 = 'secondary'                  # Non-main monitor in case when there are only two monitors
+# 4 = 'built-in'                   # Case insensitive regex substring
+# 5 = '^built-in retina display$'  # Case insensitive regex match
+# 6 = ['secondary', 'dell']        # You can specify multiple patterns.
+#   The first matching pattern will be used
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -204,7 +212,7 @@ alt-b = 'layout accordion horizontal'
 alt-f = 'fullscreen'
 alt-shift-f = 'layout floating tiling'
 
-alt-tab = 'workspace-back-and-forth'
+# alt-tab = 'workspace-back-and-forth'
 alt-space = 'mode service'
 alt-esc = 'flatten-workspace-tree'
 
@@ -228,16 +236,12 @@ backspace = ['close-all-windows-but-current', 'mode main']
 esc = ['reload-config', 'mode main']
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'Finder|shottr|Proxifier|Ivanti'
-run = ['move-node-to-workspace 7']
-
-[[on-window-detected]]
-if.app-name-regex-substring = "chatall|lmstudio"
-run = 'move-node-to-workspace 0'
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'WezTerm|iTerm2'
+if.app-name-regex-substring = 'WezTerm|iTerm2|Ghostty'
 run = 'move-node-to-workspace 1'
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Numbers'
+run = 'move-node-to-workspace 4'
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'Edge|Firefox|Thorium|Cypress|Brave'
@@ -248,13 +252,17 @@ if.app-name-regex-substring = "Teams|Outlook"
 run = 'move-node-to-workspace 3'
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'service'
-run = ['move-node-to-workspace 7']
+if.app-name-regex-substring = "Spotify"
+run = 'move-node-to-workspace 7'
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'Alfred'
 run = ['move-node-to-workspace 8']
 
 [[on-window-detected]]
-if.app-name-regex-substring = "Spotify"
-run = 'move-node-to-workspace 9'
+if.app-name-regex-substring = 'service|Proxifier|Ivanti'
+run = ['move-node-to-workspace 9']
+
+[[on-window-detected]]
+if.app-name-regex-substring = "Finder"
+run = 'layout floating'

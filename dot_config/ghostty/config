@@ -1,0 +1,10 @@
+# theme = dark:catppuccin-macchiato,light:NvimLight
+theme = dark:catppuccin-mocha,light:NvimLight
+# theme = dark:GitHub-Dark-Default,light:NvimLight
+# theme = dark:Batman,light:NvimLight
+background-opacity = 0.95
+macos-titlebar-style = hidden
+background-blur-radius = 10
+font-family = SF Mono
+font-size = 13
+link-url = true
