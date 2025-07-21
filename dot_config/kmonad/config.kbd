@@ -14,7 +14,7 @@
   q    w    e    r    t    y    u    i    o    p
   a    s    d    f    g    h    j    k    l    ;
   z    x    c    v    b    n    m    ,    .    /
-  tab caps spc rsft ent bspc
+  lsft caps spc rsft ent bspc
 )
 
 (deflayer U_BASE
@@ -42,7 +42,7 @@ c	v	b	n	m	,
 /
 
 ;; mods
-(tap-hold-next-release 200 tab (layer-toggle U_NUM)) 
+(tap-hold-next-release 200 lsft (layer-toggle U_NUM)) 
 (tap-hold-next-release 200 esc (layer-toggle U_SYM))
 (tap-hold-next-release 200 spc (layer-toggle U_NAV)) 
 (tap-hold-next-release 200 rsft (layer-toggle U_FUN))
@@ -55,7 +55,7 @@ c	v	b	n	m	,
   XX	XX	  XX	XX 	XX	XX	7	  8	  9	  +
   met	alt	  ctl	sft	XX	0	  4	  5	  6	  -
   XX	ralt	XX 	XX 	XX	XX	1	  2	  3	  =
-      XX	XX	XX	XX	XX	XX
+      XX	XX	0	XX	XX	XX
 )
 
 (deflayer U_SYM

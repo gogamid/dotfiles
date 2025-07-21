@@ -1,10 +1,13 @@
-# theme = dark:catppuccin-macchiato,light:NvimLight
-theme = dark:catppuccin-mocha,light:NvimLight
-# theme = dark:GitHub-Dark-Default,light:NvimLight
-# theme = dark:Batman,light:NvimLight
-background-opacity = 0.95
-macos-titlebar-style = hidden
+# theme = light:rose-pine-dawn,dark:catppuccin-mocha
+# theme = light:xcodelight,dark:catppuccin-mocha
+# theme = light:catppuccin-latte,dark:Grey-green
+# theme = light:Everforest Light Soft,dark:Everforest Dark Soft
+background-opacity = 0.9
 background-blur-radius = 10
-font-family = SF Mono
-font-size = 13
+cursor-opacity = 0.6
+
+macos-titlebar-style = hidden
+
+font-family = Iosevka Fixed
+font-size = 18
 link-url = true

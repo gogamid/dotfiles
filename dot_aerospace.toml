@@ -240,16 +240,21 @@ if.app-name-regex-substring = 'WezTerm|iTerm2|Ghostty'
 run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'Numbers'
-run = 'move-node-to-workspace 4'
+if.app-name-regex-substring = 'Cypress'
+run = 'layout floating'
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'Edge|Firefox|Thorium|Cypress|Brave'
+if.app-name-regex-substring = 'Edge|Firefox|Thorium|Brave'
 run = 'move-node-to-workspace 2'
+
 
 [[on-window-detected]]
 if.app-name-regex-substring = "Teams|Outlook"
-run = 'move-node-to-workspace 3'
+run = ['move-node-to-workspace 3']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Numbers|Citrix'
+run = 'move-node-to-workspace 4'
 
 [[on-window-detected]]
 if.app-name-regex-substring = "Spotify"
@@ -261,8 +266,8 @@ run = ['move-node-to-workspace 8']
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'service|Proxifier|Ivanti'
-run = ['move-node-to-workspace 9']
+run = ['layout floating', 'move-node-to-workspace 9']
 
 [[on-window-detected]]
-if.app-name-regex-substring = "Finder"
+if.app-name-regex-substring = "Finder|Raycast"
 run = 'layout floating'
