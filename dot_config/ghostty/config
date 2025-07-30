@@ -3,9 +3,11 @@
 # theme = light:catppuccin-latte,dark:Grey-green
 # theme = light:Everforest Light Soft,dark:Everforest Dark Soft
 background-opacity = 0.9
-background-blur-radius = 10
-cursor-opacity = 0.6
-
+background-blur-radius = true
+cursor-opacity = 1
+cursor-invert-fg-bg = true
+cursor-style-blink = true
+mouse-hide-while-typing = true
 macos-titlebar-style = hidden
 
 font-family = Iosevka Fixed

@@ -7,17 +7,9 @@ plugins=(
   zsh-vi-mode
   themes
   aliases
-  thefuck
 )
 source $ZSH/oh-my-zsh.sh
 theme steeef
-
-#editor
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='/usr/bin/vim'
-else
-  export EDITOR='/opt/homebrew/bin/nvim'
-fi
 
 #paths
 export PATH="$HOME/context/tex/texmf-osx-arm64/bin:$PATH"
