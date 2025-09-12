@@ -9,7 +9,7 @@ plugins=(
   aliases
 )
 source $ZSH/oh-my-zsh.sh
-theme steeef
+theme dst
 
 #paths
 export PATH="$HOME/context/tex/texmf-osx-arm64/bin:$PATH"
@@ -42,3 +42,17 @@ zvm_vi_yank() {
 	echo ${CUTBUFFER} | pbcopy
 	zvm_exit_visual_mode
 }
+
+export EDITOR=nvim
+
+# export XDG_CONFIG_HOME="$HOME/.config"
+
+# bun completions
+[ -s "/Users/gamidli/.bun/_bun" ] && source "/Users/gamidli/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# opencode
+export PATH=/Users/gamidli/.opencode/bin:$PATH

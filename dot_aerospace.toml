@@ -4,9 +4,17 @@ after-login-command = []
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = [
-  # 'exec-and-forget /opt/homebrew/opt/borders/bin/borders active_color=0xff5e0dc inactive_color=0xff1d1e2c width=5.0',
-  # 'exec-and-forget /opt/homebrew/opt/sketchybar/bin/sketchybar',
+
+# Run Sketchybar together with AeroSpace
+# sketchbar has a built-in detection of already running process,
+# so it won't be run twice on AeroSpace restart
+after-startup-command = ['exec-and-forget sketchybar']
+
+# Notify Sketchybar about workspace change
+exec-on-workspace-change = [
+  '/bin/bash',
+  '-c',
+  'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
 ]
 
 # Start AeroSpace at login
@@ -51,10 +59,15 @@ on-focused-monitor-changed = [
 [gaps]
 inner.horizontal = 0
 inner.vertical = 0
-outer.right = [{ monitor."built" = 0 }, { monitor."lg" = 20 }, 5]
-outer.left = [{ monitor."built" = 0 }, { monitor."lg" = 20 }, 5]
-outer.top = [{ monitor."built" = 0 }, { monitor."lg" = 0 }, 5]
-outer.bottom = [{ monitor."built" = 0 }, { monitor."lg" = 20 }, 15]
+outer.right = [{ monitor."built" = 0 }, { monitor."lg" = 10 }, 0]
+outer.left = [{ monitor."built" = 0 }, { monitor."lg" = 10 }, 0]
+outer.top = [
+  { monitor."built" = 0 },
+  { monitor."lg" = 28 },
+  { monitor."HP E24 G4" = 30 },
+  0,
+]
+outer.bottom = [{ monitor."built" = 0 }, { monitor."lg" = 0 }, 0]
 
 # See https://nikitabobko.github.io/AeroSpace/guide#exec-env-vars
 [exec]
@@ -64,7 +77,8 @@ PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
 
 #map workspace on the specific monitor
 [workspace-to-monitor-force-assignment]
-0 = ['built-in', '^HP E24 G4$'] # Case insensitive regex substring
+0 = ['secondary'] # Case insensitive regex substring
+9 = ['secondary'] # Case insensitive regex substring
 
 # 1 = 1                            # Monitor sequence number from left to right. 1-based indexing
 # 2 = 'main'                       # Main monitor
@@ -240,7 +254,7 @@ if.app-name-regex-substring = 'WezTerm|iTerm2|Ghostty'
 run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'Cypress'
+if.app-name-regex-substring = 'Cypress|Shottr'
 run = 'layout floating'
 
 [[on-window-detected]]
