@@ -53,11 +53,10 @@ let g:WhichKey_FontSize = 16
 let g:NERDTreeMapPrevious = 'O'
 
 "LSP
-nmap gt <Action>(GotoTest)
 nmap gd <Action>(GotoDeclaration)
 nmap gr <Action>(GotoReference)
 nmap gi <Action>(GotoImplementation)
-nmap gy <Action>(GotoTypeHierarchy)
+nmap gt <Action>(GotoTypeHierarchy)
 nmap K <Action>(QuickJavaDoc)
 nmap <leader>cf <Action>(ReformatCode)
 vmap <leader>cf <Action>(ReformatCode)
@@ -66,7 +65,6 @@ nmap <leader>ca <Action>(ShowIntentionActions)
 nmap <leader>gi <Action>(QuickImplementations)
 nmap <leader>cd <Action>(ShowErrorDescription)
 nmap <leader>cj <Action>(QuickJavaDoc)
-vmap <leader>ct <Action>(Scala.TypeInfo)
 nmap ]e <Action>(GotoNextError)
 nmap [e <Action>(GotoPreviousError)
 nmap ]m <Action>(MethodDown)
@@ -83,7 +81,6 @@ map gb <Action>(CommentByBlockComment)
 "not losing copied thing
 xnoremap <leader>p "\"_dP
 
-map Q <Action>(ReformatCode)
 
 vnoremap < <gv
 vnoremap > >gv
@@ -94,14 +91,10 @@ nnoremap <C-u> <C-u>zz
 nmap n nzzzv
 nmap N Nzzzv
 
-map <M-k> <Action>(MoveLineUp)
-map <M-j> <Action>(MoveLineDown)
-
 " ----------- Running -----------
-map <leader>R <Action>(ChooseRunConfiguration)
-map <leader>r <Action>(Run)
-map <leader>s <Action>(Stop)
-" nmap <leader>pr <Action>(ExternalSystem.RefreshAllProjects)
+map <leader>tR <Action>(ChooseRunConfiguration)
+map <leader>tr <Action>(Run)
+map <leader>ts <Action>(Stop)
 nmap <leader>pr <Action>(ExternalSystem.ProjectRefreshAction)
 
 " imap <C-y> <Action>(EditorChooseLookupItem)
@@ -109,38 +102,12 @@ nmap <leader>pr <Action>(ExternalSystem.ProjectRefreshAction)
 
 " going[g]
 nmap <leader>ff <Action>(GotoFile)
+nmap <leader>fr <Action>(RecentFiles)
+nmap <leader>ft <Action>(Terminal.OpenInTerminal)
 nmap ga <Action>(GotoAction)
 vmap ga <Action>(GotoAction)
-nmap <leader>fr <Action>(RecentFiles)
-nmap <leader>/ <Action>(FindInPath)
-nmap <leader>ft <Action>(Terminal.OpenInTerminal)
 
 " ----------- Tools[,]-----------
-" ^Cmd + -> line, Cmd + . -> word
-" opt + [ ] next or prev suggestion, \ trigger  
-nmap <leader>ad <Action>(copilot.disableCopilot)<Action>(codeium.aD)
-nmap <leader>ae <Action>(copilot.enableCopilot)<Action>(codeium.aE)
-imap <C-y> <Action>(copilot.applyInlays)<Action>(codeium.ak)
-" copilot.cycleNextInlays
-imap <C-n> <Action>(copilot.cycleNextInlays)<Action>(codeium.aA)
-imap <C-p> <Action>(copilot.cyclePreviousInlays)<Action>(codeium.az)
-"explain selected code visual
-vmap <C-e> <Action>(codeium.aR)
-"refactor selected code
-vmap <C-r> <Action>(codeium.aS) 
-
-imap <C-g> <Action>(copilot.showSuggestions)<Action>(codeium.aH)
-" nmap <leader>ab <Action>(copilot.showSuggestions)
-" imap <leader>al <Action>(copilot.applyInlaysNextLine)
-" imap <leader>aw <Action>(copilot.applyInlaysNextWord)
-" codeium.aA   //next suggestion    insert                                  <A-[>
-" codeium.az   //previous suggestion      insert                <A-]>
-" codeium.aF //login normal
-" codeium.aG //log out normal
-" codeium.aH
-" codeium.ar 
-" codeium.aR  //refactor selected code
-" codeium.aS //refactor selected code
 
 
 
@@ -175,15 +142,11 @@ nnoremap <C-l> <c-w>l
 map H <Action>(PreviousTab)
 map L <Action>(NextTab)
 
-map <leader>P <Action>(PinActiveEditorTab)
-
-nmap <leader>nf <Action>(NewElement)
+nmap <leader>fn <Action>(NewElement)
 
 " View mode
-map <leader>vf <Action>(ToggleFullScreen)
-map <leader>vd <Action>(ToggleDistractionFreeMode)
-map <leader>vp <Action>(TogglePresentationMode)
-map <leader>vz <Action>(ToggleZenMode)
+map <leader>Z <Action>(ToggleFullScreen)
+map <leader>z <Action>(ToggleZenMode)
 
 " ------------ Utilities <leader>u--------
 nmap <leader>un <Action>(RestartIde)
@@ -210,6 +173,3 @@ map <leader>xx <Action>(CloseContent)
 map <leader>xa <Action>(CloseAllEditors)
 map <leader>xo <Action>(CloseAllEditorsButActive)
 map <leader>xp <Action>(CloseAllUnpinnedEditors)
-
-" nmap <leader>+ <Action>(EditorIncreaseFontSizeGlobal)
-" nmap <leader>- <Action>(EditorDecreaseFontSizeGlobal)
