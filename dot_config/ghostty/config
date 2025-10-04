@@ -1,7 +1,3 @@
-# theme = light:rose-pine-dawn,dark:catppuccin-mocha
-# theme = light:xcodelight,dark:catppuccin-mocha
-# theme = light:catppuccin-latte,dark:Grey-green
-# theme = light:Everforest Light Soft,dark:Everforest Dark Soft
 theme = light:bohemian-light,dark:bohemian-dark
 background-opacity = 0.95
 # background-blur-radius = true
@@ -10,7 +6,12 @@ background-opacity = 0.95
 # cursor-style-blink = true
 mouse-hide-while-typing = true
 macos-titlebar-style = hidden
-
 font-family = Iosevka Fixed
 font-size = 18
 link-url = true
+keybind = ctrl+l=unbind
+keybind = global:ctrl+,=toggle_quick_terminal
+quick-terminal-position = center
+quick-terminal-screen = mouse
+quick-terminal-animation-duration = 0
+quick-terminal-size = 50%,70%

@@ -25,13 +25,13 @@ q w e r t y u i o p
 
 ;; second row
 (tap-hold-next-release 200 a met)
-(tap-hold-next-release 200 s alt)
+(tap-hold-next-release 200 s lalt)
 (tap-hold-next-release 200 d ctl)
 (tap-hold-next-release 200 f sft)
 g h
 (tap-hold-next-release 200 j sft)
 (tap-hold-next-release 200 k ctl)
-(tap-hold-next-release 200 l alt)
+(tap-hold-next-release 200 l lalt)
 (tap-hold-next-release 200 ' met)
 ;
 
