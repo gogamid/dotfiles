@@ -14,7 +14,7 @@
   q    w    e    r    t    y    u    i    o    p
   a    s    d    f    g    h    j    k    l    ; '
   z    x    c    v    b    n    m    ,    .    /
-  lsft caps spc rsft ent bspc
+   tab lsft caps spc rsft ent bspc
 )
 
 (deflayer U_BASE
@@ -43,7 +43,8 @@ c	v	b	n	m	,
 /
 
 ;; mods
-(tap-hold-next-release 200 lsft (layer-toggle U_NUM)) 
+(tap-hold-next-release 200 tab (layer-toggle U_SYM_EXTRA))
+(tap-hold-next-release 200 lsft (layer-toggle U_NUM))
 (tap-hold-next-release 200 esc (layer-toggle U_SYM))
 (tap-hold-next-release 200 spc (layer-toggle U_NAV)) 
 (tap-hold-next-release 200 rsft (layer-toggle U_FUN))
@@ -56,7 +57,7 @@ c	v	b	n	m	,
   XX	XX	  XX	XX 	XX	XX	7	  8	  9	  +
   met	alt	  ctl	sft	XX	0	  4	  5	  6	  - XX
   XX	ralt	XX 	XX 	XX	XX	1	  2	  3	  =
-      XX	XX	0	XX	XX	XX
+       XX	XX	XX	0	XX	XX	XX
 )
 
 (deflayer U_SYM
@@ -64,7 +65,7 @@ c	v	b	n	m	,
   XX	XX	  XX    XX    XX	XX    &	  *	  XX  XX	
   met	alt	  ctl   sft   XX  XX    $	  %	  ^	  XX  XX
   XX	ralt	XX    XX    XX	XX    !	  @	  #	  XX 
-      XX	  XX	  XX	  XX  XX    XX    
+      XX XX	  XX	  XX	  XX  XX    XX    
 )
 
 (deflayer U_SYM_EXTRA
@@ -73,7 +74,7 @@ c	v	b	n	m	,
   XX	XX	  XX    XX    XX	+    [	     ]	  `   \	
   met	alt	  ctl   sft   XX  =    \(	    \)	  ~	  |  XX
   XX	ralt	XX    XX    XX	-    {	     }	  \_  /
-      XX	  XX	  XX	  XX  XX    XX    
+      XX XX	  XX	  XX	  XX  XX    XX    
 )
 
 ;;(deflayer U_SYM
@@ -81,7 +82,7 @@ c	v	b	n	m	,
 ;;  XX	XX	  XX	XX 	XX	XX   &	  *	  \(  \)	
 ;;  met	alt	  ctl	sft	XX  \_  $	  %	  ^	  ~  XX
 ;;  XX	ralt	XX	XX 	XX	|	  !	  @	  #	  ` 
-;;      XX	XX	XX	XX	XX  XX	
+;;                    XX	  XX	  XX	  XX	  XX  XX    XX        XX    	
 ;;)
 
 (deflayer U_MEDIA
@@ -89,7 +90,7 @@ c	v	b	n	m	,
   XX	          XX	  XX	  XX	      XX	        XX	XX  XX	XX  	XX
   previoussong	vold	volu	nextsong	playpause	  XX	sft	ctl	alt 	met XX
   XX	          XX	  XX	  XX	      XX	        XX	XX 	XX	ralt	XX
-      XX	mute	XX	XX	XX	XX
+       XX	XX	mute	XX	XX	XX	XX
 )
 
 (deflayer U_FUN
@@ -97,7 +98,7 @@ c	v	b	n	m	,
   f12	f7	f8	f9	sysrq	XX	XX	XX	XX	  XX
   f11	f4	f5	f6	slck	XX	sft	ctl	alt	  met XX
   f10	f1	f2	f3	pause	XX	XX	XX	ralt	XX
-      comp	spc	tab	XX	XX	XX
+     XX comp	spc	tab	XX	XX	XX
 )
 
 (deflayer U_NAV
@@ -105,6 +106,5 @@ XX	XX	  XX	XX	XX	XX	  XX	  XX	  XX	  XX	XX	XX
 XX	XX	  XX	XX	XX	S-M-z	M-v	  M-c	  M-x	  M-z
 met	alt	  ctl	sft	XX	left	down	up	  right	caps XX
 XX	ralt	XX	XX	XX	home	pgdn	pgup	end	  ins
-		XX	XX	XX	rsft ent bspc
+ 		XX	XX	XX	XX	rsft ent bspc
 )
-
