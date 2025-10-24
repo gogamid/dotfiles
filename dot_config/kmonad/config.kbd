@@ -60,12 +60,29 @@ c	v	b	n	m	,
 )
 
 (deflayer U_SYM
-  XX	XX	  XX	XX	XX	XX	XX	XX	XX	XX	XX	XX	
-  XX	XX	  XX	XX 	XX	XX   &	  *	  \(  \)	
-  met	alt	  ctl	sft	XX  \_  $	  %	  ^	  ~  XX
-  XX	ralt	XX	XX 	XX	|	  !	  @	  #	  ` 
-      XX	XX	XX	XX	XX  XX	
+  XX	XX	  XX    XX    XX	XX    XX	XX	XX	XX	XX	XX	
+  XX	XX	  XX    XX    XX	XX    &	  *	  XX  XX	
+  met	alt	  ctl   sft   XX  XX    $	  %	  ^	  XX  XX
+  XX	ralt	XX    XX    XX	XX    !	  @	  #	  XX 
+      XX	  XX	  XX	  XX  XX    XX    
 )
+
+(deflayer U_SYM_EXTRA
+  XX	XX	  XX    XX    XX	XX    XX	  XX	  XX	  XX	XX	XX	
+  
+  XX	XX	  XX    XX    XX	+    [	     ]	  `   \	
+  met	alt	  ctl   sft   XX  =    \(	    \)	  ~	  |  XX
+  XX	ralt	XX    XX    XX	-    {	     }	  \_  /
+      XX	  XX	  XX	  XX  XX    XX    
+)
+
+;;(deflayer U_SYM
+;;  XX	XX	  XX	XX	XX	XX	XX	XX	XX	XX	XX	XX	
+;;  XX	XX	  XX	XX 	XX	XX   &	  *	  \(  \)	
+;;  met	alt	  ctl	sft	XX  \_  $	  %	  ^	  ~  XX
+;;  XX	ralt	XX	XX 	XX	|	  !	  @	  #	  ` 
+;;      XX	XX	XX	XX	XX  XX	
+;;)
 
 (deflayer U_MEDIA
   XX	          XX	  XX	  XX	      XX	        XX	XX	XX	XX  	XX	XX	XX	
