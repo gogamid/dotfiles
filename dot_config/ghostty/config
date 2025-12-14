@@ -1,13 +1,14 @@
-theme = light:bohemian-light,dark:bohemian-dark
-background-opacity = 0.95
+# theme = light:bohemian-light,dark:bohemian-dark
+theme = light:bohemian-light,dark:cat-dark
+background-opacity = 0.97
 # background-blur-radius = true
 # cursor-opacity = 1
 # cursor-invert-fg-bg = true
 # cursor-style-blink = true
 mouse-hide-while-typing = true
 macos-titlebar-style = hidden
-font-family = Iosevka Fixed
-font-size = 18
+font-family = JetBrainsMono Nerd Font Mono
+font-size = 14
 link-url = true
 keybind = ctrl+l=unbind
 keybind = global:ctrl+,=toggle_quick_terminal

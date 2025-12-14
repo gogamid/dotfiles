@@ -251,38 +251,41 @@ backspace = ['close-all-windows-but-current', 'mode main']
 esc = ['reload-config', 'mode main']
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'WezTerm|iTerm2|Ghostty'
-run = 'move-node-to-workspace 1'
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'Cypress|Shottr'
+if.app-name-regex-substring = 'Cypress|Shottr|Neovide|Chrome|Numbers|Finder|Raycast|Koodo|E-book'
 run = 'layout floating'
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'Edge|Firefox|Thorium|Brave'
-run = 'move-node-to-workspace 2'
-
+if.app-name-regex-substring = 'Ghostty'
+run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
-if.app-name-regex-substring = "Teams|Outlook"
+if.app-name-regex-substring = 'Brave'
+run = 'move-node-to-workspace 2'
+
+[[on-window-detected]]
+if.app-name-regex-substring = "Gmail|Teams"
 run = ['move-node-to-workspace 3']
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'Numbers|Citrix'
+if.app-name-regex-substring = 'Citrix'
 run = 'move-node-to-workspace 4'
+
+# [[on-window-detected]]
+# if.app-name-regex-substring = ""
+# run = ['move-node-to-workspace 5']
+
+# [[on-window-detected]]
+# if.app-name-regex-substring = ""
+# run = ['move-node-to-workspace 6']
 
 [[on-window-detected]]
 if.app-name-regex-substring = "Spotify"
 run = 'move-node-to-workspace 7'
 
-[[on-window-detected]]
-if.app-name-regex-substring = 'Alfred'
-run = ['move-node-to-workspace 8']
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'service|Proxifier|Ivanti'
-run = ['layout floating', 'move-node-to-workspace 9']
-
-[[on-window-detected]]
-if.app-name-regex-substring = "Finder|Raycast"
-run = 'layout floating'
+# [[on-window-detected]]
+# if.app-name-regex-substring = ''
+# run = ['move-node-to-workspace 8']
+#
+# [[on-window-detected]]
+# if.app-name-regex-substring = ''
+# run = ['move-node-to-workspace 9']
