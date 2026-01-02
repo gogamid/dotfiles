@@ -8,14 +8,18 @@ after-login-command = []
 # Run Sketchybar together with AeroSpace
 # sketchbar has a built-in detection of already running process,
 # so it won't be run twice on AeroSpace restart
-after-startup-command = ['exec-and-forget sketchybar']
+# after-startup-command = ['exec-and-forget sketchybar']
+
+after-startup-command = [
+  'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0',
+]
 
 # Notify Sketchybar about workspace change
-exec-on-workspace-change = [
-  '/bin/bash',
-  '-c',
-  'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
-]
+# exec-on-workspace-change = [
+#   '/bin/bash',
+#   '-c',
+#   'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
+# ]
 
 # Start AeroSpace at login
 start-at-login = true
@@ -57,17 +61,18 @@ on-focused-monitor-changed = [
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 0
-inner.vertical = 0
-outer.right = [{ monitor."built" = 0 }, { monitor."lg" = 10 }, 0]
-outer.left = [{ monitor."built" = 0 }, { monitor."lg" = 10 }, 0]
+inner.horizontal = 5
+inner.vertical = 5
+
+outer.right = [{ monitor."built" = 2 }, { monitor."lg" = 5 }, 0]
+outer.left = [{ monitor."built" = 2 }, { monitor."lg" = 5 }, 0]
 outer.top = [
-  { monitor."built" = 0 },
-  { monitor."lg" = 28 },
-  { monitor."HP E24 G4" = 30 },
+  { monitor."built" = 5 },
+  { monitor."lg" = 10 },
+  { monitor."HP E24 G4" = 0 },
   0,
 ]
-outer.bottom = [{ monitor."built" = 0 }, { monitor."lg" = 0 }, 0]
+outer.bottom = [{ monitor."built" = 2 }, { monitor."lg" = 5 }, 0]
 
 # See https://nikitabobko.github.io/AeroSpace/guide#exec-env-vars
 [exec]
@@ -255,7 +260,7 @@ if.app-name-regex-substring = 'Cypress|Shottr|Neovide|Chrome|Numbers|Finder|Rayc
 run = 'layout floating'
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'Ghostty'
+if.app-name-regex-substring = 'kitty'
 run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
