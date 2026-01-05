@@ -28,7 +28,6 @@ PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
 10 = ['secondary']
 9 = ['secondary']
 
-
 [mode.main.binding]
 
 alt-h = 'focus left'
@@ -102,7 +101,6 @@ alt-l = ['join-with right', 'mode main']
 backspace = ['close-all-windows-but-current', 'mode main']
 
 esc = ['reload-config', 'mode main']
-
 
 [gaps]
 inner.horizontal = 5
