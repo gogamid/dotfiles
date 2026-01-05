@@ -90,8 +90,11 @@ alt-esc = 'flatten-workspace-tree'
 alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
 [mode.service.binding]
-j = 'resize smart -50'
-k = 'resize smart +50'
+h = 'resize width -50'
+j = 'resize height -50'
+k = 'resize height +50'
+l = 'resize width +50'
+
 
 alt-h = ['join-with left', 'mode main']
 alt-j = ['join-with down', 'mode main']
