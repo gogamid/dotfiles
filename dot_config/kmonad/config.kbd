@@ -32,8 +32,8 @@ g h
 (tap-hold-next-release 200 j sft)
 (tap-hold-next-release 200 k ctl)
 (tap-hold-next-release 200 l lalt)
-(tap-hold-next-release 200 ' met)
-;
+(tap-hold-next-release 200 ; met)
+'
 
 ;; third row
 z
