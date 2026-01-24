@@ -26,7 +26,6 @@ PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
 
 [workspace-to-monitor-force-assignment]
 10 = ['secondary']
-9 = ['secondary']
 
 [mode.main.binding]
 

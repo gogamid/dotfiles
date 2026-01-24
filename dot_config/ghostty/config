@@ -1,3 +1,4 @@
+auto-update-channel = tip
 # theme = light:bohemian-light,dark:bohemian-dark
 theme = light:zenbones-light,dark:zenbones-dark
 background-opacity = 0.97
