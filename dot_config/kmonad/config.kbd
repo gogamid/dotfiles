@@ -8,3 +8,20 @@
   ;; Comment this is you want unhandled events not to be emitted
   fallthrough true
 )
+
+
+(defsrc
+  a    s    d    f    j    k    l    ; 
+)
+
+(deflayer U_BASE
+(tap-hold-next-release 200 a met)
+(tap-hold-next-release 200 s lalt)
+(tap-hold-next-release 200 d ctl)
+(tap-hold-next-release 200 f sft)
+
+(tap-hold-next-release 200 j sft)
+(tap-hold-next-release 200 k ctl)
+(tap-hold-next-release 200 l lalt)
+(tap-hold-next-release 200 ; met)
+)
