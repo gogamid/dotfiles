@@ -131,7 +131,7 @@ if.app-name-regex-substring = 'Brave|Chrome'
 run = 'move-node-to-workspace 2'
 
 [[on-window-detected]]
-if.app-name-regex-substring = "Gmail"
+if.app-name-regex-substring = "Gmail|Discord"
 run = ['move-node-to-workspace 3']
 
 [[on-window-detected]]
