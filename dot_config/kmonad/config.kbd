@@ -11,10 +11,17 @@
 
 
 (defsrc
-  a    s    d    f    j    k    l    ; 
+  		 f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  bspc
+  caps a    s    d    f    j    k    l    ; 
 )
 
 (deflayer U_BASE
+brdn brup lp  mctl bldn blup prev pp  next mute vold volu
+
+(tap-hold-next-release 200 bspc (layer-toggle U_FUN))
+
+(tap-hold-next-release 200 esc caps)
 (tap-hold-next-release 200 a met)
 (tap-hold-next-release 200 s lalt)
 (tap-hold-next-release 200 d ctl)
@@ -24,4 +31,10 @@
 (tap-hold-next-release 200 k ctl)
 (tap-hold-next-release 200 l lalt)
 (tap-hold-next-release 200 ; met)
+)
+
+(deflayer U_FUN
+  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+	bspc
+  caps a    s    d    f    j    k    l    ; 
 )
