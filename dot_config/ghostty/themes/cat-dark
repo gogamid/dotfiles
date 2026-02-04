@@ -1,0 +1,7 @@
+background = #19191f
+foreground = #cdd6f4
+cursor-color = #6c7086
+cursor-text = #afb4bc
+selection-background = #353749
+selection-foreground = #cdd6f4
+split-divider-color = #313244
