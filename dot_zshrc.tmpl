@@ -23,16 +23,33 @@ alias la='ls -lA'
 
 alias mv='mv -i'
 
+# extends the path
+path() {
+	export PATH=$PATH:$1
+}
+
 #paths
-export PATH="$HOME/context/tex/texmf-osx-arm64/bin:$PATH"
-export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
-export PATH=$PATH:$HOME/go/bin
-export PATH=$PATH:$HOME/.cargo/bin
-export PATH="/Applications/WezTerm.app/Contents/MacOS:$PATH"
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
-export PATH=$PATH:./node_modules/.bin
-export PATH=$PATH:$HOME/.local/bin/
+path "$HOME/context/tex/texmf-osx-arm64/bin"
+path "/opt/homebrew/opt/make/libexec/gnubin"
+path "/opt/homebrew/opt/libpq/bin"
+
+# go
+path $HOME/go/bin
+
+# rust
+path $HOME/.cargo/bin
+
+
+# WezTerm
+path /Applications/WezTerm.app/Contents/MacOS
+
+
+# node
+path ./node_modules/.bin
+path $HOME/.local/bin/
+
 export DOTNET_ROOT="/opt/homebrew/opt/dotnet@6/libexec"
+
 
 #zoxide
 eval "$(zoxide init --cmd cd zsh)"
@@ -44,11 +61,11 @@ export EDITOR=nvim
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+path "$BUN_INSTALL/bin"
 [ -s "/Users/gamidli/.bun/_bun" ] && source "/Users/gamidli/.bun/_bun"
 
 # opencode
-export PATH=/Users/gamidli/.opencode/bin:$PATH
+path /Users/gamidli/.opencode/bin
 
 
 if [  -f ~/.workZSH.sh ]; then
