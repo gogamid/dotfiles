@@ -1,0 +1,43 @@
+(defcfg
+  process-unmapped-keys yes
+)
+
+(defsrc
+  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10   f11   f12
+  caps
+	a s d f j k l Semicolon
+  fn
+	)
+
+(deflayer default
+  brdn  brup  _    _    _    _   prev  pp  next  mute  vold  volu
+  @caps
+	@a @s @d @f @j @k @l @;
+  @fn
+)
+
+(deflayer fn
+  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10   f11   f12
+  _
+	_ _ _ _ _ _ _ _ 
+	_
+)
+
+(defvar
+  tap-time 150
+  hold-time 200
+)
+
+(defalias
+ caps (tap-hold $tap-time $hold-time esc caps)
+ a (tap-hold $tap-time $hold-time a MetaLeft)
+ s (tap-hold $tap-time $hold-time s AltLeft)
+ d (tap-hold $tap-time $hold-time d ControlLeft)
+ f (tap-hold $tap-time $hold-time f ShiftLeft)
+ ; (tap-hold $tap-time $hold-time ; MetaLeft)
+ l (tap-hold $tap-time $hold-time l AltLeft)
+ k (tap-hold $tap-time $hold-time k ControlLeft)
+ j (tap-hold $tap-time $hold-time j ShiftLeft)
+ fn (tap-hold 200 200 fn (layer-toggle fn))
+)
+
