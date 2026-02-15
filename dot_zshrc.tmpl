@@ -1,9 +1,11 @@
 # oh-my-zsh
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
+DISABLE_AUTO_UPDATE="true" # chezmoi handles it
 plugins=(
 	zsh-autosuggestions
 	zsh-syntax-highlighting
+	zsh-vi-mode
 	brew
 	tmux
 )
@@ -12,15 +14,12 @@ plugins=(
 ZSH_TMUX_AUTOSTART=true
 ZSH_TMUX_FIXTERM_WITH_256COLOR=true
 
+#zsh-vi-mode
+ZVM_VI_HIGHLIGHT_BACKGROUND=#37393B
+
 export EDITOR=nvim
 export VISUAL=nvim
 export LANG=en_US.UTF-8
-
-
-bindkey -e
-
-alias v='nvim'
-alias t='tmux'
 
 # extends the path
 path() {
