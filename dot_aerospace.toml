@@ -79,12 +79,13 @@ alt-shift-m = 'move-node-to-workspace 10'
 alt-t = 'layout tiles horizontal vertical'
 alt-b = 'layout accordion horizontal'
 
-alt-space = 'mode service'
 alt-esc = 'flatten-workspace-tree'
 
+alt-o = 'exec-and-forget neovide scratch.md'
 
 alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
+alt-space = 'mode service'
 [mode.service.binding]
 h = 'resize width -50'
 j = 'resize height -50'
