@@ -2,6 +2,7 @@ gui:
   scrollHeight: 5
 git:
   pagers:
+    - pager: delta --light --paging=never --file-decoration-style=none --hunk-header-decoration-style=none
     - pager: delta --dark --paging=never --file-decoration-style=none --hunk-header-decoration-style=none
     - pager: delta --dark --paging=never --file-decoration-style=none --hunk-header-decoration-style=none --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
     - pager: diff-so-fancy
