@@ -81,8 +81,6 @@ alt-b = 'layout accordion horizontal'
 
 alt-esc = 'flatten-workspace-tree'
 
-alt-o = 'exec-and-forget neovide scratch.md'
-
 alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
 alt-space = 'mode service'
