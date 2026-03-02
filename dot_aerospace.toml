@@ -167,12 +167,16 @@ run = 'layout floating'
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'Ghostty'
-run = 'move-node-to-workspace A'
+run = 'move-node-to-workspace G'
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'Brave|Chrome'
-run = 'move-node-to-workspace S'
+run = 'move-node-to-workspace B'
 
 [[on-window-detected]]
 if.app-name-regex-substring = "Gmail|Discord"
-run = ['move-node-to-workspace D']
+run = ['move-node-to-workspace C']
+
+[[on-window-detected]]
+if.app-name-regex-substring = "Calendar"
+run = ['move-node-to-workspace T']
