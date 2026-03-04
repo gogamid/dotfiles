@@ -102,17 +102,17 @@ backspace = ['close-all-windows-but-current', 'mode main']
 esc = ['reload-config', 'mode main']
 
 [gaps]
-inner.horizontal = 5
-inner.vertical = 5
-outer.right = [{ monitor."built" = 2 }, { monitor."lg" = 5 }, 0]
-outer.left = [{ monitor."built" = 2 }, { monitor."lg" = 5 }, 0]
+inner.horizontal = 1
+inner.vertical = 1
+outer.right = [{ monitor."built" = 2 }, { monitor."lg" = 30 }, 0]
+outer.left = [{ monitor."built" = 2 }, { monitor."lg" = 30 }, 0]
 outer.top = [
   { monitor."built" = 5 },
-  { monitor."lg" = 10 },
+  { monitor."lg" = 30 },
   { monitor."HP E24 G4" = 0 },
   0,
 ]
-outer.bottom = [{ monitor."built" = 2 }, { monitor."lg" = 5 }, 0]
+outer.bottom = [{ monitor."built" = 2 }, { monitor."lg" = 30 }, 0]
 
 # app to window mapping
 [[on-window-detected]]
