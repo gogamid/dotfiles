@@ -124,7 +124,7 @@ if.app-name-regex-substring = 'Ghostty'
 run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'Brave|Chrome'
+if.app-name-regex-substring = 'Brave'
 run = 'move-node-to-workspace 2'
 
 [[on-window-detected]]
@@ -136,5 +136,5 @@ if.app-name-regex-substring = 'Citrix'
 run = 'move-node-to-workspace 4'
 
 [[on-window-detected]]
-if.app-name-regex-substring = "Spotify"
-run = 'move-node-to-workspace 7'
+if.app-name-regex-substring = 'Chrome'
+run = 'move-node-to-workspace 5'
