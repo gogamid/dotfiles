@@ -1,4 +1,8 @@
 (defcfg
+	macos-dev-names-include (
+			"Apple Internal Keyboard / Trackpad"
+			"Magic Keyboard with Numeric Keypad"
+	)
   process-unmapped-keys yes
 )
 
