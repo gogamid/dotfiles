@@ -3,7 +3,7 @@ term = xterm-256color
 # auto-update-channel = tip
 # theme = light:bohemian-light,dark:bohemian-dark
 theme = light:zenbones-light,dark:zenbones-dark
-background-opacity = 0.97
+# background-opacity = 0.97
 # background-blur-radius = true
 # cursor-opacity = 1
 # cursor-invert-fg-bg = true
@@ -16,7 +16,7 @@ link-url = true
 # ---------- Key behavior ----------
 # Let tmux handle keybindings
 keybind = ctrl+l=unbind
-keybind = global:ctrl+,=toggle_quick_terminal
+# keybind = global:ctrl+,=toggle_quick_terminal
 quick-terminal-position = center
 quick-terminal-screen = mouse
 quick-terminal-animation-duration = 0
