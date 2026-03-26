@@ -9,27 +9,38 @@
 (defsrc
   f1   f2   f3   f4   f5   f6   f7   f8   f9   f10   f11   f12
   caps
-	a s d f j k l Semicolon
+	a s d f h j k l Semicolon
+	tab  ret  spc
   fn
 	)
 
 (deflayer default
   brdn  brup  _    _    _    _   prev  pp  next  mute  vold  volu
   @caps
-	@a @s @d @f @j @k @l @;
+	@a @s @d @f h @j @k @l @;
+	@tab ret spc
   @fn
 )
 
 (deflayer fn
   f1   f2   f3   f4   f5   f6   f7   f8   f9   f10   f11   f12
   _
-	_ _ _ _ _ _ _ _ 
+	_ _ _ _ _ _ _ _ _ 
+	_ _ _
 	_
 )
 
 (defvar
   tap-time 150
   hold-time 200
+)
+
+(deflayer mouse
+  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10   f11   f12
+  _
+	_ _ _ _ @mouse-left-fast @mouse-down-fast @mouse-up-fast @mouse-right-fast _
+	_ @right-click @left-click
+	_
 )
 
 (defalias
@@ -42,6 +53,15 @@
  l (tap-hold $tap-time $hold-time l AltLeft)
  k (tap-hold $tap-time $hold-time k ControlLeft)
  j (tap-hold $tap-time $hold-time j ShiftLeft)
- fn (tap-hold 200 200 fn (layer-toggle fn))
+ fn (tap-hold $tap-time $hold-time fn (layer-toggle fn))
+ tab (tap-hold $tap-time $hold-time tab (layer-toggle mouse))
+ ;; tab (layer-while-held mouse)
+ ;; Mouse movement aliases (fast movement)
+ mouse-up-fast    (movemouse-up 1 1)
+ mouse-down-fast  (movemouse-down 1 1)
+ mouse-left-fast  (movemouse-left 1 1)
+ mouse-right-fast (movemouse-right 1 1)
+ ;; Mouse click aliases
+ left-click  mlft
+ right-click mrgt
 )
-
