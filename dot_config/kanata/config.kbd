@@ -11,7 +11,7 @@
   caps
 	a s d f h j k l Semicolon
 	tab  ret  spc
-  fn
+  bspc
 	)
 
 (deflayer default
@@ -19,7 +19,7 @@
   @caps
 	@a @s @d @f h @j @k @l @;
 	@tab ret spc
-  @fn
+  @bspc
 )
 
 (deflayer fn
@@ -53,7 +53,7 @@
  l (tap-hold $tap-time $hold-time l AltLeft)
  k (tap-hold $tap-time $hold-time k ControlLeft)
  j (tap-hold $tap-time $hold-time j ShiftLeft)
- fn (tap-hold $tap-time $hold-time fn (layer-toggle fn))
+ bspc (tap-hold $tap-time $hold-time bspc (layer-toggle fn))
  tab (tap-hold $tap-time $hold-time tab (layer-toggle mouse))
  ;; tab (layer-while-held mouse)
  ;; Mouse movement aliases (fast movement)
