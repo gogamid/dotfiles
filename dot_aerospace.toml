@@ -25,7 +25,7 @@ inherit-env-vars = true
 PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
 
 [workspace-to-monitor-force-assignment]
-5 = ['secondary']
+0 = ['secondary']
 
 [mode.main.binding]
 
