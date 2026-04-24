@@ -24,8 +24,11 @@ export NEOVIDE_FRAME=buttonless
 
 # extends the path
 path() {
-	export PATH=$PATH:$1
+	export PATH=$1:$PATH
 }
+
+# brew 
+path "/opt/homebrew/bin" 
 
 #paths
 path "$HOME/context/tex/texmf-osx-arm64/bin"
@@ -61,6 +64,14 @@ path "$BUN_INSTALL/bin"
 # opencode
 path /Users/gamidli/.opencode/bin
 
+# android
+export ANT_HOME=/opt/homebrew/opt/ant
+export MAVEN_HOME=/opt/homebrew/opt/maven
+export GRADLE_HOME=/opt/homebrew/opt/gradle
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export JAVA_HOME="$(brew --prefix openjdk)/libexec/openjdk.jdk/Contents/Home"
+export PATH="$JAVA_HOME/bin:$PATH"
+export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$PATH"
 
 if [  -f ~/.workZSH.sh ]; then
 	source ~/.workZSH.sh
