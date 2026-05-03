@@ -132,7 +132,7 @@ if.app-name-regex-substring = "Gmail|Discord"
 run = ['move-node-to-workspace 3']
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'Citrix'
+if.app-name-regex-substring = 'Citrix|Keep'
 run = 'move-node-to-workspace 4'
 
 [[on-window-detected]]
