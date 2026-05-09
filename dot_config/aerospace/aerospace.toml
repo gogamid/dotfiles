@@ -104,15 +104,23 @@ esc = ['reload-config', 'mode main']
 [gaps]
 inner.horizontal = 1
 inner.vertical = 1
-outer.right = [{ monitor."built" = 2 }, { monitor."lg" = 30 }, 0]
-outer.left = [{ monitor."built" = 2 }, { monitor."lg" = 30 }, 0]
+outer.right = [
+	{ monitor."built" = 2 }, 
+	{ monitor."lg" = 200 }, 
+	0,
+]
+outer.left = [
+	{ monitor."built" = 2 }, 
+	{ monitor."lg" = 200 }, 
+	0,
+]
 outer.top = [
   { monitor."built" = 5 },
-  { monitor."lg" = 30 },
+  { monitor."lg" = 60 },
   { monitor."HP E24 G4" = 0 },
   0,
 ]
-outer.bottom = [{ monitor."built" = 2 }, { monitor."lg" = 30 }, 0]
+outer.bottom = [{ monitor."built" = 2 }, { monitor."lg" = 60 }, 0]
 
 # app to window mapping
 [[on-window-detected]]

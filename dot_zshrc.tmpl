@@ -22,12 +22,15 @@ export LANG=en_US.UTF-8
 
 export NEOVIDE_FRAME=buttonless
 
+export PATH="$PATH:/opt/homebrew/bin"
+
 # extends the path
 path() {
 	export PATH=$1:$PATH
 }
 
 # brew 
+path "$HOME/.local/bin"
 path "/opt/homebrew/bin" 
 
 #paths
@@ -48,7 +51,6 @@ path /Applications/WezTerm.app/Contents/MacOS
 
 # node
 path ./node_modules/.bin
-path $HOME/.local/bin/
 
 # dotnet
 export DOTNET_ROOT="/opt/homebrew/opt/dotnet@6/libexec"
@@ -82,3 +84,5 @@ if [  -f ~/.aliases.sh ]; then
 fi
 
 source $ZSH/oh-my-zsh.sh
+
+export ORACLE_HOME=/opt/homebrew
