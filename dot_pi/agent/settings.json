@@ -1,0 +1,14 @@
+{
+  "lastChangelogVersion": "0.74.0",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.5",
+  "defaultThinkingLevel": "medium",
+  "packages": [
+    "npm:pi-web-access",
+    "npm:@juicesharp/rpiv-ask-user-question",
+    "npm:amp-themes",
+    "npm:pi-hermes-memory"
+  ],
+  "hideThinkingBlock": true,
+  "theme": "amp-light"
+}
