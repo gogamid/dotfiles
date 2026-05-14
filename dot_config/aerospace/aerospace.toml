@@ -116,7 +116,7 @@ outer.bottom = [{ monitor."built" = 2 }, { monitor."lg" = 60 }, 0]
 
 # app to window mapping
 [[on-window-detected]]
-if.app-name-regex-substring = 'Spark|Ente|Cypress|Shottr|Neovide|Numbers|Finder|Raycast|Koodo|E-book'
+if.app-name-regex-substring = 'Proton|Spark|Ente|Cypress|Shottr|Neovide|Numbers|Finder|Raycast|Koodo|E-book'
 run = 'layout floating'
 
 [[on-window-detected]]
