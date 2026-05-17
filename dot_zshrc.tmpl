@@ -22,15 +22,12 @@ export LANG=en_US.UTF-8
 
 export NEOVIDE_FRAME=buttonless
 
-export PATH="$PATH:/opt/homebrew/bin"
-
 # extends the path
 path() {
 	export PATH=$1:$PATH
 }
 
 # brew 
-path "$HOME/.local/bin"
 path "/opt/homebrew/bin" 
 
 #paths
@@ -51,6 +48,7 @@ path /Applications/WezTerm.app/Contents/MacOS
 
 # node
 path ./node_modules/.bin
+path $HOME/.local/bin/
 
 # dotnet
 export DOTNET_ROOT="/opt/homebrew/opt/dotnet@6/libexec"
@@ -73,7 +71,7 @@ export GRADLE_HOME=/opt/homebrew/opt/gradle
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 export JAVA_HOME="$(brew --prefix openjdk)/libexec/openjdk.jdk/Contents/Home"
 export PATH="$JAVA_HOME/bin:$PATH"
-export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$PATH"
+export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$ANDROID_HOME/build-tools/37.0.0:$PATH"
 
 if [  -f ~/.workZSH.sh ]; then
 	source ~/.workZSH.sh
