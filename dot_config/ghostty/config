@@ -12,6 +12,9 @@ mouse-hide-while-typing = true
 macos-titlebar-style = hidden
 font-size = 16
 link-url = true
+selection-clear-on-copy = true
+copy-on-select = clipboard
+
 
 # ---------- Key behavior ----------
 # Let tmux handle keybindings
