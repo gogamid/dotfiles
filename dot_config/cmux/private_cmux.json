@@ -13,10 +13,10 @@
       "nextSurface": ["ctrl+space", "tab"],
       "prevSurface": ["ctrl+space", "shift+tab"],
 
-      "focusLeft": "ctrl+h",
-      "focusDown": "ctrl+j",
-      "focusUp": "ctrl+k",
-      "focusRight": "ctrl+l",
+      "focusLeft": ["ctrl+space", "h"],
+      "focusDown": ["ctrl+space", "j"],
+      "focusUp": ["ctrl+space", "k"],
+      "focusRight": ["ctrl+space", "l"],
 
       "prevSidebarTab": ["ctrl+space", "P"],
       "nextSidebarTab": ["ctrl+space", "N"],
