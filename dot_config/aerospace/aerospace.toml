@@ -120,7 +120,7 @@ if.app-name-regex-substring = 'Proton|Spark|Ente|Cypress|Shottr|Neovide|Numbers|
 run = 'layout floating'
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'Ghostty'
+if.app-name-regex-substring = 'Ghostty|cmux'
 run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
