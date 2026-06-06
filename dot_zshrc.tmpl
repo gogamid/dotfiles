@@ -6,7 +6,6 @@ plugins=(
 	zsh-autosuggestions
 	zsh-syntax-highlighting
 	zsh-vi-mode
-	brew
 	tmux
 )
 
@@ -22,13 +21,15 @@ export LANG=en_US.UTF-8
 
 export NEOVIDE_FRAME=buttonless
 
-# extends the path
 path() {
-	export PATH=$1:$PATH
+	export PATH=$PATH:$1
 }
 
-# brew 
+# brew
 path "/opt/homebrew/bin" 
+
+# Oracle client and other manually installed tools
+path $HOME/.local/bin/
 
 #paths
 path "$HOME/context/tex/texmf-osx-arm64/bin"
@@ -48,7 +49,6 @@ path /Applications/WezTerm.app/Contents/MacOS
 
 # node
 path ./node_modules/.bin
-path $HOME/.local/bin/
 
 # dotnet
 export DOTNET_ROOT="/opt/homebrew/opt/dotnet@6/libexec"
@@ -64,14 +64,17 @@ path "$BUN_INSTALL/bin"
 # opencode
 path /Users/gamidli/.opencode/bin
 
-# android
+# android / java
 export ANT_HOME=/opt/homebrew/opt/ant
 export MAVEN_HOME=/opt/homebrew/opt/maven
 export GRADLE_HOME=/opt/homebrew/opt/gradle
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 export JAVA_HOME="$(brew --prefix openjdk)/libexec/openjdk.jdk/Contents/Home"
-export PATH="$JAVA_HOME/bin:$PATH"
-export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$ANDROID_HOME/build-tools/37.0.0:$PATH"
+path "$JAVA_HOME/bin"
+path "$ANDROID_HOME/cmdline-tools/latest/bin"
+path "$ANDROID_HOME/platform-tools"
+path "$ANDROID_HOME/emulator"
+path "$ANDROID_HOME/build-tools/37.0.0"
 
 if [  -f ~/.workZSH.sh ]; then
 	source ~/.workZSH.sh
@@ -84,4 +87,5 @@ fi
 source $ZSH/oh-my-zsh.sh
 
 export ORACLE_HOME=/opt/homebrew
-export PATH=/opt/homebrew/share/google-cloud-sdk/bin:"$PATH"
+path /opt/homebrew/share/google-cloud-sdk/bin
+
