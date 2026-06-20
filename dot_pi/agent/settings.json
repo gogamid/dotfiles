@@ -27,5 +27,6 @@
   "terminal": {
     "showTerminalProgress": true
   },
-  "collapseChangelog": true
+  "collapseChangelog": true,
+  "theme": "light/dark"
 }
