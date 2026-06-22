@@ -4,6 +4,9 @@
 # Supports multiple pi agents per project via @pi_pane_<project>_<N> keys.
 
 CUR_OPT="@pi_current"
+PI_WIDTH_OPT="@pi_pane_width"
+
+PI_WIDTH=$(tmux show-option -gv "$PI_WIDTH_OPT" 2>/dev/null || echo 20)
 
 current_pane=$(tmux display-message -p '#{pane_id}')
 current_window=$(tmux display-message -p '#{window_id}')
@@ -42,7 +45,7 @@ create_and_show() {
     tmux set-option -g "@pi_pane_${proj}_${idx}" "$pane"
     tmux set-option -g "@pi_count_${proj}" $((count + 1))
     tmux set-option -g "$CUR_OPT" "$pane"
-    tmux join-pane -h -b -l 20% -s "$pane" -t "$current_pane"
+    tmux join-pane -h -b -l ${PI_WIDTH}% -s "$pane" -t "$current_pane"
 }
 
 # --- main ---
@@ -74,5 +77,5 @@ if [ "$pi_win_id" = "$current_window" ]; then
     tmux select-window -t "$current_window"
 else
     # --- SHOW ---
-    tmux join-pane -h -b -l 20% -s "$pi_pane" -t "$current_pane"
+    tmux join-pane -h -b -l ${PI_WIDTH}% -s "$pi_pane" -t "$current_pane"
 fi
