@@ -27,6 +27,19 @@ path() {
 
 # brew
 path "/opt/homebrew/bin" 
+# reinstall pip-system-certs after azure-cli upgrade
+brew() {
+  command brew "$@"
+  case "$*" in
+    *upgrade*|*update*|*reinstall*|*install*)
+      if command brew list azure-cli &>/dev/null 2>&1; then
+        AZ_VER=$(ls /opt/homebrew/Cellar/azure-cli/ 2>/dev/null | tail -1)
+        AZ_PY="/opt/homebrew/Cellar/azure-cli/$AZ_VER/libexec/bin/python"
+        [ -f "$AZ_PY" ] && "$AZ_PY" -m pip install pip-system-certs -q 2>/dev/null && echo "✓ pip-system-certs reinstalled for Azure CLI"
+      fi
+      ;;
+  esac
+}
 
 # Oracle client and other manually installed tools
 path $HOME/.local/bin/
