@@ -11,7 +11,9 @@
     "npm:context-mode",
     "npm:pi-mcp-adapter",
     "npm:@heyhuynhgiabuu/pi-diff",
-    "npm:pi-tmux-cursor-focus"
+    "npm:pi-tmux-cursor-focus",
+    "npm:@ff-labs/pi-fff",
+    "npm:pi-simplify"
   ],
   "editorPaddingX": 3,
   "steeringMode": "one-at-a-time",
