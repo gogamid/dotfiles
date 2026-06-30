@@ -9,19 +9,11 @@ PI_WIDTH_OPT="@pi_pane_width"
 
 PI_WIDTH=$(tmux show-option -gv "$PI_WIDTH_OPT" 2>/dev/null || echo 20)
 
-# --- helper: hide the current pi if it's visible in the active window ---
+# --- helper: hide the current pi if visible (delegates to toggle --hide to avoid break-pane crash) ---
 hide_current() {
-    local current_visible
-    current_visible=$(tmux show-option -gv "$CUR_OPT" 2>/dev/null)
-    [ -z "$current_visible" ] && return 0
-    local cur_win my_win
-    cur_win=$(tmux display-message -p -t "$current_visible" '#{window_id}' 2>/dev/null)
-    my_win=$(tmux display-message -p '#{window_id}' 2>/dev/null)
-    [ "$cur_win" != "$my_win" ] && return 0
-    tmux break-pane -s "$current_visible" 2>/dev/null
-    local new_win
-    new_win=$(tmux display-message -p -t "$current_visible" '#{window_id}' 2>/dev/null)
-    tmux move-window -s "$new_win" -a 2>/dev/null
+    local dir
+    dir="$(cd "$(dirname "$0")" && pwd)"
+    "${dir}/toggle-pi-agent.sh" --hide 2>/dev/null
 }
 
 # --- direct creation mode (called from menu action) ---
@@ -129,7 +121,7 @@ while IFS=' ' read -r opt val; do
     disp_proj="${stripped%_*}"
     idx="${stripped##*_}"
     # break-pane @pi_current first (silent if hidden), then join selected with dynamic width
-    select_cmd="run-shell 'tmux break-pane -s \$(tmux show-option -gv ${CUR_OPT} 2>/dev/null) 2>/dev/null; tmux set-option -g ${CUR_OPT} ${val} && tmux join-pane -h -b -l \$(tmux show-option -gv ${PI_WIDTH_OPT} 2>/dev/null || echo 20)% -s ${val} -t ${current_pane}'"
+    select_cmd="run-shell '~/.tmux/toggle-pi-agent.sh --hide 2>/dev/null; tmux set-option -g ${CUR_OPT} ${val} && tmux join-pane -h -b -l \$(tmux show-option -gv ${PI_WIDTH_OPT} 2>/dev/null || echo 50)% -s ${val} -t ${current_pane}'"
     menu_args+=("${disp_proj} #${idx}") ; menu_args+=("") ; menu_args+=("$select_cmd")
 done < <(tmux show-options -g 2>/dev/null | grep '^@pi_pane_')
 
