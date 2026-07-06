@@ -7,13 +7,12 @@
     "npm:pi-web-access",
     "npm:@juicesharp/rpiv-ask-user-question",
     "npm:pi-hermes-memory",
-    "npm:pi-subagents",
     "npm:context-mode",
     "npm:pi-mcp-adapter",
     "npm:@heyhuynhgiabuu/pi-diff",
     "npm:pi-tmux-cursor-focus",
     "npm:@ff-labs/pi-fff",
-    "npm:pi-simplify"
+    "npm:pi-session-merge"
   ],
   "editorPaddingX": 3,
   "steeringMode": "one-at-a-time",

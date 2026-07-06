@@ -51,3 +51,6 @@ path "$ANDROID_HOME/build-tools/37.0.0"
 export ORACLE_HOME=/opt/homebrew
 path /opt/homebrew/share/google-cloud-sdk/bin
 
+path /Users/gamidli/.spicetify
+
+
