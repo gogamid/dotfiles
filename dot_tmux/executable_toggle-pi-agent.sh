@@ -12,10 +12,18 @@ PI_WIDTH=$(tmux show-option -gv "$PI_WIDTH_OPT" 2>/dev/null || echo 50)
 # --- helpers ---
 find_free_idx() {
     local proj="$1" idx=0
-    while tmux show-option -gv "@pi_pane_${proj}_${idx}" 2>/dev/null | grep -q .; do
-        idx=$((idx + 1))
+    while : ; do
+        local val
+        val=$(tmux show-option -gv "@pi_pane_${proj}_${idx}" 2>/dev/null)
+        [ -z "$val" ] && echo "$idx" && return 0
+        val="${val#\"}"; val="${val%\"}"
+        if tmux list-panes -a -F '#{pane_id}' 2>/dev/null | grep -qxF "$val"; then
+            idx=$((idx + 1))
+        else
+            tmux set-option -gu "@pi_pane_${proj}_${idx}" 2>/dev/null
+            echo "$idx" && return 0
+        fi
     done
-    echo "$idx"
 }
 
 find_project() {
@@ -51,13 +59,6 @@ hide_current_pi() {
     fi
     tmux join-pane -s "$pane" -t "$HIDE_WIN" 2>/dev/null
     sleep 0.1
-    local pc
-    pc=$(tmux list-panes -t "$HIDE_WIN" 2>/dev/null | wc -l | tr -d ' ')
-    if [ "$pc" -gt 1 ]; then
-        local first
-        first=$(tmux list-panes -F '#{pane_id}' -t "$HIDE_WIN" 2>/dev/null | head -1)
-        [ -n "$first" ] && tmux kill-pane -t "$first" 2>/dev/null
-    fi
     tmux move-window -s "$HIDE_WIN" -a 2>/dev/null
 }
 
