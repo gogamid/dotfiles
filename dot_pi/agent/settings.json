@@ -3,6 +3,7 @@
   "defaultProvider": "opencode-go",
   "defaultModel": "deepseek-v4-flash",
   "hideThinkingBlock": true,
+  "npmCommand": ["bun"],
   "packages": [
     "npm:pi-web-access",
     "npm:@juicesharp/rpiv-ask-user-question",
@@ -29,7 +30,7 @@
   "defaultProjectTrust": "always",
   "showHardwareCursor": true,
   "terminal": {
-    "showTerminalProgress": true
+    "showTerminalProgress": false
   },
   "collapseChangelog": true,
   "theme": "light/dark"

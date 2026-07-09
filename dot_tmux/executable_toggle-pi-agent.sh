@@ -3,13 +3,22 @@
 # If invoked with --hide, hides @pi_current silently (for switch menu).
 # Creates one for the current project if none exists yet.
 # Supports multiple pi agents per project via @pi_pane_<project>_<N> keys.
-# Indices are reused (first free slot found, no gaps).
+# Indices are reused (dead panes cleaned up).
 
 CUR_OPT="@pi_current"
 PI_WIDTH_OPT="@pi_pane_width"
 PI_WIDTH=$(tmux show-option -gv "$PI_WIDTH_OPT" 2>/dev/null || echo 50)
 
 # --- helpers ---
+
+# Check if pane exists AND its process is still running (not dead after sleep)
+pane_is_alive() {
+    local pane_id="$1"
+    local dead
+    dead=$(tmux display-message -p -t "$pane_id" '#{pane_dead}' 2>/dev/null)
+    [ "$dead" = "0" ] 2>/dev/null
+}
+
 find_free_idx() {
     local proj="$1" idx=0
     while : ; do
@@ -17,7 +26,7 @@ find_free_idx() {
         val=$(tmux show-option -gv "@pi_pane_${proj}_${idx}" 2>/dev/null)
         [ -z "$val" ] && echo "$idx" && return 0
         val="${val#\"}"; val="${val%\"}"
-        if tmux list-panes -a -F '#{pane_id}' 2>/dev/null | grep -qxF "$val"; then
+        if pane_is_alive "$val"; then
             idx=$((idx + 1))
         else
             tmux set-option -gu "@pi_pane_${proj}_${idx}" 2>/dev/null
@@ -40,9 +49,14 @@ find_project() {
 
 # Hide @pi_current safely (join-pane to __ph__ window, avoid tmux break-pane crash)
 hide_current_pi() {
-    local pane new_win
+    local pane
     pane=$(tmux show-option -gv "$CUR_OPT" 2>/dev/null)
     [ -z "$pane" ] && return 0
+    # If process is dead, just clean up and don't try to move it
+    if ! pane_is_alive "$pane"; then
+        tmux set-option -gu "$CUR_OPT" 2>/dev/null
+        return 0
+    fi
     local pw ww
     pw=$(tmux display-message -p -t "$pane" '#{window_id}' 2>/dev/null)
     ww=$(tmux display-message -p '#{window_id}' 2>/dev/null)
@@ -62,7 +76,7 @@ hide_current_pi() {
     tmux move-window -s "$HIDE_WIN" -a 2>/dev/null
 }
 
-# --- --hide mode (called from switch menu to avoid break-pane crash) ---
+# --- --hide mode (called from switch menu) ---
 if [ "$1" = "--hide" ]; then
     hide_current_pi
     exit 0
@@ -98,6 +112,10 @@ pi_pane=$(tmux show-option -gv "$CUR_OPT" 2>/dev/null)
 
 if [ -n "$pi_pane" ]; then
     if ! tmux list-panes -a -F '#{pane_id}' 2>/dev/null | grep -qxF "$pi_pane"; then
+        pi_pane=""
+        tmux set-option -gu "$CUR_OPT" 2>/dev/null
+    elif ! pane_is_alive "$pi_pane"; then
+        # Pane exists but pi process died (e.g. laptop sleep)
         pi_pane=""
         tmux set-option -gu "$CUR_OPT" 2>/dev/null
     fi
