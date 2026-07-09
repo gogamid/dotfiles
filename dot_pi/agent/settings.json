@@ -1,5 +1,4 @@
 {
-  "lastChangelogVersion": "0.80.3",
   "defaultProvider": "opencode-go",
   "defaultModel": "deepseek-v4-flash",
   "hideThinkingBlock": true,
@@ -13,7 +12,9 @@
     "npm:@heyhuynhgiabuu/pi-diff",
     "npm:pi-tmux-cursor-focus",
     "npm:@ff-labs/pi-fff",
-    "npm:pi-session-merge"
+    "npm:pi-session-merge",
+    "npm:pi-subagents",
+    "npm:pi-caveman"
   ],
   "editorPaddingX": 3,
   "steeringMode": "one-at-a-time",
