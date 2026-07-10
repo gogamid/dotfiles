@@ -1,19 +1,38 @@
 {
   "defaultProvider": "opencode-go",
   "defaultModel": "deepseek-v4-flash",
+  "subagents": {
+    "defaultModel": "deepseek-v4-flash",
+    "agentOverrides": {
+      "oracle": {
+        "model": "openai-codex/gpt-5.5"
+      },
+      "reviewer": {
+        "model": "openai-codex/gpt-5.5"
+      },
+      "planner": {
+        "model": "openai-codex/gpt-5.5"
+      },
+      "context-builder": {
+        "model": "openai-codex/gpt-5.5"
+      }
+    }
+  },
   "hideThinkingBlock": true,
   "npmCommand": ["bun"],
   "packages": [
     "npm:pi-web-access",
-    "npm:@juicesharp/rpiv-ask-user-question",
-    "npm:pi-hermes-memory",
-    "npm:context-mode",
     "npm:pi-mcp-adapter",
+    "npm:@ff-labs/pi-fff",
+
+    "npm:@juicesharp/rpiv-ask-user-question",
+
+    "npm:context-mode",
+    "npm:pi-subagents",
+    "npm:pi-session-merge",
+
     "npm:@heyhuynhgiabuu/pi-diff",
     "npm:pi-tmux-cursor-focus",
-    "npm:@ff-labs/pi-fff",
-    "npm:pi-session-merge",
-    "npm:pi-subagents",
     "npm:pi-caveman"
   ],
   "editorPaddingX": 3,
@@ -34,5 +53,8 @@
     "showTerminalProgress": false
   },
   "collapseChangelog": true,
-  "theme": "light/dark"
+  "theme": "light/dark",
+  "statusline": "zsh",
+  "stealth": false,
+  "lastChangelogVersion": "0.80.6"
 }
