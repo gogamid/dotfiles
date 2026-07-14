@@ -47,8 +47,4 @@ if [  -f ~/.workZSH.sh ]; then
 	source ~/.workZSH.sh
 fi
 
-if [  -f ~/.aliases.sh ]; then
-	source ~/.aliases.sh
-fi
-
 source $ZSH/oh-my-zsh.sh
