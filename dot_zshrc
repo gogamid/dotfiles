@@ -43,8 +43,6 @@ export BUN_INSTALL="$HOME/.bun"
 path "$BUN_INSTALL/bin"
 [ -s "/Users/gamidli/.bun/_bun" ] && source "/Users/gamidli/.bun/_bun"
 
-
-# android / java
 if [  -f ~/.workZSH.sh ]; then
 	source ~/.workZSH.sh
 fi
