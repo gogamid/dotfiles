@@ -47,4 +47,15 @@ if [  -f ~/.workZSH.sh ]; then
 	source ~/.workZSH.sh
 fi
 
+# herdr - rename tab to current dir name
+autoload -Uz add-zsh-hook
+_herdr_auto_rename_tab() {
+  [[ -z "$HERDR_TAB_ID" ]] && return
+  local dir_name="${PWD##*/}"
+  [[ -z "$dir_name" ]] && dir_name="$PWD"
+  herdr tab rename "$HERDR_TAB_ID" "$dir_name" 2>/dev/null
+}
+add-zsh-hook chpwd _herdr_auto_rename_tab
+_herdr_auto_rename_tab
+
 source $ZSH/oh-my-zsh.sh
