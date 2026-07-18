@@ -13,10 +13,39 @@ close_pane       = "prefix+x"
 
 new_tab          = "prefix+c"
 rename_tab       = "prefix+r"
-close_tab        = "prefix+k"
+
+focus_agent = "prefix+ctrl+1..9"
+
+[[keys.command]]
+key = "alt+tab"
+type = "shell"
+command = "herdr tab focus $(herdr tab list 2>&1 | jq -r 'if .result.tabs[0].focused then .result.tabs[1].tab_id else .result.tabs[0].tab_id end')"
+
+[[keys.command]]
+key = "ctrl+h"
+type = "plugin_action"
+command = "herdr-splits.nav-left"
+
+[[keys.command]]
+key = "ctrl+j"
+type = "plugin_action"
+command = "herdr-splits.nav-down"
+
+[[keys.command]]
+key = "ctrl+k"
+type = "plugin_action"
+command = "herdr-splits.nav-up"
+
+[[keys.command]]
+key = "ctrl+l"
+type = "plugin_action"
+command = "herdr-splits.nav-right"
 
 [ui]
 prompt_new_tab_name = false
+
+agent_panel_sort = "spaces"
+idebar_collapsed_mode = "hidden"
 
 [ui.toast]
 delivery = "herdr"
