@@ -3,6 +3,15 @@ export VISUAL=nvim
 export LANG=en_US.UTF-8
 alias python=python3
 
+alias bup="brew update && brew upgrade && brew cleanup"
+alias bi="brew install"
+alias bu="brew uninstall"
+alias bs="brew search"
+alias cz="chezmoi"
+alias lg="lazygit"
+alias nv="nvim"
+alias v="nvim"
+
 path() {
 	export PATH=$PATH:$1
 }
