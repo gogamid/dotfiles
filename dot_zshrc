@@ -47,6 +47,10 @@ if [  -f ~/.workZSH.sh ]; then
 	source ~/.workZSH.sh
 fi
 
+if [  -f ~/.aliases.sh ]; then
+	source ~/.aliases.sh
+fi
+
 # herdr - rename tab to current dir name
 autoload -Uz add-zsh-hook
 _herdr_auto_rename_tab() {
