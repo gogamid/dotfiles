@@ -29,12 +29,9 @@
 
     "npm:context-mode",
     "npm:pi-subagents",
-    "npm:pi-session-merge",
 
     "npm:@heyhuynhgiabuu/pi-diff",
-    "npm:pi-tmux-cursor-focus",
-    "npm:pi-caveman",
-    "npm:@dietrichgebert/ponytail"
+    "npm:pi-tmux-cursor-focus"
   ],
   "editorPaddingX": 3,
   "steeringMode": "one-at-a-time",
@@ -57,5 +54,5 @@
   "theme": "light/dark",
   "statusline": "zsh",
   "stealth": false,
-  "lastChangelogVersion": "0.80.7"
+  "lastChangelogVersion": "0.80.10"
 }
