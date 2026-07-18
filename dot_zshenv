@@ -1,7 +1,12 @@
 export EDITOR=nvim
 export VISUAL=nvim
 export LANG=en_US.UTF-8
+
 alias python=python3
+if [  -f ~/.aliases.sh ]; then
+	source ~/.aliases.sh
+fi
+
 
 alias bup="brew update && brew upgrade && brew cleanup"
 alias bi="brew install"
