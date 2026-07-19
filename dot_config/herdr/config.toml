@@ -8,11 +8,13 @@ auto_switch = true
 prefix = "ctrl+space"
 
 split_horizontal = "prefix+-"
-split_vertical   = "prefix+|"
-close_pane       = "prefix+x"
+split_vertical = "prefix+|"
+close_pane = "prefix+x"
 
-new_tab          = "prefix+c"
-rename_tab       = "prefix+r"
+new_tab = "prefix+c"
+rename_tab = "prefix+r"
+
+next_agent = "shift+tab"
 
 focus_agent = "prefix+ctrl+1..9"
 
@@ -20,6 +22,11 @@ focus_agent = "prefix+ctrl+1..9"
 key = "alt+tab"
 type = "shell"
 command = "herdr tab focus $(herdr tab list 2>&1 | jq -r 'if .result.tabs[0].focused then .result.tabs[1].tab_id else .result.tabs[0].tab_id end')"
+
+[[keys.command]]
+key = "prefix+g"
+type = "pane"
+command = "lazygit"
 
 [[keys.command]]
 key = "ctrl+h"
