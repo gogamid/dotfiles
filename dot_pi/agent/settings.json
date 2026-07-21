@@ -1,23 +1,6 @@
 {
   "defaultProvider": "opencode-go",
   "defaultModel": "deepseek-v4-flash",
-  "subagents": {
-    "defaultModel": "deepseek-v4-flash",
-    "agentOverrides": {
-      "oracle": {
-        "model": "openai-codex/gpt-5.6-sol"
-      },
-      "reviewer": {
-        "model": "openai-codex/gpt-5.6-sol"
-      },
-      "planner": {
-        "model": "openai-codex/gpt-5.6-sol"
-      },
-      "context-builder": {
-        "model": "openai-codex/gpt-5.6-sol"
-      }
-    }
-  },
   "hideThinkingBlock": true,
   "npmCommand": ["bun"],
   "packages": [
@@ -29,27 +12,24 @@
     "npm:pi-subagents",
     "npm:@heyhuynhgiabuu/pi-diff",
     "npm:pi-tmux-cursor-focus",
-    "npm:pi-auto-theme-switcher"
+    "npm:pi-auto-theme-switcher",
+    "npm:pi-herdr-btw",
+    "npm:pi-herdr-cursor-focus"
   ],
   "editorPaddingX": 3,
-  "steeringMode": "one-at-a-time",
-  "followUpMode": "one-at-a-time",
+  "steeringMode": "all",
+  "followUpMode": "all",
   "transport": "auto",
   "quietStartup": true,
   "enableInstallTelemetry": false,
   "doubleEscapeAction": "tree",
   "treeFilterMode": "user-only",
-  "warnings": {
-    "anthropicExtraUsage": false
-  },
-  "defaultThinkingLevel": "high",
+  "defaultThinkingLevel": "max",
   "defaultProjectTrust": "always",
-  "showHardwareCursor": true,
-  "terminal": {
-    "showTerminalProgress": false
-  },
-  "collapseChangelog": true,
   "statusline": "zsh",
   "stealth": false,
-  "lastChangelogVersion": "0.80.10"
+  "lastChangelogVersion": "0.81.1",
+  "terminal": {
+    "showTerminalProgress": true
+  }
 }
