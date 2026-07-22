@@ -26,9 +26,5 @@
   "defaultProjectTrust": "always",
   "statusline": "zsh",
   "stealth": false,
-  "lastChangelogVersion": "0.81.1",
-  "terminal": {
-    "showTerminalProgress": true
-  },
-  "theme": "dark"
+  "lastChangelogVersion": "0.81.1"
 }
