@@ -11,10 +11,9 @@
     "npm:context-mode",
     "npm:pi-subagents",
     "npm:@heyhuynhgiabuu/pi-diff",
-    "npm:pi-tmux-cursor-focus",
     "npm:pi-auto-theme-switcher",
-    "npm:pi-herdr-btw",
-    "npm:pi-herdr-cursor-focus"
+    "npm:pi-herdr-cursor-focus",
+    "npm:@getpipher/cursor"
   ],
   "editorPaddingX": 3,
   "steeringMode": "all",
@@ -31,5 +30,6 @@
   "lastChangelogVersion": "0.81.1",
   "terminal": {
     "showTerminalProgress": true
-  }
+  },
+  "theme": "dark"
 }
