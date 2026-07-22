@@ -12,8 +12,7 @@
     "npm:pi-subagents",
     "npm:@heyhuynhgiabuu/pi-diff",
     "npm:pi-auto-theme-switcher",
-    "npm:pi-herdr-cursor-focus",
-    "npm:@getpipher/cursor"
+    "npm:pi-herdr-cursor-focus"
   ],
   "editorPaddingX": 3,
   "steeringMode": "all",
