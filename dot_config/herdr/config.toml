@@ -29,6 +29,11 @@ type = "pane"
 command = "lazygit"
 
 [[keys.command]]
+key = "prefix+h"
+type = "pane"
+command = "hunk diff"
+
+[[keys.command]]
 key = "ctrl+h"
 type = "plugin_action"
 command = "herdr-splits.nav-left"
