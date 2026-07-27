@@ -34,6 +34,11 @@ type = "pane"
 command = "hunk diff"
 
 [[keys.command]]
+key = "prefix+y"
+type = "shell"
+command = "$HOME/.config/herdr/scripts/copy-hunk-user-comments.sh"
+
+[[keys.command]]
 key = "ctrl+h"
 type = "plugin_action"
 command = "herdr-splits.nav-left"
