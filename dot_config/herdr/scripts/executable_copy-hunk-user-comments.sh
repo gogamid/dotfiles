@@ -6,10 +6,10 @@ set -euo pipefail
 
 OUT=$(hunk session comment list --repo "$PWD" --type user --json 2>/dev/null)
 
-[ -z "$OUT" ] && echo "No user comments found." && exit 1
+[ -z "$OUT" ] && herdr notification show "No user comments found." && exit 1
 
 COUNT=$(echo "$OUT" | jq '.comments | length')
-[ "$COUNT" -eq 0 ] && echo "No user comments found." && exit 1
+[ "$COUNT" -eq 0 ] && herdr notification show "No user comments found." && exit 1
 
 TEXT=$(echo "$OUT" | jq -r '
   "Please checkout these locations and implement user comments",
@@ -30,4 +30,4 @@ TEXT=$(echo "$OUT" | jq -r '
 ')
 
 echo "$TEXT" | pbcopy
-echo "Yanked $COUNT comment(s)"
+herdr notification show "Yanked $COUNT comment(s)"
