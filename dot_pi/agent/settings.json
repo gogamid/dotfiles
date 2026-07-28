@@ -12,7 +12,8 @@
     "npm:pi-subagents",
     "npm:@heyhuynhgiabuu/pi-diff",
     "npm:pi-auto-theme-switcher",
-    "npm:pi-herdr-cursor-focus"
+    "npm:pi-herdr-cursor-focus",
+    "npm:pi-simplify"
   ],
   "editorPaddingX": 3,
   "steeringMode": "all",
@@ -24,8 +25,7 @@
   "treeFilterMode": "user-only",
   "defaultThinkingLevel": "max",
   "defaultProjectTrust": "always",
-  "statusline": "zsh",
-  "stealth": false,
+  "statusline": "off",
   "lastChangelogVersion": "0.82.1",
   "enabledModels": ["opencode-go/deepseek-v4-flash", "openai-codex/gpt-5.6-sol"]
 }
