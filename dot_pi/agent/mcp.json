@@ -3,12 +3,12 @@
     "chrome-devtools": {
       "command": "bunx",
       "args": ["-y", "chrome-devtools-mcp@latest", "--no-usage-statistics"],
-      "disabled": false
+      "disabled": true
     },
     "azure-devops": {
       "command": "npx",
       "args": ["-y", "@azure-devops/mcp@next", "schwarzit"],
-      "disabled": false
+      "disabled": true
     }
   }
 }
