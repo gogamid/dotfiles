@@ -10,10 +10,10 @@
     "npm:@juicesharp/rpiv-ask-user-question",
     "npm:context-mode",
     "npm:pi-subagents",
-    "npm:@heyhuynhgiabuu/pi-diff",
     "npm:pi-auto-theme-switcher",
     "npm:pi-herdr-cursor-focus",
-    "npm:pi-simplify"
+    "npm:pi-simplify",
+    "git:github.com/gogamid/pi-diff"
   ],
   "editorPaddingX": 3,
   "steeringMode": "all",
