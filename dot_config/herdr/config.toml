@@ -32,7 +32,7 @@ description = "Open Lazygit"
 [[keys.command]]
 key = "prefix+h"
 type = "pane"
-command = "hunk diff"
+command = "hunk-dev diff"
 
 [[keys.command]]
 key = "prefix+f"
