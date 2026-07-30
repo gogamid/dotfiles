@@ -65,3 +65,5 @@ path /opt/homebrew/share/google-cloud-sdk/bin
 path /Users/gamidli/.spicetify
 
 
+export BUN_INSTALL="$HOME/.bun"
+path "$BUN_INSTALL/bin"

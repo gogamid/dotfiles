@@ -39,8 +39,6 @@ brew() {
 eval "$(zoxide init --cmd cd zsh)"
 
 # bun
-export BUN_INSTALL="$HOME/.bun"
-path "$BUN_INSTALL/bin"
 [ -s "/Users/gamidli/.bun/_bun" ] && source "/Users/gamidli/.bun/_bun"
 
 if [  -f ~/.workZSH.sh ]; then
