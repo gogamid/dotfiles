@@ -16,7 +16,7 @@ rename_tab = "prefix+r"
 
 next_agent = "shift+tab"
 
-focus_agent = "prefix+ctrl+1..9"
+focus_agent = "ctrl+shift+1..9"
 
 [[keys.command]]
 key = "alt+tab"
@@ -24,7 +24,7 @@ type = "shell"
 command = "herdr tab focus $(herdr tab list 2>&1 | jq -r '.result.tabs as $tabs | ($tabs[] | select(.focused).workspace_id) as $ws | [$tabs[] | select(.workspace_id == $ws)] as $ws_tabs | if $ws_tabs[0].focused then $ws_tabs[1].tab_id else $ws_tabs[0].tab_id end')"
 
 [[keys.command]]
-key = "prefix+g"
+key = "prefix+l"
 type = "pane"
 command = "lazygit"
 description = "Open Lazygit"
