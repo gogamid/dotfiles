@@ -16,6 +16,14 @@ rename_tab = "prefix+r"
 
 goto = "prefix+g"
 
+navigate_workspace_up = "k"
+navigate_workspace_down = "j"
+
+previous_workspace = "prefix+p"
+next_workspace = "prefix+n"
+previous_tab = ""
+next_tab = ""
+
 focus_agent = "ctrl+shift+1..9"
 
 [[keys.command]]
