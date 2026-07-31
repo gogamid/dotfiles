@@ -14,9 +14,15 @@ close_pane = "prefix+x"
 new_tab = "prefix+c"
 rename_tab = "prefix+r"
 
-next_agent = "shift+tab"
+goto = "prefix+g"
 
 focus_agent = "ctrl+shift+1..9"
+
+[[keys.command]]
+key = "shift+tab"
+type = "shell"
+command = "$HOME/.config/herdr/scripts/focus-next-done-agent.sh"
+description = "Focus next done agent"
 
 [[keys.command]]
 key = "alt+tab"
