@@ -4,6 +4,20 @@ export LANG=en_US.UTF-8
 
 alias python=python3
 
+alias kreload='sudo launchctl unload /Library/LaunchDaemons/gamidli.kanata.plist && sudo launchctl load /Library/LaunchDaemons/gamidli.kanata.plist'
+alias ld='lazydocker'
+alias lg='lazygit'
+alias cz='chezmoi'
+alias oc='opencode'
+
+alias v='NVIM_APPNAME="nvim" nvim'
+alias nv='NVIM_APPNAME="nvim" nvim'
+
+alias tmuxs=/Users/gamidli/personal/automation/tmux-sessionizer.sh
+
+alias bu='brew update && brew upgrade'
+alias bi='brew install'
+alias bs='brew search'
 alias bup="brew update && brew upgrade && brew cleanup"
 alias bi="brew install"
 alias bu="brew uninstall"

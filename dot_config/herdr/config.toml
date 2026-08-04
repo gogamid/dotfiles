@@ -84,6 +84,7 @@ type = "plugin_action"
 command = "herdr-splits.nav-right"
 
 [ui]
+tab_bar_position = "bottom"
 prompt_new_tab_name = false
 
 agent_panel_sort = "spaces"
