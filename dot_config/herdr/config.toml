@@ -66,22 +66,26 @@ description = "Copy user comments from hunk diff"
 [[keys.command]]
 key = "ctrl+h"
 type = "plugin_action"
-command = "herdr-splits.nav-left"
+command = "smart-splits.nvim.left"
+description = "Navigate left (Neovim/Herdr)"
 
 [[keys.command]]
 key = "ctrl+j"
 type = "plugin_action"
-command = "herdr-splits.nav-down"
+command = "smart-splits.nvim.down"
+description = "Navigate down (Neovim/Herdr)"
 
 [[keys.command]]
 key = "ctrl+k"
 type = "plugin_action"
-command = "herdr-splits.nav-up"
+command = "smart-splits.nvim.up"
+description = "Navigate up (Neovim/Herdr)"
 
 [[keys.command]]
 key = "ctrl+l"
 type = "plugin_action"
-command = "herdr-splits.nav-right"
+command = "smart-splits.nvim.right"
+description = "Navigate right (Neovim/Herdr)"
 
 [ui]
 tab_bar_position = "bottom"
