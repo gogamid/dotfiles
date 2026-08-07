@@ -139,7 +139,7 @@ if.app-name-regex-substring = 'Ghostty|cmux'
 run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'Brave'
+if.app-name-regex-substring = 'Brave|Chrome'
 run = 'move-node-to-workspace 2'
 
 [[on-window-detected]]
@@ -149,11 +149,6 @@ run = ['move-node-to-workspace 3']
 [[on-window-detected]]
 if.app-name-regex-substring = 'Citrix|Keep'
 run = 'move-node-to-workspace 4'
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'Chrome'
-run = 'move-node-to-workspace 5'
-
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'Gemini'
