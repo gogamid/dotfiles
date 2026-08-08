@@ -83,3 +83,5 @@ export BUN_INSTALL="$HOME/.bun"
 path "$BUN_INSTALL/bin"
 
 path "$HOME/.local/bin"
+
+FFF_ENABLE_HOME_SCAN=0
