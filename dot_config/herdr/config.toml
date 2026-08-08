@@ -102,6 +102,4 @@ enabled = false
 
 [experimental]
 pane_history = true
-# Experimental local Kitty graphics rendering for attached clients.
-# Requires a Kitty graphics-compatible outer terminal (Ghostty supports it).
 kitty_graphics = true
