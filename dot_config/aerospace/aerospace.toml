@@ -84,8 +84,6 @@ alt-shift-m = 'move-node-to-workspace 0'
 alt-t = 'layout tiles horizontal vertical'
 alt-b = 'layout accordion horizontal'
 
-alt-esc = 'flatten-workspace-tree'
-
 alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
 alt-space = 'mode service'
@@ -94,13 +92,17 @@ h = 'resize width -50'
 j = 'resize height -50'
 k = 'resize height +50'
 l = 'resize width +50'
-f = ['layout floating tiling', 'mode main']
-
-
 alt-h = ['join-with left', 'mode main']
 alt-j = ['join-with down', 'mode main']
 alt-k = ['join-with up', 'mode main']
 alt-l = ['join-with right', 'mode main']
+
+
+f = ['layout floating tiling', 'mode main']
+
+r = ['flatten-workspace-tree', 'mode main'] # reset layout
+
+z = ['fullscreen', 'mode main']
 
 backspace = ['close-all-windows-but-current', 'mode main']
 
@@ -139,11 +141,11 @@ if.app-name-regex-substring = 'Ghostty|cmux'
 run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'Brave|Chrome'
+if.app-name-regex-substring = 'Brave'
 run = 'move-node-to-workspace 2'
 
 [[on-window-detected]]
-if.app-name-regex-substring = "Gmail|Discord|Meet"
+if.app-name-regex-substring = "Gmail|Discord|Meet|Chrome"
 run = ['move-node-to-workspace 3']
 
 [[on-window-detected]]
