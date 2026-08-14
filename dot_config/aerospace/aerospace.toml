@@ -137,6 +137,10 @@ if.app-name-regex-substring = 'Proton|Spark|Ente|Cypress|Shottr|Neovide|Numbers|
 run = 'layout floating'
 
 [[on-window-detected]]
+if.app-name-regex-substring = 'Chrome'
+run = 'move-node-to-workspace 0'
+
+[[on-window-detected]]
 if.app-name-regex-substring = 'Ghostty|cmux'
 run = 'move-node-to-workspace 1'
 
@@ -145,7 +149,7 @@ if.app-name-regex-substring = 'Brave'
 run = 'move-node-to-workspace 2'
 
 [[on-window-detected]]
-if.app-name-regex-substring = "Gmail|Discord|Meet|Chrome"
+if.app-name-regex-substring = "Gmail|Discord|Meet"
 run = ['move-node-to-workspace 3']
 
 [[on-window-detected]]
