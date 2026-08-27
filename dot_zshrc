@@ -17,6 +17,9 @@ ZVM_VI_HIGHLIGHT_BACKGROUND=#37393B
 
 export NEOVIDE_FRAME=buttonless
 
+# Docker Sandboxes
+export SBX_NO_TELEMETRY=1
+
 path() {
 	export PATH=$PATH:$1
 }
