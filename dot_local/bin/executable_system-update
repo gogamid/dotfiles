@@ -1,0 +1,132 @@
+#!/bin/zsh
+#
+# system-update - daily maintenance job, run by launchd at 17:00.
+#
+# Updates Homebrew, syncs Neovim plugins, and updates pi + its packages.
+#
+# Usage:
+#   system-update              # run every task
+#   system-update <task> ...   # run only the named task(s)
+#
+set -eu
+set -o pipefail
+
+# --- Configuration -----------------------------------------------------------
+
+readonly LOG_DIR="/tmp/system-updater"
+readonly LOCK_DIR="/tmp/system-updater.lock"
+
+# Minimal PATH for the child commands we invoke.
+readonly BASE_PATH="$HOME/.bun/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+
+readonly BREW="/opt/homebrew/bin/brew"
+readonly NVIM="/opt/homebrew/bin/nvim"
+readonly PI="$HOME/.bun/bin/pi"
+
+# Environment that keeps Homebrew non-interactive and quiet.
+readonly -a BREW_ENV=(
+  CI=1
+  HOMEBREW_NO_ANALYTICS=1
+  HOMEBREW_NO_ENV_HINTS=1
+  HOMEBREW_NO_INSTALL_CLEANUP=1
+  HOMEBREW_NO_AUTO_UPDATE=1
+  HOMEBREW_NO_INTERACTIVE=1
+  NONINTERACTIVE=1
+)
+
+# Number of tasks that failed during this run.
+typeset -i failures=0
+
+# --- Helpers -----------------------------------------------------------------
+
+log() {
+  print "$(date -Iseconds) $*"
+}
+
+setup_logging() {
+  mkdir -p "$LOG_DIR"
+  local log_file="$LOG_DIR/update-$(date '+%Y%m%d-%H%M%S').log"
+  exec > >(tee -a "$log_file") 2>&1
+}
+
+acquire_lock() {
+  if ! mkdir "$LOCK_DIR" 2>/dev/null; then
+    log "Another update is already running"
+    exit 0
+  fi
+  trap 'rmdir "$LOCK_DIR" 2>/dev/null || true' EXIT INT TERM
+}
+
+# Run one task, logging its outcome and counting failures.
+run_task() {
+  local name="$1"
+  shift
+
+  print ""
+  log "START $name"
+  if "$@"; then
+    log "DONE  $name"
+  else
+    local rc=$?
+    log "FAIL  $name (exit $rc)"
+    failures+=1
+  fi
+}
+
+prune_old_logs() {
+  # /tmp is ephemeral, but cap logs anyway in case it survives a long time.
+  find "$LOG_DIR" -type f -name 'update-*.log' -mtime +14 -delete 2>/dev/null || true
+}
+
+# --- Tasks -------------------------------------------------------------------
+
+brew_update() {
+  env "${BREW_ENV[@]}" "$BREW" update --force
+  env "${BREW_ENV[@]}" "$BREW" upgrade --force
+}
+
+nvim_update() {
+  env HOME="$HOME" PATH="$BASE_PATH" "$NVIM" --headless "+Lazy! sync" +qa
+}
+
+pi_update() {
+  env HOME="$HOME" PATH="$BASE_PATH" "$PI" update --all --no-approve
+}
+
+# --- Main --------------------------------------------------------------------
+
+main() {
+  local name fn
+  local -a tasks
+
+  if (( $# > 0 )); then
+    tasks=("$@")
+  else
+    tasks=(homebrew neovim-plugins pi-update)
+  fi
+
+  failures=0
+  log "System update started"
+
+  for name in "${tasks[@]}"; do
+    case "$name" in
+      homebrew)       fn=brew_update ;;
+      neovim-plugins) fn=nvim_update ;;
+      pi-update)      fn=pi_update ;;
+      *) print "Unknown task: $name" >&2; return 1 ;;
+    esac
+    run_task "$name" "$fn"
+  done
+
+  prune_old_logs
+
+  if (( failures > 0 )); then
+    log "System update completed with $failures failed task(s)"
+    return 1
+  fi
+  log "System update completed"
+}
+
+setup_logging
+acquire_lock
+main "$@"
