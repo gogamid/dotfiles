@@ -8,7 +8,7 @@ selection-foreground = "#100F0F"
 selection-background = "#CECDC3"
 
 # Cursor colors
-cursor-color = "#100F0F"
+cursor-color = "#2C363C"
 cursor-text = "#F0EDEC"
 
 # The basic 16 colors
