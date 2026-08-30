@@ -1,0 +1,4 @@
+- prefer short human readable responses
+- No em dashes
+- No markdown tables, use bullet lists instead
+- no emojis
