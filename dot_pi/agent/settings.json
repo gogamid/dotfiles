@@ -1,7 +1,6 @@
 {
   "defaultProvider": "opencode-go",
-  "defaultModel": "deepseek-v4-flash",
-  "defaultThinkingLevel": "high",
+  "defaultModel": "deepseek-v4-flash-vision-exp",
   "hideThinkingBlock": true,
   "npmCommand": ["bun"],
   "packages": [
@@ -13,8 +12,8 @@
     "npm:pi-auto-theme-switcher",
     "npm:pi-herdr-cursor-focus",
     "npm:pi-simplify",
-    "git:github.com/gogamid/context-mode",
-    "git:github.com/gogamid/pi-diff"
+    "git:github.com/gogamid/pi-diff",
+    "git:github.com/gogamid/context-mode"
   ],
   "editorPaddingX": 3,
   "steeringMode": "all",
@@ -24,11 +23,14 @@
   "enableInstallTelemetry": false,
   "doubleEscapeAction": "tree",
   "treeFilterMode": "user-only",
-  "subagents": {
-    "disableThinking": true
-  },
   "defaultProjectTrust": "always",
   "statusline": "off",
+  "enabledModels": [
+    "opencode-go/deepseek-v4-flash-vision-exp",
+    "opencode-go/glm-5.3-flash",
+    "openai-codex/gpt-5.6-sol"
+  ],
   "theme": "light",
-  "lastChangelogVersion": "0.84.3"
+  "defaultThinkingLevel": "high",
+  "lastChangelogVersion": "0.84.4"
 }
