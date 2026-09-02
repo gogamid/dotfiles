@@ -1,11 +1,17 @@
-mode = "stack"
+mode = "auto"
+watch = true
+exclude_untracked = false
 line_numbers = false
+tab_width = 2
 wrap_lines = false
-hunk_headers = true
-menu_bar = true
+menu_bar = false
+sidebar = "true"
+hunk_headers = false
+prompt_save_view_preferences = false
 agent_notes = true
 copy_decorations = false
-prompt_save_view_preferences = false
+theme = "auto"
+transparent_background = true
 
 [themes.zenbones-dark]
 base = "github-dark-default"
