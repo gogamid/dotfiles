@@ -42,6 +42,8 @@ nmap <leader><leader> <Action>(IdeaVim.ReloadVimRc.reload)
 nmap <C-s> <Action>(SaveDocument)
 nmap <leader>ff <Action>(GotoFile)
 nmap <leader>ft <Action>(Terminal.OpenInTerminal)
+" 'Find Action' — searchable view of all IDE commands/actions
+nmap <leader>ca <Action>(GotoAction)
 " DataGrip: choose data source / schema (SQL-console context actions)
 nmap <leader>ss <Action>(Console.Jdbc.ChooseDataSource)
 nmap <leader>su <Action>(Console.Jdbc.ChooseSchema)
