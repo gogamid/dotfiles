@@ -1,4 +1,4 @@
-mode = "auto"
+mode = "stack"
 watch = true
 exclude_untracked = false
 line_numbers = false
