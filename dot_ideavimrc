@@ -27,7 +27,7 @@ set showmode
 
 " ---------- Behavior ----------
 set timeoutlen=1000
-set clipboard+=unnamed
+set clipboard=unnamed,unnamedplus
 
 " ---------- NERDTree (built-in, backed by the Project tool window) ----------
 set NERDTree
