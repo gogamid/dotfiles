@@ -51,6 +51,8 @@ nnoremap <C-l> <C-w>l
 " Leader | = split vertical (right), Leader - = split horizontal (below)
 nmap <leader><Bar> <Action>(SplitVertically)
 nmap <leader>- <Action>(SplitHorizontally)
+" Leader wd = close current editor/split (window delete)
+nmap <leader>wd <Action>(CloseContent)
 
 " ---------- Common JetBrains actions ----------
 " Save the current file (Ctrl+S in normal mode)
