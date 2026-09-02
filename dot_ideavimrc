@@ -38,8 +38,13 @@ nnoremap <leader>e :NERDTree<CR>
 nmap <leader><leader> <Action>(IdeaVim.ReloadVimRc.reload)
 
 " ---------- Common JetBrains actions ----------
+" Save the current file (Ctrl+S in normal mode)
+nmap <C-s> <Action>(SaveDocument)
 nmap <leader>ff <Action>(GotoFile)
 nmap <leader>ft <Action>(Terminal.OpenInTerminal)
+" DataGrip: choose data source / schema (SQL-console context actions)
+nmap <leader>ds <Action>(Console.Jdbc.ChooseDataSource)
+nmap <leader>sc <Action>(Console.Jdbc.ChooseSchema)
 " Fuzzy-search open/recent files (closest to Vim 'open buffers')
 nmap <leader>, <Action>(RecentFiles)
 " DataGrip: Esc in normal mode hides the active tool window (Shift+Esc equivalent)
