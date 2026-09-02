@@ -40,5 +40,7 @@ nmap <leader><leader> <Action>(IdeaVim.ReloadVimRc.reload)
 " ---------- Common JetBrains actions ----------
 nmap <leader>ff <Action>(GotoFile)
 nmap <leader>ft <Action>(Terminal.OpenInTerminal)
+" Fuzzy-search open/recent files (closest to Vim 'open buffers')
+nmap <leader>, <Action>(RecentFiles)
 " DataGrip: close the SQL console and its query results (no dedicated hide-result action exists)
 nmap <leader>hh <Action>(Console.Jdbc.Close)
