@@ -1,0 +1,41 @@
+" Minimal IdeaVim config for JetBrains IDEs.
+" IdeaVim is enabled by the bundled plugin; this file customizes its behavior.
+" Docs: https://github.com/JetBrains/ideavim
+
+let mapleader = " "
+
+" ---------- Editing ----------
+set expandtab
+set tabstop=2
+set shiftwidth=2
+set autoindent
+set smartindent
+set breakindent
+
+" ---------- Search ----------
+set incsearch
+set ignorecase
+set smartcase
+
+" ---------- Display ----------
+set number
+set relativenumber
+set scrolloff=8
+set colorcolumn=80
+set nowrap
+set showmode
+
+" ---------- Behavior ----------
+set timeoutlen=1000
+set clipboard+=unnamed
+
+" ---------- NERDTree (built-in, backed by the Project tool window) ----------
+set NERDTree
+nnoremap <leader>e :NERDTree<CR>
+
+" ---------- Reload this file ----------
+nnoremap <leader><leader> <Action>(IdeaVim.ReloadVimRc.reload)
+
+" ---------- Common JetBrains actions ----------
+nnoremap <leader>ff <Action>(GotoFile)
+nnoremap <leader>ft <Action>(Terminal.OpenInTerminal)
