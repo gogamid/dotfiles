@@ -48,6 +48,9 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+" Leader | = split vertical (right), Leader - = split horizontal (below)
+nmap <leader><Bar> <Action>(SplitVertically)
+nmap <leader>- <Action>(SplitHorizontally)
 
 " ---------- Common JetBrains actions ----------
 " Save the current file (Ctrl+S in normal mode)
