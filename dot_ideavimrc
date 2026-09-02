@@ -42,6 +42,5 @@ nmap <leader>ff <Action>(GotoFile)
 nmap <leader>ft <Action>(Terminal.OpenInTerminal)
 " Fuzzy-search open/recent files (closest to Vim 'open buffers')
 nmap <leader>, <Action>(RecentFiles)
-" DataGrip: toggle the Services tool window (query result pane). Uses the window's
-" Activate action because it toggles; HideActiveWindow only hides.
-nmap <leader>hh <Action>(ActivateServicesToolWindow)
+" DataGrip: Esc in normal mode hides the active tool window (Shift+Esc equivalent)
+nmap <Esc> <Action>(HideActiveWindow)
