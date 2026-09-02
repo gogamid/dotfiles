@@ -34,8 +34,9 @@ set NERDTree
 nnoremap <leader>e :NERDTree<CR>
 
 " ---------- Reload this file ----------
-nnoremap <leader><leader> <Action>(IdeaVim.ReloadVimRc.reload)
+" <Action> maps must use the recursive form (nmap); they do not work with nnoremap.
+nmap <leader><leader> <Action>(IdeaVim.ReloadVimRc.reload)
 
 " ---------- Common JetBrains actions ----------
-nnoremap <leader>ff <Action>(GotoFile)
-nnoremap <leader>ft <Action>(Terminal.OpenInTerminal)
+nmap <leader>ff <Action>(GotoFile)
+nmap <leader>ft <Action>(Terminal.OpenInTerminal)
