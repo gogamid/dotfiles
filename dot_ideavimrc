@@ -37,6 +37,18 @@ nnoremap <leader>e :NERDTree<CR>
 " <Action> maps must use the recursive form (nmap); they do not work with nnoremap.
 nmap <leader><leader> <Action>(IdeaVim.ReloadVimRc.reload)
 
+" ---------- Window navigation (Ctrl+h/j/k/l) ----------
+" Must route the Ctrl keys to vim first (sethandler ... a:vim) or the IDE
+" intercepts them. Then map to vim's native <C-w> moves.
+sethandler <c-h> a:vim
+sethandler <c-j> a:vim
+sethandler <c-k> a:vim
+sethandler <c-l> a:vim
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
 " ---------- Common JetBrains actions ----------
 " Save the current file (Ctrl+S in normal mode)
 nmap <C-s> <Action>(SaveDocument)
