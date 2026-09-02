@@ -37,6 +37,26 @@ nnoremap <leader>e :NERDTree<CR>
 " <Action> maps must use the recursive form (nmap); they do not work with nnoremap.
 nmap <leader><leader> <Action>(IdeaVim.ReloadVimRc.reload)
 
+" ---------- Common JetBrains actions ----------
+" Save the current file (Ctrl+S in normal mode)
+nmap <C-s> <Action>(SaveDocument)
+nmap <leader>ff <Action>(GotoFile)
+" 'Find Action' — searchable view of all IDE commands/actions
+map <leader>ca <Action>(GotoAction)
+" Zoom the whole IDE (tracked via IdeaVim Track Action Ids)
+nmap <leader>zi <Action>(EditorIncreaseFontSize)
+nmap <leader>zo <Action>(EditorDecreaseFontSize)
+nmap <leader>zr <Action>(EditorResetFontSize)
+nmap <leader>zz <Action>(ToggleZenMode)
+" DataGrip: choose data source / schema (SQL-console context actions)
+nmap <leader>ss <Action>(Console.Jdbc.ChooseDataSource)
+nmap <leader>su <Action>(Console.Jdbc.ChooseSchema)
+nmap <leader>sp <Action>(Console.Jdbc.ExplainPlan)
+" Fuzzy-search open/recent files (closest to Vim 'open buffers')
+nmap <leader>, <Action>(RecentFiles)
+" DataGrip: Esc in normal mode hides the active tool window (Shift+Esc equivalent)
+nmap <Esc> <Action>(HideActiveWindow)
+
 " ---------- Window navigation (Ctrl+h/j/k/l) ----------
 " Must route the Ctrl keys to vim first (sethandler ... a:vim) or the IDE
 " intercepts them. Then map to vim's native <C-w> moves.
@@ -53,23 +73,3 @@ nmap <leader><Bar> <Action>(SplitVertically)
 nmap <leader>- <Action>(SplitHorizontally)
 " Leader wd = close current editor/split (window delete)
 nmap <leader>wd <Action>(CloseContent)
-
-" ---------- Common JetBrains actions ----------
-" Save the current file (Ctrl+S in normal mode)
-nmap <C-s> <Action>(SaveDocument)
-nmap <leader>ff <Action>(GotoFile)
-nmap <leader>ft <Action>(Terminal.OpenInTerminal)
-" 'Find Action' — searchable view of all IDE commands/actions
-nmap <leader>ca <Action>(GotoAction)
-" Zoom the whole IDE (tracked via IdeaVim Track Action Ids)
-nmap <leader>zi <Action>(ZoomInIdeAction)
-nmap <leader>zo <Action>(ZoomOutIdeAction)
-nmap <leader>zr <Action>(ResetIdeScaleAction)
-nmap <leader>zz <Action>(MaximizeToolWindow)
-" DataGrip: choose data source / schema (SQL-console context actions)
-nmap <leader>ss <Action>(Console.Jdbc.ChooseDataSource)
-nmap <leader>su <Action>(Console.Jdbc.ChooseSchema)
-" Fuzzy-search open/recent files (closest to Vim 'open buffers')
-nmap <leader>, <Action>(RecentFiles)
-" DataGrip: Esc in normal mode hides the active tool window (Shift+Esc equivalent)
-nmap <Esc> <Action>(HideActiveWindow)
