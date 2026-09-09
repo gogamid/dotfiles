@@ -133,7 +133,7 @@ outer.bottom = [{ monitor."built" = 2 }, { monitor."lg" = 60 }, 0]
 
 # app to window mapping
 [[on-window-detected]]
-if.app-name-regex-substring = 'Tinycast|Proton|Spark|Ente|Cypress|Shottr|Neovide|Numbers|Finder|Raycast|Koodo|E-book'
+if.app-name-regex-substring = 'Tinycast|Proton|Spark|Ente|Shottr|Neovide|Numbers|Finder|Raycast|Koodo|E-book'
 run = 'layout floating'
 
 [[on-window-detected]]
@@ -155,6 +155,10 @@ run = ['move-node-to-workspace 3']
 [[on-window-detected]]
 if.app-name-regex-substring = 'Citrix|Keep'
 run = 'move-node-to-workspace 4'
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Cypress'
+run = 'move-node-to-workspace 5'
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'Gemini'
