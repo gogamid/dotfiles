@@ -94,11 +94,12 @@ prompt_new_tab_name = false
 agent_panel_sort = "spaces"
 sidebar_collapsed_mode = "hidden"
 
+status_indicators = "symbols"
 [ui.toast]
-delivery = "herdr"
+delivery = "system"
 
 [ui.sound]
-enabled = false
+enabled = true
 
 [experimental]
 pane_history = true
