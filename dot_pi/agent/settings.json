@@ -1,6 +1,6 @@
 {
   "defaultProvider": "opencode-go",
-  "defaultModel": "deepseek-v4-flash-vision-exp",
+  "defaultModel": "deepseek-v4.1-flash",
   "hideThinkingBlock": true,
   "npmCommand": ["bun"],
   "packages": [
@@ -13,7 +13,8 @@
     "npm:pi-herdr-cursor-focus",
     "npm:pi-simplify",
     "git:github.com/gogamid/pi-diff",
-    "git:github.com/gogamid/context-mode"
+    "git:github.com/gogamid/context-mode",
+    "npm:pi-sessions"
   ],
   "editorPaddingX": 3,
   "steeringMode": "all",
@@ -32,5 +33,9 @@
   ],
   "theme": "light",
   "defaultThinkingLevel": "high",
-  "lastChangelogVersion": "0.84.4"
+  "lastChangelogVersion": "0.85.1",
+  "modelThinkingLevels": {
+    "openai-codex/gpt-6-astra": "medium",
+    "opencode-go/deepseek-v4-flash-vision-exp": "high"
+  }
 }
