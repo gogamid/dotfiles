@@ -24,7 +24,7 @@ if [[ ! -d "$repo" ]]; then
 fi
 
 echo ">> make setup: syncing lidl-wawi Go tools (buf, protoc-gen-*, golangci-lint)"
-( cd "$repo" && make setup ) || echo "!! make setup failed (see above)" >&2
+(cd "$repo" && make setup) || echo "!! make setup failed (see above)" >&2
 
 if command -v nvim >/dev/null 2>&1; then
 	echo ">> updating Neovim Mason packages"
