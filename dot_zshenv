@@ -85,3 +85,4 @@ path "$BUN_INSTALL/bin"
 path "$HOME/.local/bin"
 
 FFF_ENABLE_HOME_SCAN=0
+DISABLE_TELEMETRY=1
