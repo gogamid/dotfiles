@@ -1,13 +1,15 @@
 gui:
   scrollHeight: 5
+  nerdFontsVersion: "3"
+  showFileIcons: true
 git:
-  pagers:
-    - pager: delta --light --paging=never --file-decoration-style=none --hunk-header-decoration-style=none
-    - pager: delta --dark --paging=never --file-decoration-style=none --hunk-header-decoration-style=none
-    - pager: delta --dark --paging=never --file-decoration-style=none --hunk-header-decoration-style=none --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
-    - pager: diff-so-fancy
-    - pager: hunk pager --theme paper --no-line-numbers --no-wrap --no-hunk-headers
-    - pager: hunk pager --no-line-numbers --no-wrap --no-hunk-headers
+  diffRenderers:
+    - command: delta --light --paging=never --file-decoration-style=none --hunk-header-decoration-style=none
+    - command: delta --dark --paging=never --file-decoration-style=none --hunk-header-decoration-style=none
+    - command: delta --dark --paging=never --file-decoration-style=none --hunk-header-decoration-style=none --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
+    - command: diff-so-fancy
+    - command: hunk pager --theme paper --no-line-numbers --no-wrap --no-hunk-headers
+    - command: hunk pager --no-line-numbers --no-wrap --no-hunk-headers
 os:
   editPreset: "custom"
   edit: '[ -z "$NVIM" ] && (nvim -- {{filename}}) || (nvim --server "$NVIM" --remote-send "q" && nvim --server "$NVIM" --remote {{filename}})'
