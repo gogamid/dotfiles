@@ -29,6 +29,16 @@ next_tab = ""
 
 focus_agent = "ctrl+shift+1..9"
 
+zoom = "prefix+shift+z"
+
+# herdr-zen:start
+[[keys.command]]
+key = "prefix+z"
+type = "plugin_action"
+command = "gogamid.herdr-zen.toggle"
+description = "toggle zen (centered reading column)"
+# herdr-zen:end
+
 [[keys.command]]
 key = "shift+tab"
 type = "shell"
