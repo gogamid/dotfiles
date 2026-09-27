@@ -106,10 +106,10 @@ sidebar_collapsed_mode = "hidden"
 
 status_indicators = "symbols"
 [ui.toast]
-delivery = "system"
+delivery = "herdr"
 
 [ui.sound]
-enabled = true
+enabled = false
 
 [experimental]
 pane_history = true

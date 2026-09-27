@@ -137,7 +137,7 @@ if.app-name-regex-substring = 'Tinycast|Proton|Spark|Ente|Shottr|Neovide|Numbers
 run = 'layout floating'
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'Chrome'
+if.app-name-regex-substring = 'Chrome|Numbers'
 run = 'move-node-to-workspace 0'
 
 [[on-window-detected]]
