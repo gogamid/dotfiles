@@ -1,0 +1,160 @@
+// This configuration is merged with the default vicinae configuration file, which you can obtain by running the `vicinae config default` command.
+// Every item defined in this file takes precedence over the values defined in the default config or any other imported file.
+//
+// You can make manual edits to this file, however you should keep in mind that this file may be written to by vicinae when a configuration change is made through the GUI.
+// When that happens, any custom comments or formatting will be lost.
+//
+// If you want to maintain a configuration file with your own comments and formatting, you should create a separate file and add it to the 'imports' array.
+//
+// Learn more about configuration at https://docs.vicinae.com/config
+
+{
+   "$schema": "https://vicinae.com/schemas/config.json",
+   "close_on_focus_loss": true,
+   "pop_to_root_on_close": true,
+   "escape_key_behavior": "close_window",
+   "global_shortcuts": {
+      "toggle": "control+SPACE"
+   },
+   "font": {
+      "normal": {
+         "family": ".AppleSystemUIFont",
+         "size": 20
+      }
+   },
+   "theme": {
+      "light": {
+         "name": "zenwritten-dark"
+      },
+      "dark": {
+         "name": "vicinae-light"
+      }
+   },
+   "telemetry": {
+      "system_info": false
+   },
+   "launcher_window": {
+      "opacity": 0.6,
+      "compact_mode": {
+         "enabled": true
+      },
+      "material": "auto"
+   },
+   "providers": {
+      "@VladCuciureanu/store.raycast.toothpick": {
+         "preferences": {
+            "bluetoothBackend": "applescript",
+            "favoriteDevice1": "Bose QC Ultra Headphones",
+            "fuzzyRatio": "98"
+         },
+         "entrypoints": {
+            "toggle-favorite-device-1": {
+               "alias": "bose",
+               "enabled": true
+            }
+         }
+      },
+      "@agustin.prats/store.raycast.display-modes": {
+         "entrypoints": {
+            "index": {
+               "alias": "res"
+            }
+         }
+      },
+      "@erykksc/store.raycast.fuzzy-file-search": {
+         "entrypoints": {
+            "search-for-files": {
+               "shortcut": "alt+F"
+            }
+         }
+      },
+      "@leonkohli/store.vicinae.process-manager": {
+         "preferences": {
+            "clear-search-after-kill": true,
+            "close-window-after-kill": false,
+            "process-limit": "100",
+            "refresh-interval": "2000",
+            "search-in-paths": true,
+            "search-in-pid": true,
+            "show-path": false,
+            "show-pid": true,
+            "show-system-processes": false,
+            "sort-by-memory": true
+         },
+         "entrypoints": {
+            "kill": {
+               "enabled": false
+            },
+            "processes": {
+               "alias": "kill",
+               "enabled": true
+            }
+         }
+      },
+      "apple-shortcuts": {
+         "enabled": false
+      },
+      "browser-extension": {
+         "enabled": false
+      },
+      "clipboard": {
+         "preferences": {
+            "eraseOnStartup": false,
+            "evictionThreshold": "31536000",
+            "monitoring": true,
+            "preserveTagged": true
+         },
+         "entrypoints": {
+            "history": {
+               "shortcut": "alt+P"
+            }
+         }
+      },
+      "files": {
+         "enabled": false
+      },
+      "power": {
+         "entrypoints": {
+            "sleep": {
+               "preferences": {
+                  "confirm": false
+               }
+            }
+         }
+      },
+      "screenshots": {
+         "entrypoints": {
+            "browse": {
+               "shortcut": "alt+R"
+            }
+         }
+      },
+      "scripts": {
+         "preferences": {
+            "customDirs": [
+               "/Users/gamidli/personal/automation/raycast-scripts"
+            ]
+         },
+         "entrypoints": {
+            "quick-note.js": {
+               "alias": "æ"
+            },
+            "sap-time-defaults.py": {
+               "enabled": false
+            },
+            "sap-time-events.py": {
+               "enabled": false
+            },
+            "sap-time-scheduler-toggle.py": {
+               "enabled": false
+            }
+         }
+      },
+      "theme": {
+         "enabled": true
+      },
+      "wm": {
+         "enabled": false
+      }
+   }
+}
