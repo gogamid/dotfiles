@@ -125,7 +125,7 @@ outer.left = [
 ]
 outer.top = [
   { monitor."built" = 5 },
-  { monitor."lg" = 20 },
+  { monitor."lg" = 0 },
   { monitor."HP E24 G4" = 0 },
   0,
 ]
