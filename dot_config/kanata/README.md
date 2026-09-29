@@ -17,7 +17,7 @@ install manually pkg from https://github.com/pqrs-org/Karabiner-DriverKit-Virtua
 ### Install plist daemons
 
 ```bash
-./daemons.sh install
+sudo ./daemons.sh install
 ```
 
 ### Reload after config changes

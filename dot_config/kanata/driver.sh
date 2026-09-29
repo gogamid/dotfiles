@@ -4,9 +4,10 @@ set -e
 case "$1" in
 install)
 	REPO="pqrs-org/Karabiner-DriverKit-VirtualHIDDevice"
-	API_URL="https://api.github.com/repos/${REPO}/releases/latest"
+	VERSION="v6.2.0"
+	API_URL="https://api.github.com/repos/${REPO}/releases/tags/${VERSION}"
 
-	echo "Fetching latest Karabiner-DriverKit-VirtualHIDDevice release..."
+	echo "Fetching Karabiner-DriverKit-VirtualHIDDevice release ${VERSION}..."
 
 	PKG_URL=$(curl --silent "$API_URL" |
 		grep "browser_download_url" |
