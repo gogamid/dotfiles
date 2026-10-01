@@ -53,13 +53,13 @@ command = "herdr tab focus $(herdr tab list 2>&1 | jq -r '.result.tabs as $tabs 
 [[keys.command]]
 key = "prefix+l"
 type = "pane"
-command = "lazygit"
+command = "/opt/homebrew/bin/lazygit"
 description = "Open Lazygit"
 
 [[keys.command]]
 key = "prefix+h"
 type = "pane"
-command = "hunk diff"
+command = "/opt/homebrew/bin/hunk diff"
 
 [[keys.command]]
 key = "prefix+f"
