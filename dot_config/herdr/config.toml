@@ -52,7 +52,9 @@ command = "herdr tab focus $(herdr tab list 2>&1 | jq -r '.result.tabs as $tabs 
 
 [[keys.command]]
 key = "prefix+l"
-type = "pane"
+type = "popup"
+width = "90%"
+height = "90%"
 command = "/opt/homebrew/bin/lazygit"
 description = "Open Lazygit"
 
