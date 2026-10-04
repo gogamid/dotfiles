@@ -1,7 +1,7 @@
 # oh-my-zsh
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
-DISABLE_AUTO_UPDATE="true" # chezmoi handles it
+DISABLE_AUTO_UPDATE="true" 
 plugins=(
 	zsh-autosuggestions
 	zsh-syntax-highlighting
@@ -10,16 +10,6 @@ plugins=(
 
 #zsh-vi-mode
 ZVM_VI_HIGHLIGHT_BACKGROUND=#37393B
-
-export NEOVIDE_FRAME=buttonless
-export FFF_ENABLE_HOME_SCAN=0
-
-# Docker Sandboxes
-export SBX_NO_TELEMETRY=1
-
-path() {
-	export PATH=$PATH:$1
-}
 
 # reinstall pip-system-certs after azure-cli upgrade
 brew() {
