@@ -2,7 +2,6 @@ onboarding = false
 
 [theme]
 name = "terminal"
-auto_switch = false
 
 [keys]
 prefix = "ctrl+space"
@@ -10,34 +9,21 @@ prefix = "ctrl+space"
 split_horizontal = "prefix+-"
 split_vertical = "prefix+|"
 close_tab = "prefix+x"
-
+close_pane = "prefix+k"
 new_tab = "prefix+c"
 rename_tab = "prefix+r"
 
-goto = "prefix+g"
-
-edit_scrollback = ""
-copy_mode = "prefix+enter"
+copy_mode = "prefix+space"
 
 navigate_workspace_up = "k"
 navigate_workspace_down = "j"
 
 previous_workspace = "prefix+p"
 next_workspace = "prefix+n"
-previous_tab = ""
-next_tab = ""
 
 focus_agent = "ctrl+shift+1..9"
 
 zoom = "prefix+shift+z"
-
-# herdr-zen:start
-[[keys.command]]
-key = "prefix+z"
-type = "plugin_action"
-command = "gogamid.herdr-zen.toggle"
-description = "toggle zen (centered reading column)"
-# herdr-zen:end
 
 [[keys.command]]
 key = "shift+tab"
@@ -55,25 +41,27 @@ key = "prefix+l"
 type = "popup"
 width = "90%"
 height = "90%"
-command = "/opt/homebrew/bin/lazygit"
+command = "lazygit"
 description = "Open Lazygit"
+
+[[keys.command]]
+key = "prefix+t"
+type = "popup"
+command = "exec \"${SHELL:-sh}\""
+description = "open scratch terminal"
+width = "80%"
+height = "80%"
 
 [[keys.command]]
 key = "prefix+h"
 type = "pane"
-command = "/opt/homebrew/bin/hunk diff"
+command = "hunk diff"
 
 [[keys.command]]
 key = "prefix+f"
 type = "pane"
 command = "yazi"
 description = "Open Yazi"
-
-[[keys.command]]
-key = "prefix+y"
-type = "shell"
-command = "$HOME/.config/herdr/scripts/copy-hunk-user-comments.sh"
-description = "Copy user comments from hunk diff"
 
 [[keys.command]]
 key = "ctrl+h"
@@ -104,7 +92,7 @@ tab_bar_position = "bottom"
 prompt_new_tab_name = false
 
 agent_panel_sort = "spaces"
-sidebar_collapsed_mode = "hidden"
+sidebar_collapsed_mode = "compact"
 
 status_indicators = "symbols"
 [ui.toast]
@@ -112,7 +100,3 @@ delivery = "herdr"
 
 [ui.sound]
 enabled = false
-
-[experimental]
-pane_history = true
-kitty_graphics = true
