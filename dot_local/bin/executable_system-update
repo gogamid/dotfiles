@@ -90,7 +90,7 @@ nvim_update() {
 }
 
 pi_update() {
-  env HOME="$HOME" PATH="$BASE_PATH" "$PI" update --all --no-approve
+  # env HOME="$HOME" PATH="$BASE_PATH" "$PI" update --all --no-approve
 }
 
 # --- Main --------------------------------------------------------------------
