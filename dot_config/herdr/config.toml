@@ -3,14 +3,6 @@ onboarding = false
 [theme]
 name = "terminal"
 
-[terminal]
-# Run new panes in zsh as a login shell, so both ~/.zprofile (brew shellenv)
-# and ~/.zshrc (fnm, pnpm, cargo, go, ./node_modules/.bin) load. Without this
-# herdr falls back to /bin/sh whenever $SHELL is unset, and bare command
-# names like "lazygit" stop resolving.
-default_shell = "/bin/zsh"
-shell_mode = "login"
-
 [keys]
 prefix = "ctrl+space"
 
