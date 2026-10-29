@@ -37,6 +37,12 @@ type = "shell"
 command = "herdr tab focus $(herdr tab list 2>&1 | jq -r '.result.tabs as $tabs | ($tabs[] | select(.focused).workspace_id) as $ws | [$tabs[] | select(.workspace_id == $ws)] as $ws_tabs | if $ws_tabs[0].focused then $ws_tabs[1].tab_id else $ws_tabs[0].tab_id end')"
 
 [[keys.command]]
+key = "prefix+m"
+type = "shell"
+command = "$HOME/.config/herdr/scripts/move-tab-to-second.sh"
+description = "Move current tab to 2nd position"
+
+[[keys.command]]
 key = "prefix+l"
 type = "popup"
 width = "90%"
@@ -96,7 +102,7 @@ sidebar_collapsed_mode = "compact"
 
 status_indicators = "symbols"
 [ui.toast]
-delivery = "herdr"
+delivery = "system"
 
 [ui.sound]
 enabled = false
