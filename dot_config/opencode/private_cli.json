@@ -1,0 +1,38 @@
+{
+  "$schema": "https://opencode.ai/v2/cli.json",
+  "session": {
+    "sidebar": "hide",
+    "permissions": "autoaccept",
+    "thinking": "hide",
+    "verbosity": "medium",
+    "new_location": "launch",
+    "grouping": "auto"
+  },
+  "theme": {
+    "mode": "system",
+    "name": "system"
+  },
+  "tabs": {
+    "mode": "off"
+  },
+  "terminal": {
+    "copy": "select"
+  },
+  "keybinds": {
+    "session.half.page.up": "ctrl+u,ctrl+alt+u",
+    "session.half.page.down": "ctrl+d,ctrl+alt+d",
+    "session.last": "ctrl+shift+g",
+    "input.delete.to.line.start": "none",
+    "input.delete": "delete,shift+delete",
+    "app.exit": "ctrl+c,<leader>q"
+  },
+  "plugins": [
+    "./herdr-opencode"
+  ],
+  "prompt": {
+    "paste": "full"
+  },
+  "diffs": {
+    "single": false
+  }
+}
