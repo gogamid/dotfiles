@@ -66,37 +66,17 @@ alt-shift-8 = 'move-node-to-workspace 8'
 alt-shift-9 = 'move-node-to-workspace 9'
 alt-shift-0 = 'move-node-to-workspace 0'
 
-# split keyboard
-alt-n = 'workspace 1'
-alt-e = 'workspace 2'
-alt-i = 'workspace 3'
-alt-comma = 'workspace 4'
-alt-period = 'workspace 5'
-alt-m = 'workspace 0'
+alt-enter = 'mode service'
+alt-space = 'mode split'
 
-alt-shift-n = 'move-node-to-workspace 1'
-alt-shift-e = 'move-node-to-workspace 2'
-alt-shift-i = 'move-node-to-workspace 3'
-alt-shift-comma = 'move-node-to-workspace 4'
-alt-shift-period = 'move-node-to-workspace 5'
-alt-shift-m = 'move-node-to-workspace 0'
-
-alt-t = 'layout tiles horizontal vertical'
-alt-b = 'layout accordion horizontal'
-
-alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
-
-alt-space = 'mode service'
 [mode.service.binding]
+t = 'layout tiles horizontal vertical'
+b = 'layout accordion horizontal'
+
 h = 'resize width -50'
 j = 'resize height -50'
 k = 'resize height +50'
 l = 'resize width +50'
-alt-h = ['join-with left', 'mode main']
-alt-j = ['join-with down', 'mode main']
-alt-k = ['join-with up', 'mode main']
-alt-l = ['join-with right', 'mode main']
-
 
 f = ['layout floating tiling', 'mode main']
 
@@ -107,6 +87,30 @@ z = ['fullscreen', 'mode main']
 backspace = ['close-all-windows-but-current', 'mode main']
 
 esc = ['reload-config', 'mode main']
+
+[mode.split.binding]
+space = ['workspace 0', 'mode main']
+h = ['workspace 1', 'mode main']
+comma = ['workspace 2', 'mode main']
+period = ['workspace 3', 'mode main']
+n = ['workspace 4', 'mode main']
+e = ['workspace 5', 'mode main']
+i = ['workspace 6', 'mode main']
+l = ['workspace 7', 'mode main']
+u = ['workspace 8', 'mode main']
+y = ['workspace 9', 'mode main']
+esc = ['mode main']
+
+shift-space = ['move-node-to-workspace 0', 'mode main']
+shift-h = ['move-node-to-workspace 1', 'mode main']
+shift-comma = ['move-node-to-workspace 2', 'mode main']
+shift-period = ['move-node-to-workspace 3', 'mode main']
+shift-n = ['move-node-to-workspace 4', 'mode main']
+shift-e = ['move-node-to-workspace 5', 'mode main']
+shift-i = ['move-node-to-workspace 6', 'mode main']
+shift-l = ['move-node-to-workspace 7', 'mode main']
+shift-u = ['move-node-to-workspace 8', 'mode main']
+shift-y = ['move-node-to-workspace 9', 'mode main']
 
 [gaps]
 inner.horizontal = 1
@@ -133,7 +137,7 @@ outer.bottom = [{ monitor."built" = 2 }, { monitor."lg" = 20 }, 0]
 
 # app to window mapping
 [[on-window-detected]]
-if.app-name-regex-substring = 'Tinycast|Proton|Spark|Ente|Shottr|Neovide|Numbers|Finder|Raycast|Koodo|E-book'
+if.app-name-regex-substring = 'Tinycast|Proton|Spark|Ente|Shottr|Neovide|Numbers|Finder|Raycast|Koodo|E-book|Tablecruncher'
 run = 'layout floating'
 
 [[on-window-detected]]
