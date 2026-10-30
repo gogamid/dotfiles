@@ -145,7 +145,7 @@ if.app-name-regex-substring = 'Chrome|Numbers'
 run = 'move-node-to-workspace 0'
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'Ghostty'
+if.app-name-regex-substring = 'Ghostty|Rex'
 run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
