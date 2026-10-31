@@ -10,5 +10,5 @@ hunk_headers = false
 prompt_save_view_preferences = false
 agent_notes = true
 copy_decorations = false
-theme = "auto"
+theme = "terminal"
 transparent_background = true
