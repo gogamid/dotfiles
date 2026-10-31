@@ -89,3 +89,6 @@ NEOVIDE_FRAME=buttonless
 FFF_ENABLE_HOME_SCAN=1
 SBX_NO_TELEMETRY=1
 
+export FNM_COREPACK_ENABLED=true          # Automatically enable corepack for all versions of node installed through fnm
+export FNM_RESOLVE_ENGINES=true           # Automatically detect which version of node to use for the current project
+
