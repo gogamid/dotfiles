@@ -2,6 +2,11 @@
     type = "git-repo"
     url = "git@github.com:gogamid/nvim.git"
     refreshPeriod = "2h"
+["scripts"]
+    type = "git-repo"
+    url = "git@github.com:gogamid/scripts.git"
+    refreshPeriod = "2h"
+    pull.args = ["--ff-only"]
 [".oh-my-zsh"]
     type = "archive"
     url = "https://github.com/ohmyzsh/ohmyzsh/archive/master.tar.gz"
