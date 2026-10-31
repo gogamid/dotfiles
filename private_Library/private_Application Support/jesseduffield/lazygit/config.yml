@@ -4,13 +4,9 @@ gui:
   showFileIcons: true
 git:
   diffRenderers:
-    - command: delta --light --paging=never --file-decoration-style=none --hunk-header-decoration-style=none
-    - command: delta --dark --paging=never --file-decoration-style=none --hunk-header-decoration-style=none
-    - command: delta --dark --paging=never --file-decoration-style=none --hunk-header-decoration-style=none --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
-    - command: diff-so-fancy
-    - command: hunk pager --theme paper --no-line-numbers --no-wrap --no-hunk-headers
-    - command: hunk pager --no-line-numbers --no-wrap --no-hunk-headers
+    - command: 'hunk pager --theme {{if eq .colorScheme "light"}}github-light-default{{else}}github-dark-dimmed{{end}} --no-line-numbers --no-wrap --no-hunk-headers'
+    - command: "delta --{{colorScheme}} --paging=never --file-decoration-style=none --hunk-header-decoration-style=none"
 os:
-  editPreset: "custom"
-  edit: '[ -z "$NVIM" ] && (nvim -- {{filename}}) || (nvim --server "$NVIM" --remote-send "q" && nvim --server "$NVIM" --remote {{filename}})'
-  editAtLine: '[ -z "$NVIM" ] && (nvim +{{line}} -- {{filename}}) || (nvim --server "$NVIM" --remote-send "q" && nvim --server "$NVIM" --remote {{filename}} && nvim --server "$NVIM" --remote-send ":{{line}}<CR>")'
+  editInTerminal: true
+  edit: 'nvim --server localhost:6666 --remote "$(realpath -- {{filename}})" && env -u NVIM nvim --server localhost:6666 --remote-ui'
+  editAtLine: 'nvim --server localhost:6666 --remote "$(realpath -- {{filename}})" && nvim --server localhost:6666 --remote-send "{{line}}G" && env -u NVIM nvim --server localhost:6666 --remote-ui'
