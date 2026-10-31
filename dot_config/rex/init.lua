@@ -157,22 +157,59 @@ local function toggle(ctx, tool)
 	})
 end
 
-local TOOLS = {
-	{ key = "cmd+g", label = "lazygit", command = { "lazygit" }, bounds = { 0.12, 0.08, 0.76, 0.84 }, git = true },
-	{ key = "cmd+p", label = "k9s", command = { "k9s" }, bounds = { 0.05, 0.05, 0.90, 0.90 } },
-}
+rex.action({
+	name = "toggle_lazygit",
+	title = "Toggle lazygit",
+	run = function(ctx)
+		return toggle(ctx, {
+			label = "lazygit",
+			command = { "lazygit" },
+			bounds = { 0.12, 0.08, 0.76, 0.84 },
+			git = true,
+		})
+	end,
+})
+rex.bind("ctrl+space>l", "toggle_lazygit")
 
-for _, tool in ipairs(TOOLS) do
-	local t = tool
-	rex.action({
-		name = "toggle_" .. t.label,
-		title = "Toggle " .. t.label,
-		run = function(ctx)
-			return toggle(ctx, t)
-		end,
-	})
-	rex.bind(t.key, "toggle_" .. t.label)
-end
+rex.action({
+	name = "toggle_k9s",
+	title = "Toggle k9s",
+	run = function(ctx)
+		return toggle(ctx, {
+			label = "k9s",
+			command = { "k9s" },
+			bounds = { 0.05, 0.05, 0.90, 0.90 },
+		})
+	end,
+})
+rex.bind("ctrl+space>k", "toggle_k9s")
+
+-- Scratch terminal: a fresh shell each time; toggling kills it, so nothing
+-- lingers. Never detached, so the block is found by label in its layer.
+rex.action({
+	name = "toggle_scratch",
+	title = "Toggle scratch terminal",
+	run = function(ctx)
+		local sid = ctx.session_id
+		local _, block_id = find_block(sid, "scratch")
+		if block_id then
+			return rex.call("block.close", { session_id = sid, block_id = block_id })
+		end
+		return rex.session.new_layer({
+			session_id = sid,
+			bounds = { 0.08, 0.06, 0.84, 0.88 },
+			focus = true,
+			layout = {
+				block = {
+					flavor = "com.superlogical.terminal.shell",
+					label = "scratch",
+					options = { cwd = focused_cwd(ctx.block_id) },
+				},
+			},
+		})
+	end,
+})
+rex.bind("ctrl+space>s", "toggle_scratch")
 
 -- alt+tab flips between the first two tabs; any other tab goes back to tab 1.
 -- The app owns which tab is shown, so ask it with client.tab.goto instead of
