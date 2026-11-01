@@ -230,6 +230,31 @@ rex.action({
 
 rex.bind("alt+tab", "toggle_tab_1_2")
 
+-- ctrl+space>1..9 jumps straight to that tab, in tab order.
+rex.action({
+	name = "goto_tab",
+	title = "Go to Tab",
+	args = {
+		type = "object",
+		required = { "index" },
+		properties = {
+			index = { type = "integer", minimum = 1 },
+		},
+	},
+	run = function(ctx, args)
+		local view = session_view(ctx.session_id)
+		local wins = view and view.windows or {}
+		if not args or args.index > #wins then
+			return
+		end
+		return rex.client.queue("client.tab.goto", { index = args.index })
+	end,
+})
+
+for i = 1, 9 do
+	rex.bind("ctrl+space>" .. i, "goto_tab", { index = i })
+end
+
 -- Smart splits: ctrl+KEY moves focus between blocks. When nvim has focus,
 -- return false so the key reaches nvim, where smart-splits calls back at the
 -- edge.
