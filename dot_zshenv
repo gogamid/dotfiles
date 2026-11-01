@@ -37,6 +37,8 @@ path "/opt/homebrew/bin"
 # Oracle client and other manually installed tools
 path $HOME/.local/bin/
 
+path $HOME/scripts/
+
 #paths
 path "$HOME/context/tex/texmf-osx-arm64/bin"
 path "/opt/homebrew/opt/make/libexec/gnubin"
@@ -81,8 +83,6 @@ path /Users/gamidli/.spicetify
 
 export BUN_INSTALL="$HOME/.bun"
 path "$BUN_INSTALL/bin"
-
-path "$HOME/.local/bin"
 
 DISABLE_TELEMETRY=1
 NEOVIDE_FRAME=buttonless
