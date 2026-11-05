@@ -134,10 +134,15 @@ outer.left = [
 outer.top = [
   { monitor."built" = 5 },
   { monitor."lg" = 0 },
-  { monitor."HP E24 G4" = 0 },
+  { monitor."HP 534pm" = 10 },
   0,
 ]
-outer.bottom = [{ monitor."built" = 2 }, { monitor."lg" = 20 }, 0]
+outer.bottom = [
+  { monitor."built" = 2 },
+  { monitor."lg" = 20 },
+  { monitor."HP 534pm" = 10 },
+  0,
+]
 
 # app to window mapping
 [[on-window-detected]]
