@@ -52,37 +52,6 @@ local function session_view(sid)
 	end
 end
 
--- The focused block of the session's active window.
-local function active_block(sid)
-	local view = session_view(sid)
-	for _, win in ipairs(view and view.windows or {}) do
-		if win.window_id == view.active_window_id then
-			return win.focused_block_id
-		end
-	end
-end
-
--- Find a block by label: returns its layer and ID when shown, nil layer and
--- ID when detached (hidden).
-local function find_block(sid, label)
-	local view = session_view(sid)
-	for _, win in ipairs(view and view.windows or {}) do
-		for _, layer in ipairs(win.layers) do
-			for _, blk in ipairs(layer.blocks) do
-				if blk.label == label then
-					return layer, blk.block_id
-				end
-			end
-		end
-	end
-	local ok, list = pcall(rex.session.list_blocks, { session_id = sid })
-	for _, blk in ipairs(ok and list.blocks or {}) do
-		if blk.label == label then
-			return nil, blk.block_id
-		end
-	end
-end
-
 -- Rectangle of a block in its window, from the session view.
 local function block_rect(view, block_id)
 	local walk
@@ -111,25 +80,86 @@ local function window_cells(block_id, rect)
 	end
 end
 
--- Toggle a floating tool: hide/show the same block, so its program keeps
--- running and its state (scrollback, selection, cluster connection) survives.
+-- A block by label in an already fetched view. The layer comes back only while
+-- the block is placed in a window.
+local function find_block_in(view, label)
+	for _, win in ipairs(view and view.windows or {}) do
+		for _, layer in ipairs(win.layers or {}) do
+			for _, blk in ipairs(layer.blocks or {}) do
+				if blk.label == label then
+					return layer, blk.block_id
+				end
+			end
+		end
+	end
+end
+
+local function window_index_of_layer(view, layer_id)
+	for index, win in ipairs(view and view.windows or {}) do
+		for _, layer in ipairs(win.layers or {}) do
+			if layer.layer_id == layer_id then
+				return index
+			end
+		end
+	end
+end
+
+-- Toggle a floating tool; the block and its program always survive. By default
+-- the float is detached (no capsule). `native = true` uses the client's layer
+-- state instead: minimize hides it into the taskbar, normal restores it, and
+-- the client animates both.
 local function toggle(ctx, tool)
 	local sid = ctx.session_id
-	local layer, block_id = find_block(sid, tool.label)
-	if layer then
-		if layer.kind ~= "tiled" then
+	local view = session_view(sid)
+	local layer, block_id = find_block_in(view, tool.label)
+	if not block_id then
+		-- A block an older toggle detached: list_blocks still reports it.
+		local ok, list = pcall(rex.session.list_blocks, { session_id = sid })
+		for _, blk in ipairs(ok and list and list.blocks or {}) do
+			if blk.label == tool.label then
+				block_id = blk.block_id
+				break
+			end
+		end
+	end
+
+	if layer and layer.kind ~= "tiled" then
+		if not tool.native then
 			return rex.session.detach_block({ session_id = sid, block_id = block_id })
 		end
-		return rex.session.float_block({ session_id = sid, block_id = block_id, bounds = tool.bounds })
+		if layer.state ~= "minimized" then
+			return rex.session.set_layer_state({ session_id = sid, layer_id = layer.layer_id, state = "minimized" })
+		end
+		rex.session.set_layer_state({ session_id = sid, layer_id = layer.layer_id, state = "normal", focus = true })
+		-- Tabs belong to the app: focus alone does not reveal another tab.
+		local index = window_index_of_layer(view, layer.layer_id)
+		local active
+		for i, win in ipairs(view.windows or {}) do
+			if win.window_id == view.active_window_id then
+				active = i
+			end
+		end
+		if index and index ~= active then
+			return rex.client.queue("client.tab.goto", { index = index })
+		end
+		return
 	end
+
 	if block_id then
-		local anchor = ctx.block_id or active_block(sid)
-		local rect = block_rect(session_view(sid), anchor)
+		-- Detached or tiled (split by the user): place it beside the focused
+		-- pane, then float it. float_block keeps the split's size, so resize.
+		local anchor = ctx.block_id
+		if not anchor then
+			for _, win in ipairs(view.windows or {}) do
+				if win.window_id == view.active_window_id then
+					anchor = win.focused_block_id
+				end
+			end
+		end
+		local rect = block_rect(view, anchor)
 		local cols, rows = window_cells(anchor, rect)
 		rex.session.move_block({ session_id = sid, block_id = block_id, anchor_block_id = anchor })
 		rex.session.float_block({ session_id = sid, block_id = block_id, bounds = tool.bounds })
-		-- float_block keeps the size the block had in the split, so set the size
-		-- the layer is about to give it.
 		if cols and rows then
 			terminal("resize", {
 				block_id = block_id,
@@ -139,6 +169,7 @@ local function toggle(ctx, tool)
 		end
 		return rex.session.focus_block({ session_id = sid, block_id = block_id })
 	end
+
 	local cwd = focused_cwd(ctx.block_id)
 	if tool.git and not is_git_repo(cwd) then
 		return notify("Not a git repository: " .. (cwd or "unknown directory"))
@@ -157,6 +188,8 @@ local function toggle(ctx, tool)
 	})
 end
 
+-- Plain lazygit float, no Neovim/LazyRex integration: the float is created
+-- once in the focused pane's directory and detached between toggles.
 rex.action({
 	name = "toggle_lazygit",
 	title = "Toggle lazygit",
@@ -169,20 +202,27 @@ rex.action({
 		})
 	end,
 })
-rex.bind("ctrl+space>l", "toggle_lazygit")
+rex.bind("cmd+l", "toggle_lazygit")
 
 rex.action({
-	name = "toggle_k9s",
-	title = "Toggle k9s",
+	name = "toggle_opencode",
+	title = "Toggle opencode",
 	run = function(ctx)
 		return toggle(ctx, {
-			label = "k9s",
-			command = { "k9s" },
-			bounds = { 0.05, 0.05, 0.90, 0.90 },
+			label = "ai",
+			command = { "opencode" },
+			bounds = { 0.25, 0.06, 0.50, 0.88 },
+			native = true,
 		})
 	end,
 })
-rex.bind("ctrl+space>k", "toggle_k9s")
+rex.bind("ctrl+.", "toggle_opencode")
+
+-- Scrollback paging (client actions, Rex 1829 preview). Plain Page Up/Down stay
+-- with the program; Shift walks the terminal history instead.
+rex.bind("shift+pageup", "client.scroll.page_up")
+rex.bind("shift+pagedown", "client.scroll.page_down")
+rex.bind("ctrl+space>n", "pane.new_floating")
 
 -- Scratch terminal: a fresh shell each time; toggling kills it, so nothing
 -- lingers. Never detached, so the block is found by label in its layer.
@@ -191,7 +231,7 @@ rex.action({
 	title = "Toggle scratch terminal",
 	run = function(ctx)
 		local sid = ctx.session_id
-		local _, block_id = find_block(sid, "scratch")
+		local _, block_id = find_block_in(session_view(sid), "scratch")
 		if block_id then
 			return rex.call("block.close", { session_id = sid, block_id = block_id })
 		end
