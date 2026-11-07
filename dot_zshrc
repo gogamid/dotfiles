@@ -1,15 +1,18 @@
-# oh-my-zsh
-export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="robbyrussell"
-DISABLE_AUTO_UPDATE="true" 
-plugins=(
-	zsh-autosuggestions
-	zsh-syntax-highlighting
-	zsh-vi-mode
-)
+# vi mode
+bindkey -v
+export KEYTIMEOUT=1
 
-#zsh-vi-mode
-ZVM_VI_HIGHLIGHT_BACKGROUND=#37393B
+# Completion
+autoload -Uz compinit; compinit
+
+# theme pure
+autoload -U promptinit; promptinit
+prompt pure
+
+# fast cd
+eval "$(zoxide init --cmd cd zsh)"
+
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # reinstall pip-system-certs after azure-cli upgrade
 brew() {
@@ -25,14 +28,10 @@ brew() {
   esac
 }
 
-#zoxide
-eval "$(zoxide init --cmd cd zsh)"
-
-# bun
-[ -s "/Users/gamidli/.bun/_bun" ] && source "/Users/gamidli/.bun/_bun"
-
 if [  -f ~/.workZSH.sh ]; then
 	source ~/.workZSH.sh
 fi
 
-source $ZSH/oh-my-zsh.sh
+# always last
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
