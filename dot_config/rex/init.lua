@@ -8,44 +8,70 @@ local function terminal(method, args)
 	end
 end
 
--- Working directory of a pane: nvim's real cwd when nvim is in front (it
--- follows :cd/:lcd/:tcd), else the shell's reported directory.
-local function focused_cwd(block_id)
+-- Working directory of a pane: the foreground process's real cwd when it
+-- reports one (nvim follows :cd/:lcd/:tcd, opencode/lazygit report their
+-- launch dir), else the shell's reported directory.
+local session_view
+
+local function block_cwd(block_id)
 	local proc = terminal("process", block_id and { block_id = block_id })
 	local fg = proc and proc.foreground
-	if fg and type(fg.cwd) == "string" and fg.name and fg.name:lower():match("^n?vim") then
+	if fg and type(fg.cwd) == "string" then
 		return fg.cwd
 	end
-	local res = terminal("pwd")
+	local res = terminal("pwd", block_id and { block_id = block_id })
 	if res and type(res.pwd) == "string" then
 		return (res.pwd:gsub("^file://[^/]*", ""))
 	end
 end
 
--- Whether `dir` is inside a git work tree.
-local function is_git_repo(dir)
-	if not dir then
-		return false
+-- The focused block can be a non-terminal float (opencode, lazygit native
+-- panes). Fall back to the tiled terminal behind it in the same window, so
+-- tools still open in the directory the user is working in.
+local function terminal_in_window(view, block_id)
+	local target
+	for _, win in ipairs(view and view.windows or {}) do
+		for _, layer in ipairs(win.layers or {}) do
+			for _, blk in ipairs(layer.blocks or {}) do
+				if blk.block_id == block_id then
+					target = win
+				end
+			end
+		end
 	end
-	local ok, res = pcall(rex.exec, { "git", "-C", dir, "rev-parse", "--show-toplevel" })
-	return ok and type(res) == "table" and res.ok == true
+	if not target then
+		for _, win in ipairs(view and view.windows or {}) do
+			if win.window_id == view.active_window_id then
+				target = win
+			end
+		end
+	end
+	local fallback
+	for _, layer in ipairs(target and target.layers or {}) do
+		for _, blk in ipairs(layer.blocks or {}) do
+			if blk.creator_name == "com.superlogical.terminal" then
+				if layer.kind == "tiled" then
+					return blk.block_id
+				end
+				fallback = fallback or blk.block_id
+			end
+		end
+	end
+	return fallback
 end
 
--- macOS notification; the text is an argv entry, so nothing needs escaping.
-local function notify(text)
-	pcall(rex.exec, {
-		"osascript",
-		"-e",
-		"on run argv",
-		"-e",
-		'display notification (item 1 of argv) with title "Rex"',
-		"-e",
-		"end run",
-		text,
-	})
+local function focused_cwd(block_id, sid)
+	local cwd = block_cwd(block_id)
+	if cwd then
+		return cwd
+	end
+	local fallback = terminal_in_window(sid and session_view(sid), block_id)
+	if fallback then
+		return block_cwd(fallback)
+	end
 end
 
-local function session_view(sid)
+session_view = function(sid)
 	local ok, view = pcall(rex.session.view, { session_id = sid })
 	if ok and type(view) == "table" then
 		return view
@@ -145,6 +171,17 @@ local function toggle(ctx, tool)
 		return
 	end
 
+	if block_id and tool.follow_cwd then
+		-- Re-showing a hidden float: keep it only if it still matches the
+		-- current pane's directory. Otherwise close it and start fresh there.
+		local want = focused_cwd(ctx.block_id, sid)
+		local have = block_cwd(block_id)
+		if want and have and want ~= have then
+			rex.call("block.close", { session_id = sid, block_id = block_id })
+			block_id = nil
+		end
+	end
+
 	if block_id then
 		-- Detached or tiled (split by the user): place it beside the focused
 		-- pane, then float it. float_block keeps the split's size, so resize.
@@ -170,10 +207,7 @@ local function toggle(ctx, tool)
 		return rex.session.focus_block({ session_id = sid, block_id = block_id })
 	end
 
-	local cwd = focused_cwd(ctx.block_id)
-	if tool.git and not is_git_repo(cwd) then
-		return notify("Not a git repository: " .. (cwd or "unknown directory"))
-	end
+	local cwd = focused_cwd(ctx.block_id, sid)
 	return rex.session.new_layer({
 		session_id = sid,
 		bounds = tool.bounds,
@@ -198,7 +232,7 @@ rex.action({
 			label = "lazygit",
 			command = { "lazygit" },
 			bounds = { 0.12, 0.08, 0.76, 0.84 },
-			git = true,
+			follow_cwd = true,
 		})
 	end,
 })
@@ -243,7 +277,7 @@ rex.action({
 				block = {
 					flavor = "com.superlogical.terminal.shell",
 					label = "scratch",
-					options = { cwd = focused_cwd(ctx.block_id) },
+					options = { cwd = focused_cwd(ctx.block_id, sid) },
 				},
 			},
 		})
