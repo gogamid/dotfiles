@@ -146,7 +146,7 @@ outer.bottom = [
 
 # app to window mapping
 [[on-window-detected]]
-if.app-name-regex-substring = 'Tinycast|Proton|Spark|Ente|Shottr|Neovide|Numbers|Finder|Raycast|Koodo|E-book|Tablecruncher'
+if.app-name-regex-substring = 'CameraController|Tinycast|Proton|Spark|Ente|Shottr|Neovide|Numbers|Finder|Raycast|Koodo|E-book|Tablecruncher'
 run = 'layout floating'
 
 [[on-window-detected]]
